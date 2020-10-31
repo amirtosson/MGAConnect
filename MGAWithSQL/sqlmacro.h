@@ -25,7 +25,7 @@
     try{\
         V\
     } catch(...){\
-    qDebug() << "ERROR" << endl;\
+    qDebug() << "UNKNOWN ERROR" << endl;\
     }
 
 #define DECLAIR_SQL_REQUIRED_MEMBERS\
