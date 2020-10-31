@@ -29,7 +29,8 @@ void DBConnectForm::on_connectToDBButton_clicked()
     {
         driver = get_driver_instance();
         con = driver->connect( dbConnectFormUi->DBURITextBox->text().toStdString(), dbConnectFormUi->DBUserNameTextBox->text().toStdString(), dbConnectFormUi->DBPwdTextBox->text().toStdString());
-        con->setSchema(dbConnectFormUi->DBNameTextBox->text().toStdString());
+
+        //con->setSchema(dbConnectFormUi->DBNameTextBox->text().toStdString());
     }
     catch(sql::SQLException e)
     {
@@ -38,7 +39,15 @@ void DBConnectForm::on_connectToDBButton_clicked()
 #endif
        return;
     }
+    if(con->isValid())
+    {
+        bDatabaseIsconnected = true;
+        emit DatabaseIsconnected();
+    }
+}
 
-    bDatabaseIsconnected = true;
-    emit DatabaseIsconnected();
+void DBConnectForm::on_disconnectDBButton_clicked()
+{
+    con->close();
+    DATABASE_IS_NOT_CONNECTED
 }

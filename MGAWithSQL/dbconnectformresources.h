@@ -18,7 +18,10 @@
 
 #define TXT_DB_PASSWORD_PH              "password"
 
-#define TXT_ADD_DB_BTN_LABEL            "Add Database"
+#define TXT_ADD_DB_BTN_LABEL            "Connect"
+
+#define TXT_DISCONNECT_DB_BTN_LABEL     "Disconnect"
+
 
 
 #define IMG_NOT_CONNECTED               "border-image: url(:/db/databasenotconnected.png);"

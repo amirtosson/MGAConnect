@@ -25,6 +25,8 @@ private slots:
 
     void on_connectToDBButton_clicked();
 
+    void on_disconnectDBButton_clicked();
+
 private:
     Ui::DBConnectForm *dbConnectFormUi;
     bool bDatabaseIsconnected = false;

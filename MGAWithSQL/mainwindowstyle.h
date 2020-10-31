@@ -44,6 +44,7 @@ enum EMGAStyle
         text-align: center;\
         selection-background-color: transparent;}\
         QPushButton:pressed {background-color: blue;}\
+        QPushButton:disabled {background-color:rgb(50, 50, 50);color:rgb(108, 108, 108);}\
         QPushButton:focus {border: none; outline: none;}"\
 
 #define TOOLBAR_DARK_STYLE\

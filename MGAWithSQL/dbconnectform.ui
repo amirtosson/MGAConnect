@@ -215,7 +215,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>350</y>
+     <y>300</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -238,6 +238,22 @@
    </property>
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="disconnectDBButton">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>370</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
