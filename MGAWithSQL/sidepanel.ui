@@ -47,7 +47,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="showUserListButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -66,7 +66,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="showDatasetsButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -85,7 +85,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="addNewDatasetButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -104,7 +104,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="extraButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -196,10 +196,10 @@
  </widget>
  <tabstops>
   <tabstop>dbConnectBtn</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>pushButton_4</tabstop>
-  <tabstop>pushButton_5</tabstop>
+  <tabstop>showUserListButton</tabstop>
+  <tabstop>showDatasetsButton</tabstop>
+  <tabstop>addNewDatasetButton</tabstop>
+  <tabstop>extraButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

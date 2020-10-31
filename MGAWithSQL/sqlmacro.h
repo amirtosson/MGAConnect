@@ -3,12 +3,8 @@
 
 #include "mysql_connection.h"
 #include <cppconn/driver.h>
-#include "mysql_connection.h"
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
-#include <cppconn/sqlstring.h>
 #include "cppconn/sqlstring.h"
 #include "cppconn/exception.h"
 #include "cppconn/prepared_statement.h"
@@ -20,6 +16,26 @@
 #define SQLSTRING sql::SQLString
 
 #define MGA_DATABASE_NAME "MGA_DataBase"
+
+//the same alias as in sql DB
+#define TXT_ROLE          "role"
+#define ADMIN_ROLE        "admin"
+#define USER_ROLE         "user"
+#define GUEST_ROLE        "guest"
+#define STUDENT_ROLE      "student"
+#define UNKNOWN_ROLE      "unknown"
+
+//====================================
+
+#define SERIALIZE_USER_ROLE\
+    START_GETTING_DATA\
+        sCurrentUserRoleName = GET_COLOUMN_BY_ALIAS_AS_QSTRING(TXT_ROLE);\
+    END_GETTING_DATA\
+    if(sCurrentUserRoleName == ADMIN_ROLE) eCurrentUserRole = eAdmin;\
+    else if (sCurrentUserRoleName == USER_ROLE) eCurrentUserRole = eUser;\
+    else if (sCurrentUserRoleName == GUEST_ROLE) eCurrentUserRole = eGuest;\
+    else if (sCurrentUserRoleName == STUDENT_ROLE) eCurrentUserRole = eStudent;\
+    else eCurrentUserRole = eUNKNOWN;
 
 #define SQL_ERROR_HANDEL(V)\
     try{\
@@ -43,12 +59,17 @@
 
 #define CONNECT_TO_SQL_DRIVER(DBtcp,UserName,Pwd)\
     driver = get_driver_instance();\
-    con = driver->connect( SQLQUERY(DBtcp), SQLQUERY(UserName), SQLQUERY(Pwd));\
-    con->setSchema(MGA_DATABASE_NAME);
+    con = driver->connect(DBtcp,UserName,Pwd);\
+    CREATE_STATMENT\
+    GET_USER_ROLE(UserName)
+//con->setSchema(MGA_DATABASE_NAME);
 //"tcp://127.0.0.1:3306"
 
 #define GET_MEMEBR_WITH_COLNAME(V)\
         SQLQUERY("SELECT * FROM mga_members WHERE ") +SQLQUERY(V) + SQLQUERY(" = ?");
+
+#define GET_USER_ROLE(U)\
+    res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT role FROM mysql.user WHERE user = '") + SQLQUERY(U) + SQLQUERY("' ")));
 
 #define PREPARED_STATMENT(stmt)\
         pstmt = con->prepareStatement(stmt);
@@ -101,6 +122,10 @@
 
 #define SQL_EXCUTE_UPDATE\
         pstmt->executeUpdate();
+
+
+#define UPDATE_USER_ROLE(R,U)\
+        SQLQUERY("UPDATE mysql.user SET role =")+SQLQUERY(R)+ SQLQUERY("WHERE user =")+ SQLQUERY(U);
 
 
 #endif // SQLMACRO_H

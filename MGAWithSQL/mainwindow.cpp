@@ -1,8 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDebug>
-#include <QString>
-#include <QPushButton>
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,9 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     _sidePanal = new SidePanel(ui->sideToolBoxWidget);
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
-    connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));\
+    connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
     _sidePanal->hide();
     ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
+    this->statusBar()->showMessage(TXT_NOT_CONNECTED);
     USE_STYLE(eDarkStyle)
 }
 
@@ -33,6 +33,9 @@ void MainWindow::DBConnectionSetUpClicked()
     {
         _dbForm = new DBConnectForm(ui->mainWidget);
         connect(_dbForm, SIGNAL(DatabaseIsconnected()),this ,SLOT(DatabaseHasConnection()));
+        connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),this ,SLOT(DatabaseNotConnected()));
+        connect(_dbForm, SIGNAL(DatabaseIsconnected()),_sidePanal ,SLOT(DatabaseIsConnected()));
+        connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),_sidePanal ,SLOT(DatabaseIsDisconnected()));
         hasDBForm = true;
     }
     _dbForm->show();
@@ -47,6 +50,12 @@ void MainWindow::StyleHasBeenChanged()
 void MainWindow::DatabaseHasConnection()
 {
     this->statusBar()->showMessage(TXT_CONNECTED);
+    QMessageBox::information(this, tr("Information"),QString("You are connected as %1").arg(_dbForm->GetCurrentUserRoleName()));
+}
+
+void MainWindow::DatabaseNotConnected()
+{
+    this->statusBar()->showMessage(TXT_NOT_CONNECTED);
 }
 
 void MainWindow::ShowSidePanel()

@@ -21,6 +21,8 @@ public:
 
 private slots:
     void on_dbConnectBtn_clicked();
+    void DatabaseIsConnected();
+    void DatabaseIsDisconnected();
 
 signals:
     void DBCOnnectionButtonClicked();

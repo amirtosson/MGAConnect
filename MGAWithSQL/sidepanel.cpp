@@ -8,8 +8,9 @@ SidePanel::SidePanel(QWidget *parent) :
     sidePanelUi(new Ui::SidePanel)
 {
     sidePanelUi->setupUi(this);
-    //this->setStyleSheet(SIDE_PANEL_BUTTON_STYLE);
     SIDE_PANEL_UI_COMMPONENTS_SETUP
+
+
 }
 
 SidePanel::~SidePanel()
@@ -20,6 +21,16 @@ SidePanel::~SidePanel()
 void SidePanel::on_dbConnectBtn_clicked()
 {
     emit DBCOnnectionButtonClicked();
+}
+
+void SidePanel::DatabaseIsConnected()
+{
+    ENABLE_BUTTONS
+}
+
+void SidePanel::DatabaseIsDisconnected()
+{
+    DISABLE_BUTTONS
 }
 
 

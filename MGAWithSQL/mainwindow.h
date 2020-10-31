@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
+#include <QString>
+#include <QPushButton>
+#include <QMessageBox>
+
 #include "dbconnectform.h"
 #include "sidepanel.h"
 #include "mainwindowstyle.h"
@@ -25,6 +30,7 @@ private slots:
     void DBConnectionSetUpClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
+    void DatabaseNotConnected();
     void ShowSidePanel();
     void HideSidePanel();
 

@@ -12,7 +12,6 @@ OptionForm::OptionForm(QWidget *parent) :
 {
     ui->setupUi(this);
     SETUP_CONNECTIONS
-
     SET_OPTION_FORM_STYLE
 }
 

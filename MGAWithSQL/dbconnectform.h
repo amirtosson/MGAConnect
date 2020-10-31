@@ -8,6 +8,15 @@ namespace Ui {
 class DBConnectForm;
 }
 
+enum EUserRole
+{
+    eAdmin,
+    eUser,
+    eGuest,
+    eStudent,
+    eUNKNOWN
+};
+
 class DBConnectForm : public QWidget
 {
     Q_OBJECT
@@ -17,11 +26,18 @@ public:
 
     ~DBConnectForm();
     DECLAIR_SQL_REQUIRED_MEMBERS
+    EUserRole GetCurrentUserRole();
+    QString GetCurrentUserRoleName();
+
+
 signals:
     void DatabaseIsconnected();
+    void DatabaseIsDisconnected();
 
 private slots:
     void OnDataBaseIsconnected();
+
+    void OnDatabaseIsDisconnected();
 
     void on_connectToDBButton_clicked();
 
@@ -30,6 +46,10 @@ private slots:
 private:
     Ui::DBConnectForm *dbConnectFormUi;
     bool bDatabaseIsconnected = false;
+    EUserRole eCurrentUserRole = eUNKNOWN;
+    QString sCurrentUserRoleName = UNKNOWN_ROLE;
+
+
 };
 
 #endif // DBCONNECTFORM_H

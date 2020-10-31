@@ -34,8 +34,7 @@ enum EMGAStyle
 #define WIDGET_DARK_STYLE\
         "QWidget { background-color: rgb(65, 65, 65);\
         color: white;\
-        selection-background-color: transparent;}\
-        QWidget:focus {border: none; outline: none;}"\
+        selection-background-color: transparent;}"\
 
 #define PUSH_BUTTON_DARK_STYLE\
         "QPushButton {font: 75 12pt  TeX Gyre Schola ;\
@@ -43,7 +42,7 @@ enum EMGAStyle
         color: white;\
         text-align: center;\
         selection-background-color: transparent;}\
-        QPushButton:pressed {background-color: blue;}\
+        QPushButton:pressed {background-color: rgb(0, 0, 103);}\
         QPushButton:disabled {background-color:rgb(50, 50, 50);color:rgb(108, 108, 108);}\
         QPushButton:focus {border: none; outline: none;}"\
 

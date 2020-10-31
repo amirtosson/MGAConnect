@@ -260,6 +260,14 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>DBNameTextBox</tabstop>
+  <tabstop>DBURITextBox</tabstop>
+  <tabstop>DBUserNameTextBox</tabstop>
+  <tabstop>DBPwdTextBox</tabstop>
+  <tabstop>connectToDBButton</tabstop>
+  <tabstop>disconnectDBButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
