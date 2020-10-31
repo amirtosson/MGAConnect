@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/new/logo">
+        <file>amg.jpg</file>
+    </qresource>
+    <qresource prefix="/db">
+        <file>db.png</file>
+        <file>notconnected.png</file>
+        <file>connected.png</file>
+        <file>database.png</file>
+        <file>databasenotconnected.png</file>
+        <file>databaseconnected.png</file>
+        <file>addDB.png</file>
+    </qresource>
+    <qresource prefix="/buttonIcons">
+        <file>them.png</file>
+    </qresource>
+</RCC>
