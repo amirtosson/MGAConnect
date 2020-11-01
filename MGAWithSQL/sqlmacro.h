@@ -68,8 +68,17 @@
 #define GET_MEMEBR_WITH_COLNAME(V)\
         SQLQUERY("SELECT * FROM mga_members WHERE ") +SQLQUERY(V) + SQLQUERY(" = ?");
 
+#define GET_MEMEBRS_COUNTS\
+        con->setSchema(MGA_DATABASE_NAME);\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT count(*) FROM mga_members")));\
+        START_GETTING_DATA\
+        nUserCounts = res->getInt(1);\
+        END_GETTING_DATA
+
+
+
 #define GET_USER_ROLE(U)\
-    res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT role FROM mysql.user WHERE user = '") + SQLQUERY(U) + SQLQUERY("' ")));
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT role FROM mysql.user WHERE user = '") + SQLQUERY(U) + SQLQUERY("' ")));
 
 #define PREPARED_STATMENT(stmt)\
         pstmt = con->prepareStatement(stmt);

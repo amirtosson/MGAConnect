@@ -1,12 +1,11 @@
 #ifndef SIDEPANELRESOURCES_H
 #define SIDEPANELRESOURCES_H
 
-#define TXT_DB_CONNECT_BTN_LABEL                "DB-setup"
-#define TXT_SHOW_USER_BTN_LABEL                 "Users list"
-#define TXT_SHOW_DATA_BTN_LABEL                 "Show datasets"
-#define TXT_ADD_DATA_BTN_LABEL                  "Add datasets"
-//TODO:define this button
-#define TXT_EXTRA_BTN_LABEL                     "EXTRA"
+#define TXT_DB_CONNECT_BTN_LABEL                "DB\n setup"
+#define TXT_SHOW_USER_BTN_LABEL                 "Users\n list"
+#define TXT_SHOW_DATA_BTN_LABEL                 "Show\n datasets"
+#define TXT_ADD_DATA_BTN_LABEL                  "Add\n datasets"
+#define TXT_ADD_GUEST_BTN_LABEL                 "Add\n Guest"
 
 
 

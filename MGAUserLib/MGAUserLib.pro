@@ -1,18 +1,18 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2020-10-27T08:38:25
+# Project created by QtCreator 2020-11-01T11:39:38
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       -=
 
-TARGET = MGAString
+TARGET = MGAUserLib
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += mgastring.cpp
+SOURCES += mgauserlib.cpp
 
-HEADERS += mgastring.h
+HEADERS += mgauserlib.h
 unix {
     target.path = ./
     INSTALLS += target

@@ -5,13 +5,13 @@
 #include <QDebug>
 #include <QString>
 #include <QPushButton>
-#include <QMessageBox>
 
 #include "dbconnectform.h"
 #include "sidepanel.h"
 #include "mainwindowstyle.h"
 #include "optionform.h"
 #include "mainwindowresources.h"
+#include "userlistform.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +28,7 @@ public:
 private slots:
     void on_actionOptions_triggered();
     void DBConnectionSetUpClicked();
+    void ShowUserListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();
@@ -42,10 +43,13 @@ private:
     DBConnectForm *_dbForm;
     SidePanel *_sidePanal;
     OptionForm *_OptionForm;
+    UserListForm *_userListForm;
 
     bool hasDBForm = false;
     bool hasOptionForm = false;
-    bool sidePanelIsFixwd =false;
+    bool sidePanelIsFixed =false;
+    bool hasUserListForm =false;
+
 
 private:
     void HideAll();

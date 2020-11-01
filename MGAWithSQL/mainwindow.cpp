@@ -10,7 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     _sidePanal = new SidePanel(ui->sideToolBoxWidget);
+
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
+    connect(_sidePanal, SIGNAL(ShowUserListButtonClicked()),this ,SLOT(ShowUserListClicked()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
     _sidePanal->hide();
@@ -41,6 +43,17 @@ void MainWindow::DBConnectionSetUpClicked()
     _dbForm->show();
 }
 
+void MainWindow::ShowUserListClicked()
+{
+    HideAll();
+    if(!hasUserListForm)
+    {
+        _userListForm = new UserListForm(ui->mainWidget,_dbForm->GetUserNumber());
+        hasUserListForm = true;
+    }
+    _userListForm->show();
+}
+
 void MainWindow::StyleHasBeenChanged()
 {
     USE_STYLE(_OptionForm->eCurrentStyle)
@@ -50,7 +63,9 @@ void MainWindow::StyleHasBeenChanged()
 void MainWindow::DatabaseHasConnection()
 {
     this->statusBar()->showMessage(TXT_CONNECTED);
-    QMessageBox::information(this, tr("Information"),QString("You are connected as %1").arg(_dbForm->GetCurrentUserRoleName()));
+    _sidePanal->SetCurrentRole(_dbForm->GetCurrentUserRole());
+    QMessageBox::information(this, tr(TXT_INFORMATION),QString(TXT_CONNECTED_PRIV).arg(_dbForm->GetCurrentUserRoleName()));
+
 }
 
 void MainWindow::DatabaseNotConnected()
@@ -60,12 +75,12 @@ void MainWindow::DatabaseNotConnected()
 
 void MainWindow::ShowSidePanel()
 {
-    if(!sidePanelIsFixwd)_sidePanal->show();
+    if(!sidePanelIsFixed)_sidePanal->show();
 }
 
 void MainWindow::HideSidePanel()
 {
-   if(!sidePanelIsFixwd)_sidePanal->hide();
+   if(!sidePanelIsFixed)_sidePanal->hide();
 }
 
 void MainWindow::on_actionOptions_triggered()
@@ -90,11 +105,11 @@ void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
 {
     switch (arg1) {
     case 0:
-        sidePanelIsFixwd = false;
+        sidePanelIsFixed = false;
         _sidePanal->hide();
         break;
     case 2:
-        sidePanelIsFixwd = true;
+        sidePanelIsFixed = true;
         _sidePanal->show();
         break;
     default:

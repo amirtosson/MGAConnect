@@ -4,18 +4,11 @@
 #include <QWidget>
 #include "dbconnectionsetups.h"
 #include "sqlmacro.h"
+#include "mgauserrolesenum.h"
+
 namespace Ui {
 class DBConnectForm;
 }
-
-enum EUserRole
-{
-    eAdmin,
-    eUser,
-    eGuest,
-    eStudent,
-    eUNKNOWN
-};
 
 class DBConnectForm : public QWidget
 {
@@ -28,11 +21,12 @@ public:
     DECLAIR_SQL_REQUIRED_MEMBERS
     EUserRole GetCurrentUserRole();
     QString GetCurrentUserRoleName();
-
+    unsigned int GetUserNumber();
 
 signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
+
 
 private slots:
     void OnDataBaseIsconnected();
@@ -48,6 +42,7 @@ private:
     bool bDatabaseIsconnected = false;
     EUserRole eCurrentUserRole = eUNKNOWN;
     QString sCurrentUserRoleName = UNKNOWN_ROLE;
+    unsigned int nUserCounts = 0;
 
 
 };

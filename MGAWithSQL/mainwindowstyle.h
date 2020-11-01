@@ -20,6 +20,7 @@ enum EMGAStyle
         + QString(PUSH_BUTTON_DARK_STYLE)\
         + QString(TOOLBAR_DARK_STYLE)\
         + QString(CHECKBOX_DARK_STYLE)\
+        + QString(TABLE_DARK_STYLE)\
         + QString(COMBOBOX_DARK_STYLE);\
         this->setStyleSheet(style);\
 
@@ -56,6 +57,9 @@ enum EMGAStyle
 #define CHECKBOX_DARK_STYLE\
         "QCheckBox:indicator:checked {background-color: none;}\
         QCheckBox:focus {border: none; outline: none;}"\
+
+#define TABLE_DARK_STYLE\
+        "QHeaderView::section { background-color:black; }"
 
 #pragma endregion
 

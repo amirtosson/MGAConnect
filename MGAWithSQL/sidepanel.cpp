@@ -9,13 +9,16 @@ SidePanel::SidePanel(QWidget *parent) :
 {
     sidePanelUi->setupUi(this);
     SIDE_PANEL_UI_COMMPONENTS_SETUP
-
-
 }
 
 SidePanel::~SidePanel()
 {
     delete sidePanelUi;
+}
+
+void SidePanel::SetCurrentRole(EUserRole eRole)
+{
+    eCurrentRole = eRole;
 }
 
 void SidePanel::on_dbConnectBtn_clicked()
@@ -33,4 +36,7 @@ void SidePanel::DatabaseIsDisconnected()
     DISABLE_BUTTONS
 }
 
-
+void SidePanel::on_showUserListButton_clicked()
+{
+    emit ShowUserListButtonClicked();
+}

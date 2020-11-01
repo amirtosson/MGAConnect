@@ -2,14 +2,17 @@
 #define SIDEPANEL_H
 
 #include <QWidget>
-#include "mgasidepanelstyle.h"
-#include "sidepanelsetups.h"
 #include <QPixmap>
 #include <QIcon>
+
+#include "sidepanelsetups.h"
+#include "mgauserrolesenum.h"
+
 
 namespace Ui {
 class SidePanel;
 }
+
 
 class SidePanel : public QWidget
 {
@@ -18,17 +21,25 @@ class SidePanel : public QWidget
 public:
     explicit SidePanel(QWidget *parent = 0);
     ~SidePanel();
+    void SetCurrentRole(EUserRole eRole);
 
 private slots:
     void on_dbConnectBtn_clicked();
     void DatabaseIsConnected();
     void DatabaseIsDisconnected();
+    void on_showUserListButton_clicked();
 
 signals:
     void DBCOnnectionButtonClicked();
+    void ShowUserListButtonClicked();
+
 
 private:
     Ui::SidePanel *sidePanelUi;
+    QPixmap btnPixMap;
+    QIcon btnIcon;
+    EUserRole eCurrentRole = eUNKNOWN;
+
 };
 
 #endif // SIDEPANEL_H

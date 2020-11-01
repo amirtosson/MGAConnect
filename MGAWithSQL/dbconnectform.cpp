@@ -28,11 +28,30 @@ QString DBConnectForm::GetCurrentUserRoleName()
     return sCurrentUserRoleName;
 }
 
+unsigned int DBConnectForm::GetUserNumber()
+{
+    return nUserCounts;
+}
+
 void DBConnectForm::OnDataBaseIsconnected()
 {
     DATABASE_IS_CONNECTED
     SERIALIZE_USER_ROLE
     bDatabaseIsconnected = true;
+    if(eCurrentUserRole == eAdmin)
+    {
+        try
+        {
+            GET_MEMEBRS_COUNTS
+        }
+        catch(sql::SQLException e)
+        {
+            //TODO: add exception handel
+           qDebug()<<e.what();
+           return;
+        }
+    }
+
 }
 
 void DBConnectForm::OnDatabaseIsDisconnected()
@@ -40,7 +59,6 @@ void DBConnectForm::OnDatabaseIsDisconnected()
     con->close();
     bDatabaseIsconnected = false;
     DATABASE_IS_NOT_CONNECTED
-
 }
 
 void DBConnectForm::on_connectToDBButton_clicked()
@@ -51,7 +69,6 @@ void DBConnectForm::on_connectToDBButton_clicked()
                              ,dbConnectFormUi->DBUserNameTextBox->text().toStdString()
                              ,dbConnectFormUi->DBPwdTextBox->text().toStdString())
 
-        //con->setSchema(dbConnectFormUi->DBNameTextBox->text().toStdString());
     }
     catch(sql::SQLException e)
     {
