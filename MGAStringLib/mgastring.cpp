@@ -27,12 +27,17 @@ MGAString::MGAString(std::string str)
 
 void MGAString::PrintString()
 {
-    qDebug()<< sMainString.c_str();
+    qDebug()<< sMainString.c_str()<<endl;
 }
 
 void MGAString::SetFromQString(QString *qStr)
 {
     sMainString = qStr->toStdString();
+}
+
+void MGAString::SetFromSTDString(std::__cxx11::string str)
+{
+    sMainString = str;
 }
 
 bool MGAString::IsValidPwd()
@@ -88,5 +93,12 @@ std::string MGAString::GetAsStdSting()
 QString MGAString::GetAsQString()
 {
     return QString(sMainString.c_str());
+}
+
+QTableWidgetItem MGAString::GetAsQTableWidgitItem()
+{
+    QTableWidgetItem item;
+    item.setText(QString(sMainString.c_str()));
+    return item;
 }
 

@@ -11,7 +11,8 @@
 #include "mainwindowstyle.h"
 #include "optionform.h"
 #include "mainwindowresources.h"
-#include "userlistform.h"
+#include "mgalistform.h"
+#include "mgalistformtypesenum.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private slots:
     void on_actionOptions_triggered();
     void DBConnectionSetUpClicked();
     void ShowUserListClicked();
+    void ShowDatabasesListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();
@@ -43,12 +45,14 @@ private:
     DBConnectForm *_dbForm;
     SidePanel *_sidePanal;
     OptionForm *_OptionForm;
-    UserListForm *_userListForm;
+    MGAListForm *_userListForm;
+    MGAListForm *_databasesListForm;
 
     bool hasDBForm = false;
     bool hasOptionForm = false;
     bool sidePanelIsFixed =false;
     bool hasUserListForm =false;
+    bool hasDatabasesListForm =false;
 
 
 private:

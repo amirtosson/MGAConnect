@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       -=
 
 TARGET = MGAString
 TEMPLATE = lib

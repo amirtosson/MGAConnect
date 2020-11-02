@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
     connect(_sidePanal, SIGNAL(ShowUserListButtonClicked()),this ,SLOT(ShowUserListClicked()));
+    connect(_sidePanal, SIGNAL(ShowDatabasesListButtonClicked()),this ,SLOT(ShowDatabasesListClicked()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
     _sidePanal->hide();
@@ -48,10 +49,22 @@ void MainWindow::ShowUserListClicked()
     HideAll();
     if(!hasUserListForm)
     {
-        _userListForm = new UserListForm(ui->mainWidget,_dbForm->GetUserNumber());
+        _userListForm = new MGAListForm(ui->mainWidget, eUsersList);
         hasUserListForm = true;
     }
+    _dbForm->ShowUsersInQTalbe(_userListForm->GetUITable());
     _userListForm->show();
+}
+
+void MainWindow::ShowDatabasesListClicked()
+{
+    HideAll();
+    if(!hasDatabasesListForm)
+    {
+        _databasesListForm = new MGAListForm(ui->mainWidget, eDatabasesList);
+        hasDatabasesListForm = true;
+    }
+    _databasesListForm->show();
 }
 
 void MainWindow::StyleHasBeenChanged()
@@ -99,6 +112,8 @@ void MainWindow::HideAll()
 {
     if(hasDBForm)_dbForm->hide();
     if(hasOptionForm)_OptionForm->hide();
+    if(hasUserListForm)_userListForm->hide();
+    if(hasDatabasesListForm)_databasesListForm->hide();
 }
 
 void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)

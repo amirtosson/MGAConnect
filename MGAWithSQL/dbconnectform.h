@@ -2,9 +2,15 @@
 #define DBCONNECTFORM_H
 
 #include <QWidget>
+#include <QTableWidget>
+#include <vector>
 #include "dbconnectionsetups.h"
 #include "sqlmacro.h"
 #include "mgauserrolesenum.h"
+#include "mgauser.h"
+
+
+
 
 namespace Ui {
 class DBConnectForm;
@@ -22,7 +28,7 @@ public:
     EUserRole GetCurrentUserRole();
     QString GetCurrentUserRoleName();
     unsigned int GetUserNumber();
-
+    bool ShowUsersInQTalbe(QTableWidget *table);
 signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
@@ -43,8 +49,7 @@ private:
     EUserRole eCurrentUserRole = eUNKNOWN;
     QString sCurrentUserRoleName = UNKNOWN_ROLE;
     unsigned int nUserCounts = 0;
-
-
+    std::vector<MGAUser> users;
 };
 
 #endif // DBCONNECTFORM_H

@@ -16,6 +16,7 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
 DBConnectForm::~DBConnectForm()
 {
     delete dbConnectFormUi;
+    //if(nUserCounts>0) delete[] users;
 }
 
 EUserRole DBConnectForm::GetCurrentUserRole()
@@ -33,6 +34,16 @@ unsigned int DBConnectForm::GetUserNumber()
     return nUserCounts;
 }
 
+bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
+{
+    for(int i =0; i<nUserCounts; ++i)
+    {
+       table->insertRow(i);
+       users[i].ShowInQTalbeRow(table,i);
+    }
+    return true;
+}
+
 void DBConnectForm::OnDataBaseIsconnected()
 {
     DATABASE_IS_CONNECTED
@@ -43,6 +54,26 @@ void DBConnectForm::OnDataBaseIsconnected()
         try
         {
             GET_MEMEBRS_COUNTS
+            if(nUserCounts>0)
+            {
+                GET_MGA_MEMEBRS
+                START_GETTING_DATA
+                std::string str = res->getString(1).asStdString();
+                MGAUser mgaUser;
+                mgaUser.SetFirstName(str);
+                str = res->getString(2).asStdString();
+                mgaUser.SetLastName(str);
+                str = res->getString(3).asStdString();
+                mgaUser.SetEMail(str);
+                str = res->getString(4).asStdString();
+                mgaUser.SetUsnivesityName(str);
+                users.push_back(mgaUser);
+                END_GETTING_DATA
+            }
+            else
+            {
+                throw 0;
+            }
         }
         catch(sql::SQLException e)
         {
@@ -51,7 +82,6 @@ void DBConnectForm::OnDataBaseIsconnected()
            return;
         }
     }
-
 }
 
 void DBConnectForm::OnDatabaseIsDisconnected()
@@ -68,6 +98,7 @@ void DBConnectForm::on_connectToDBButton_clicked()
         CONNECT_TO_SQL_DRIVER(dbConnectFormUi->DBURITextBox->text().toStdString()
                              ,dbConnectFormUi->DBUserNameTextBox->text().toStdString()
                              ,dbConnectFormUi->DBPwdTextBox->text().toStdString())
+
 
     }
     catch(sql::SQLException e)

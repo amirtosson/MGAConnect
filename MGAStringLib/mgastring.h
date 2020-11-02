@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDebug>
+#include <QTableWidget>
 
 class MGAString
 {
@@ -24,9 +25,13 @@ public:
     //getters
     std::string GetAsStdSting();
     QString GetAsQString();
+    QTableWidgetItem GetAsQTableWidgitItem();
+
 
     // setter
     void SetFromQString(QString *qStr);
+    void SetFromSTDString(std::string str);
+
 
     //operators overloading
 public:

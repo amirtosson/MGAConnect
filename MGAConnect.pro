@@ -8,9 +8,5 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += MGAStringLib\
-        MGAWithSQL \
-        MGAUserLib
-
-
-
+        MGAWithSQL
 

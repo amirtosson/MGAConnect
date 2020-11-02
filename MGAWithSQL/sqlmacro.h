@@ -76,6 +76,10 @@
         END_GETTING_DATA
 
 
+#define GET_MGA_MEMEBRS\
+        con->setSchema(MGA_DATABASE_NAME);\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT lastName, firstName, eMail, universityName FROM mga_members")));\
+
 
 #define GET_USER_ROLE(U)\
         res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT role FROM mysql.user WHERE user = '") + SQLQUERY(U) + SQLQUERY("' ")));

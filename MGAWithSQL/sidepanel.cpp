@@ -40,3 +40,8 @@ void SidePanel::on_showUserListButton_clicked()
 {
     emit ShowUserListButtonClicked();
 }
+
+void SidePanel::on_showDatasetsButton_clicked()
+{
+    emit ShowDatabasesListButtonClicked();
+}

@@ -12,8 +12,10 @@ TARGET = MGAWithSQL
 TEMPLATE = app
 
 INCLUDEPATH += ../mysqlConnect/include/
+INCLUDEPATH += MGAObjects/
 
 LIBS += -L$$PWD/../mysqlConnect/lib -lmysqlcppconn
+
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -22,7 +24,8 @@ SOURCES += main.cpp\
     optionform.cpp \
     mgawidgetextension.cpp \
     mgaoptionbuttonextension.cpp \
-    userlistform.cpp
+    MGAObjects/mgauser.cpp \
+    mgalistform.cpp
 
 HEADERS  += mainwindow.h\
     sqlmacro.h \
@@ -39,14 +42,18 @@ HEADERS  += mainwindow.h\
     optionformsetups.h \
     optionformresources.h \
     mainwindowresources.h \
-    userlistform.h \
-    mgauserrolesenum.h
+    mgauserrolesenum.h \
+    MGAObjects/mgauser.h \
+    mgalistform.h \
+    MGAObjects/mgalistformtypesenum.h \
+    mgalistformresources.h \
+    mgalistformsetups.h
 
 FORMS    += mainwindow.ui \
     dbconnectform.ui \
     sidepanel.ui \
     optionform.ui \
-    userlistform.ui
+    mgalistform.ui
 
 RESOURCES += \
     imageresources.qrc
@@ -64,15 +71,4 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PW
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/MGAStringd.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAString.a
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAUserLib/ -lMGAUserLib
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../MGAUserLib/ -lMGAUserLibd
-else:unix: LIBS += -L$$OUT_PWD/../MGAUserLib/ -lMGAUserLib
 
-INCLUDEPATH += $$PWD/../MGAUserLib
-DEPENDPATH += $$PWD/../MGAUserLib
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAUserLib/libMGAUserLib.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAUserLib/libMGAUserLibd.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAUserLib/MGAUserLib.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAUserLib/MGAUserLibd.lib
-else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAUserLib/libMGAUserLib.a
