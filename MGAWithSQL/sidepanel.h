@@ -27,13 +27,13 @@ private slots:
     void on_dbConnectBtn_clicked();
     void DatabaseIsConnected();
     void DatabaseIsDisconnected();
-    void on_showUserListButton_clicked();
-
-    void on_showDatasetsButton_clicked();
+    void on_showMemberListButton_clicked();
+    void on_showUsersButton_clicked();
 
 signals:
     void DBCOnnectionButtonClicked();
-    void ShowUserListButtonClicked();
+    void ShowMembersListButtonClicked();
+    void ShowUserListButtonIsClicked();
     void ShowDatabasesListButtonClicked();
 
 

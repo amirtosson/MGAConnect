@@ -8,5 +8,6 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += MGAStringLib\
+        SmtpClientThirdParty\
         MGAWithSQL
 

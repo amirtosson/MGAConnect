@@ -4,9 +4,11 @@
 extern "C" enum EListType
 {
     eUsersList,
+    eMemberList,
     eStudentsList,
     eGuestsList,
-    eDatabasesList
+    eDatabasesList,
+    eUNKOWN
 };
 
 #endif // MGALISTFORMTYPESENUM_H

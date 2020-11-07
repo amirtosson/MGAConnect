@@ -22,185 +22,87 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QPushButton" name="dbConnectBtn">
+  <widget class="QToolButton" name="dbConnectBtn">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>10</y>
      <width>100</width>
-     <height>81</height>
+     <height>80</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="autoFillBackground">
-    <bool>true</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
   </widget>
-  <widget class="QPushButton" name="showUserListButton">
+  <widget class="QToolButton" name="showUsersButton">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>100</y>
+     <y>90</y>
      <width>100</width>
-     <height>81</height>
+     <height>80</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
   </widget>
-  <widget class="QPushButton" name="showDatasetsButton">
+  <widget class="QToolButton" name="showMemberListButton">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>190</y>
+     <y>170</y>
      <width>100</width>
-     <height>81</height>
+     <height>80</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
   </widget>
-  <widget class="QPushButton" name="addNewDatasetButton">
+  <widget class="QToolButton" name="addNewDatasetButton">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>280</y>
+     <y>250</y>
      <width>100</width>
-     <height>81</height>
+     <height>80</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
    </property>
    <property name="text">
     <string/>
    </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
   </widget>
-  <widget class="QPushButton" name="addGuestButton">
+  <widget class="QToolButton" name="addGuestButton">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>370</y>
+     <y>330</y>
      <width>100</width>
-     <height>81</height>
+     <height>80</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
    </property>
    <property name="text">
     <string/>
    </property>
-  </widget>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>95</y>
-     <width>100</width>
-     <height>1</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>0</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>185</y>
-     <width>100</width>
-     <height>2</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="Line" name="line_3">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>275</y>
-     <width>100</width>
-     <height>1</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="Line" name="line_4">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>365</y>
-     <width>100</width>
-     <height>1</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
   </widget>
  </widget>
- <tabstops>
-  <tabstop>dbConnectBtn</tabstop>
-  <tabstop>showUserListButton</tabstop>
-  <tabstop>showDatasetsButton</tabstop>
-  <tabstop>addNewDatasetButton</tabstop>
-  <tabstop>addGuestButton</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

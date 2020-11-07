@@ -1,34 +1,41 @@
-#ifndef MGAUSERLIB_H
-#define MGAUSERLIB_H
+#ifndef MGAUSER_H
+#define MGAUSER_H
 
 #include <QString>
 #include <QTableWidget>
-#include "mgastring.h"
 #include <QDebug>
+
+#include "mgastring.h"
 
 class MGAUser
 {
 
 public:
     MGAUser();
-    QTableWidgetItem item[4];
 
     bool ShowInQTalbeRow(QTableWidget *table, int row);
     //Setter
-    void SetFirstName(std::string &firstname);
-    void SetLastName(std::string &lastname);
-    void SetUsnivesityName(std::string &university);
-    void SetEMail(std::__cxx11::string &email);
+    void SetName(std::string &name);
+    void SetHost(std::string &host);
+    void SetRole(std::string &role);
+    void SetPWD(std::string &pwd);
+
+    //getter
+    QString GetName();
+    QString GetHost();
+    QString GetRole();
+    QString GetPWD();
+    int  CheckValidity();
     void Print();
 
 
 
 private:
-    MGAString sFirstName;
-    MGAString sLastName;
-    MGAString sUniversityName;
-    MGAString sEMail;
+    MGAString sName;
+    MGAString sHost;
+    MGAString sRole;
+    MGAString sPWD;
 
 };
 
-#endif // MGAUSERLIB_H
+#endif // MGAUSER_H

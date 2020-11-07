@@ -7,9 +7,13 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     userListFormUi(new Ui::MGAListForm)
 {
     userListFormUi->setupUi(this);
+    BUTTONS_SETUP
     switch (eList) {
     case eUsersList:
-        {USER_LIST_FORM_SETUP}
+        {USERS_LIST_FORM_SETUP}
+        break;
+    case eMemberList:
+        {MEMBERS_LIST_FORM_SETUP}
         break;
     case eDatabasesList:
         {DATABASES_LIST_FORM_SETUP}
@@ -27,11 +31,58 @@ QTableWidget *MGAListForm::GetUITable()
 MGAListForm::~MGAListForm()
 {
     delete userListFormUi;
+    if(hasAddNewUserForm) delete addNewUser;
 
 }
 
+MGAUser *MGAListForm::GetTheNewUser()
+{
+    return  addNewUser->GetTheNewUser();
+}
 
 void MGAListForm::on_userListWidget_cellPressed(int row, int column)
 {
+    SelectionIsChanged(row);
+}
 
+void MGAListForm::SelectionIsChanged(const int id)
+{
+    ENABLE_BUTTONS
+    nCurrentSelecttonID = id;
+}
+
+void MGAListForm::on_editUserButton_clicked()
+{
+
+}
+
+void MGAListForm::on_addUserButton_clicked()
+{
+    try
+    {
+        if(!hasAddNewUserForm)
+        {
+           addNewUser = new AddNewObjectForm(this, eUsersList);
+           connect(addNewUser, SIGNAL(NewUserIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
+           addNewUser->setModal(true);
+           addNewUser->exec();
+        }
+
+        else
+        {
+            addNewUser->open();
+        }
+    }
+    catch(int e)
+    {
+        qDebug()<<e;
+    }
+
+    hasAddNewUserForm = true;
+}
+
+void MGAListForm::NewObjectIsReady()
+{
+   //qstr =  addNewUser->GetTheNewUser().GetName();
+   emit NewUserIsReady();
 }

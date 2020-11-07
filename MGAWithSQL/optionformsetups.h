@@ -22,7 +22,7 @@
         "QPushButton { border-radius:10px;}"
 
 #define FIRST_BUTTON_SETUP\
-        ui->firstButton->setStyleSheet("border-image: url(:/buttonIcons/them.png)");
+        ui->firstButton->setStyleSheet(IMG_THEME);
 
 
 #define MOUSE_ON_OPTION_BUTTON(V)\

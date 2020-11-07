@@ -53,6 +53,9 @@
     </disabled>
    </palette>
   </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>MGA SQL properties</string>
   </property>
@@ -85,7 +88,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/new/logo/amg.jpg);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="label">

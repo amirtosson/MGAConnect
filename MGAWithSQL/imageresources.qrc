@@ -1,17 +1,26 @@
 <RCC>
-    <qresource prefix="/new/logo">
-        <file>amg.jpg</file>
-    </qresource>
     <qresource prefix="/db">
-        <file>db.png</file>
-        <file>notconnected.png</file>
-        <file>connected.png</file>
-        <file>database.png</file>
-        <file>databasenotconnected.png</file>
-        <file>databaseconnected.png</file>
-        <file>addDB.png</file>
+        <file>Resources/Icons/database.png</file>
+        <file>Resources/Icons/connect.png</file>
+        <file>Resources/Images/databasenotconnected.png</file>
+        <file>Resources/Images/databaseconnected.png</file>
     </qresource>
     <qresource prefix="/buttonIcons">
-        <file>them.png</file>
+        <file>Resources/Images/them.png</file>
+        <file>Resources/Icons/adduser.png</file>
+        <file>Resources/Icons/changeuser.png</file>
+        <file>Resources/Icons/deleteuser.png</file>
+        <file>Resources/Icons/edituser.png</file>
+    </qresource>
+    <qresource prefix="/user">
+        <file>Resources/Icons/users.png</file>
+        <file>Resources/Icons/admins.png</file>
+        <file>Resources/Icons/sqladmins.png</file>
+    </qresource>
+    <qresource prefix="/member">
+        <file>Resources/Icons/members.png</file>
+    </qresource>
+    <qresource prefix="/logos">
+        <file>Resources/Images/amg.jpg</file>
     </qresource>
 </RCC>

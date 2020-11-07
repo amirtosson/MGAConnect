@@ -7,9 +7,9 @@
 #include "dbconnectionsetups.h"
 #include "sqlmacro.h"
 #include "mgauserrolesenum.h"
+#include "mgamember.h"
+#include "mgadatabase.h"
 #include "mgauser.h"
-
-
 
 
 namespace Ui {
@@ -28,7 +28,14 @@ public:
     EUserRole GetCurrentUserRole();
     QString GetCurrentUserRoleName();
     unsigned int GetUserNumber();
+    bool ShowMembersInQTalbe(QTableWidget *table);
     bool ShowUsersInQTalbe(QTableWidget *table);
+    bool AddNewMGAUsers(MGAUser *newUser);
+
+
+    void CleanLists();
+
+
 signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
@@ -36,11 +43,8 @@ signals:
 
 private slots:
     void OnDataBaseIsconnected();
-
     void OnDatabaseIsDisconnected();
-
     void on_connectToDBButton_clicked();
-
     void on_disconnectDBButton_clicked();
 
 private:
@@ -48,8 +52,13 @@ private:
     bool bDatabaseIsconnected = false;
     EUserRole eCurrentUserRole = eUNKNOWN;
     QString sCurrentUserRoleName = UNKNOWN_ROLE;
-    unsigned int nUserCounts = 0;
-    std::vector<MGAUser> users;
+    unsigned int nMemberCount = 0;
+    unsigned int nUserCount = 0;
+    std::vector<MGAMember> mgaMembersList;
+    std::vector<MGAUser> mgaUsersList;
+    std::vector<MGADatabase> databases;
+
+    bool IsDataChanged = true;
 };
 
 #endif // DBCONNECTFORM_H

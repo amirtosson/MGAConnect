@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "optionformsetups.h"
+#include "mgastyleenum.h"
 
 namespace Ui {
 class OptionForm;
@@ -15,12 +16,6 @@ class OptionForm : public QWidget
 public:
     explicit OptionForm(QWidget *parent = 0);
     ~OptionForm();
-    enum EMGAStyle
-    {
-        eDarkStyle,
-        eBrightStyle,
-        eDefaultStyle
-    };
 
     EMGAStyle eCurrentStyle = eDarkStyle;
 

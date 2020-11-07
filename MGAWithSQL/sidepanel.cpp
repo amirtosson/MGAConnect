@@ -9,6 +9,7 @@ SidePanel::SidePanel(QWidget *parent) :
 {
     sidePanelUi->setupUi(this);
     SIDE_PANEL_UI_COMMPONENTS_SETUP
+
 }
 
 SidePanel::~SidePanel()
@@ -36,12 +37,12 @@ void SidePanel::DatabaseIsDisconnected()
     DISABLE_BUTTONS
 }
 
-void SidePanel::on_showUserListButton_clicked()
+void SidePanel::on_showMemberListButton_clicked()
 {
-    emit ShowUserListButtonClicked();
+    emit ShowMembersListButtonClicked();
 }
 
-void SidePanel::on_showDatasetsButton_clicked()
+void SidePanel::on_showUsersButton_clicked()
 {
-    emit ShowDatabasesListButtonClicked();
+    emit ShowUserListButtonIsClicked();
 }

@@ -16,7 +16,6 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
 DBConnectForm::~DBConnectForm()
 {
     delete dbConnectFormUi;
-    //if(nUserCounts>0) delete[] users;
 }
 
 EUserRole DBConnectForm::GetCurrentUserRole()
@@ -31,54 +30,122 @@ QString DBConnectForm::GetCurrentUserRoleName()
 
 unsigned int DBConnectForm::GetUserNumber()
 {
-    return nUserCounts;
+    return nMemberCount;
 }
 
-bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
+bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
 {
-    for(int i =0; i<nUserCounts; ++i)
+    for(int i =0; i<nMemberCount; ++i)
     {
        table->insertRow(i);
-       users[i].ShowInQTalbeRow(table,i);
+       mgaMembersList[i].ShowInQTalbeRow(table,i);
     }
     return true;
 }
 
+bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
+{
+    for(int i =0; i<nUserCount; ++i)
+    {
+       table->insertRow(i);
+       mgaUsersList[i].ShowInQTalbeRow(table,i);
+    }
+    return true;
+}
+
+bool DBConnectForm::AddNewMGAUsers(MGAUser *newUser)
+{
+    if (con->isValid())
+    {
+        ADD_NEW_USER(newUser->GetName().toStdString(),newUser->GetHost().toStdString(),newUser->GetPWD().toStdString(),newUser->GetRole().toStdString())
+        qDebug()<<"valid";
+    }
+    else
+    {
+        qDebug()<<"Invalid";
+    }
+
+}
+
+void DBConnectForm::CleanLists()
+{
+   mgaUsersList.clear();
+   mgaMembersList.clear();
+}
+
 void DBConnectForm::OnDataBaseIsconnected()
 {
+    //TODO: cleaning only if new data is added
+    CleanLists();
     DATABASE_IS_CONNECTED
     SERIALIZE_USER_ROLE
     bDatabaseIsconnected = true;
     if(eCurrentUserRole == eAdmin)
     {
         try
-        {
-            GET_MEMEBRS_COUNTS
-            if(nUserCounts>0)
+       {
+            GET_USERS
+            GET_USERS_COUNTS
+            if(nUserCount>0)
             {
-                GET_MGA_MEMEBRS
+                GET_USERS
                 START_GETTING_DATA
-                std::string str = res->getString(1).asStdString();
                 MGAUser mgaUser;
-                mgaUser.SetFirstName(str);
+                std::string str = res->getString(1).asStdString();
+                mgaUser.SetName(str);
                 str = res->getString(2).asStdString();
-                mgaUser.SetLastName(str);
+                mgaUser.SetHost(str);
                 str = res->getString(3).asStdString();
-                mgaUser.SetEMail(str);
-                str = res->getString(4).asStdString();
-                mgaUser.SetUsnivesityName(str);
-                users.push_back(mgaUser);
+                mgaUser.SetRole(str);
+                mgaUsersList.push_back(mgaUser);
                 END_GETTING_DATA
             }
             else
             {
-                throw 0;
+                throw 404;
             }
         }
         catch(sql::SQLException e)
         {
             //TODO: add exception handel
            qDebug()<<e.what();
+           return;
+        }
+
+        try
+        {
+            GET_MEMEBRS_COUNTS
+            if(nMemberCount>0)
+            {
+                GET_MGA_MEMEBRS
+                START_GETTING_DATA
+                std::string str = res->getString(1).asStdString();
+                MGAMember mgaMember;
+                mgaMember.SetFirstName(str);
+                str = res->getString(2).asStdString();
+                mgaMember.SetLastName(str);
+                str = res->getString(3).asStdString();
+                mgaMember.SetEMail(str);
+                str = res->getString(4).asStdString();
+                mgaMember.SetUsnivesityName(str);
+                mgaMembersList.push_back(mgaMember);
+                END_GETTING_DATA
+            }
+            else
+            {
+                throw 404;
+            }
+        }
+        catch(sql::SQLException e)
+        {
+            //TODO: add exception handel
+           qDebug()<<e.what();
+           return;
+        }
+        catch(int i)
+        {
+            //TODO: add exception handel
+           if(i == 404 ) qDebug()<<"No users found";
            return;
         }
     }

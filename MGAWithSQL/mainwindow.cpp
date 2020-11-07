@@ -9,24 +9,26 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    _sidePanal = new SidePanel(ui->sideToolBoxWidget);
 
+    IntializeSidePanel(ui->sideToolBoxWidget);
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
-    connect(_sidePanal, SIGNAL(ShowUserListButtonClicked()),this ,SLOT(ShowUserListClicked()));
+    connect(_sidePanal, SIGNAL(ShowMembersListButtonClicked()),this ,SLOT(ShowMemberListClicked()));
     connect(_sidePanal, SIGNAL(ShowDatabasesListButtonClicked()),this ,SLOT(ShowDatabasesListClicked()));
+    connect(_sidePanal, SIGNAL(ShowUserListButtonIsClicked()),this ,SLOT(ShowUserListClicked()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
-    _sidePanal->hide();
     ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
     this->statusBar()->showMessage(TXT_NOT_CONNECTED);
     USE_STYLE(eDarkStyle)
+    //ui->mainWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
+    //ui->sideToolBoxWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    if(hasDBForm)delete _dbForm;
-    if(hasOptionForm)delete _OptionForm;
+
 }
 
 void MainWindow::DBConnectionSetUpClicked()
@@ -34,26 +36,25 @@ void MainWindow::DBConnectionSetUpClicked()
     HideAll();
     if(!hasDBForm)
     {
-        _dbForm = new DBConnectForm(ui->mainWidget);
+        IntializeDBConnectionForm(ui->mainWidget);
         connect(_dbForm, SIGNAL(DatabaseIsconnected()),this ,SLOT(DatabaseHasConnection()));
         connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),this ,SLOT(DatabaseNotConnected()));
         connect(_dbForm, SIGNAL(DatabaseIsconnected()),_sidePanal ,SLOT(DatabaseIsConnected()));
         connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),_sidePanal ,SLOT(DatabaseIsDisconnected()));
-        hasDBForm = true;
     }
+    ui->widget->hide();
     _dbForm->show();
 }
 
-void MainWindow::ShowUserListClicked()
+void MainWindow::ShowMemberListClicked()
 {
     HideAll();
-    if(!hasUserListForm)
+    if(!hasMembersListForm)
     {
-        _userListForm = new MGAListForm(ui->mainWidget, eUsersList);
-        hasUserListForm = true;
+        IntializeMembersListForm(ui->mainWidget);
     }
-    _dbForm->ShowUsersInQTalbe(_userListForm->GetUITable());
-    _userListForm->show();
+    ui->widget->hide();
+    ShowMembersList();
 }
 
 void MainWindow::ShowDatabasesListClicked()
@@ -61,10 +62,22 @@ void MainWindow::ShowDatabasesListClicked()
     HideAll();
     if(!hasDatabasesListForm)
     {
-        _databasesListForm = new MGAListForm(ui->mainWidget, eDatabasesList);
-        hasDatabasesListForm = true;
+        IntializeDatabasesListForm(ui->mainWidget);
     }
-    _databasesListForm->show();
+    ui->widget->hide();
+    ShowDatabasesList();
+}
+
+void MainWindow::ShowUserListClicked()
+{
+    HideAll();
+    if(!hasUsersListForm)
+    {
+        IntializeUsersListForm(ui->mainWidget);
+        connect(_usersListForm, SIGNAL(NewUserIsReady()),this ,SLOT(AddNewUserClicked()));
+    }
+    ui->widget->hide();
+    ShowUsersList();
 }
 
 void MainWindow::StyleHasBeenChanged()
@@ -76,9 +89,9 @@ void MainWindow::StyleHasBeenChanged()
 void MainWindow::DatabaseHasConnection()
 {
     this->statusBar()->showMessage(TXT_CONNECTED);
-    _sidePanal->SetCurrentRole(_dbForm->GetCurrentUserRole());
-    QMessageBox::information(this, tr(TXT_INFORMATION),QString(TXT_CONNECTED_PRIV).arg(_dbForm->GetCurrentUserRoleName()));
-
+    SetLoginUserRole();
+    //TODO: check
+    QMessageBox::information(this, tr(TXT_INFORMATION),QString(TXT_CONNECTED_PRIV).arg( _dbForm->GetCurrentUserRoleName()));
 }
 
 void MainWindow::DatabaseNotConnected()
@@ -93,7 +106,12 @@ void MainWindow::ShowSidePanel()
 
 void MainWindow::HideSidePanel()
 {
-   if(!sidePanelIsFixed)_sidePanal->hide();
+    if(!sidePanelIsFixed)_sidePanal->hide();
+}
+
+void MainWindow::AddNewUserClicked()
+{
+    AddNewMGAUserToDB();
 }
 
 void MainWindow::on_actionOptions_triggered()
@@ -105,16 +123,10 @@ void MainWindow::on_actionOptions_triggered()
         connect(_OptionForm, SIGNAL(StyleIsChanged()),this ,SLOT(StyleHasBeenChanged()));
         hasOptionForm = true;
     }
+    ui->widget->hide();
     _OptionForm->show();
 }
 
-void MainWindow::HideAll()
-{
-    if(hasDBForm)_dbForm->hide();
-    if(hasOptionForm)_OptionForm->hide();
-    if(hasUserListForm)_userListForm->hide();
-    if(hasDatabasesListForm)_databasesListForm->hide();
-}
 
 void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
 {

@@ -22,11 +22,16 @@
 
 #define TXT_DISCONNECT_DB_BTN_LABEL     "Disconnect"
 
+#define TXT_FORM_TITLE_LABEL            "Database parameters"
+
+//styles
+#define STYLE_FONT_24PIX_BOLD           "font-size:24px; font-weight: bold;"
 
 
-#define IMG_NOT_CONNECTED               "border-image: url(:/db/databasenotconnected.png);"
-#define IMG_CONNECTED                   "border-image: url(:/db/databaseconnected.png);"
-#define URL_IMG_ADD_DB                  ":/db/addDB.png"
+//images URLs
+#define IMG_NOT_CONNECTED               "border-image: url(:/db/Resources/Images/databasenotconnected.png);"
+#define IMG_CONNECTED                   "border-image: url(:/db/Resources/Images/databaseconnected.png);"
+#define IMG_CONNECT                     ":/db/Resources/Icons/connect.png"
 
 
 

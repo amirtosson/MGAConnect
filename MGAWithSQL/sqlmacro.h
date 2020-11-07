@@ -72,14 +72,29 @@
         con->setSchema(MGA_DATABASE_NAME);\
         res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT count(*) FROM mga_members")));\
         START_GETTING_DATA\
-        nUserCounts = res->getInt(1);\
+        nMemberCount = res->getInt(1);\
         END_GETTING_DATA
-
 
 #define GET_MGA_MEMEBRS\
         con->setSchema(MGA_DATABASE_NAME);\
         res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT lastName, firstName, eMail, universityName FROM mga_members")));\
 
+#define GET_USERS_COUNTS\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT count(*) FROM mysql.user")));\
+        START_GETTING_DATA\
+        nUserCount = res->getInt(1);\
+        END_GETTING_DATA
+
+#define ADD_NEW_USER(N,H,P,R)\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("CREATE User '") + SQLQUERY(N)+ SQLQUERY("'@'")+ SQLQUERY(H)+ SQLQUERY("' IDENTIFIEd BY '")+ SQLQUERY(P) + SQLQUERY("'; ")));\
+
+
+
+#define GET_DATABASES\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT SHOW databases")));\
+
+#define GET_USERS\
+        res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT user, host, role FROM mysql.user")));\
 
 #define GET_USER_ROLE(U)\
         res = stmt->executeQuery(SQLSTRING(SQLQUERY("SELECT role FROM mysql.user WHERE user = '") + SQLQUERY(U) + SQLQUERY("' ")));

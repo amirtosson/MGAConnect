@@ -6,19 +6,15 @@
 #include <QString>
 #include <QPushButton>
 
-#include "dbconnectform.h"
-#include "sidepanel.h"
-#include "mainwindowstyle.h"
-#include "optionform.h"
 #include "mainwindowresources.h"
-#include "mgalistform.h"
-#include "mgalistformtypesenum.h"
+#include "dbmainwindowcontrols.h"
+#include "mainwindowstyle.h"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, private DBMainWindowControls
 {
     Q_OBJECT
 
@@ -29,34 +25,24 @@ public:
 private slots:
     void on_actionOptions_triggered();
     void DBConnectionSetUpClicked();
-    void ShowUserListClicked();
+    void ShowMemberListClicked();
     void ShowDatabasesListClicked();
+    void ShowUserListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();
     void ShowSidePanel();
     void HideSidePanel();
 
+    void AddNewUserClicked();
+
+
 
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
-    DBConnectForm *_dbForm;
-    SidePanel *_sidePanal;
-    OptionForm *_OptionForm;
-    MGAListForm *_userListForm;
-    MGAListForm *_databasesListForm;
-
-    bool hasDBForm = false;
-    bool hasOptionForm = false;
     bool sidePanelIsFixed =false;
-    bool hasUserListForm =false;
-    bool hasDatabasesListForm =false;
-
-
-private:
-    void HideAll();
 
 };
 

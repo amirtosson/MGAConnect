@@ -12,6 +12,9 @@
         dbConnectFormUi->bdPwdLabel->setText(TXT_DB_PASSWORD_LABEL);\
         dbConnectFormUi->DBPwdTextBox->setPlaceholderText(TXT_DB_PASSWORD_PH);\
         dbConnectFormUi->DBPwdTextBox->setEchoMode(QLineEdit::Password);\
+        dbConnectFormUi->dbFormLabel->setText(TXT_FORM_TITLE_LABEL);\
+        dbConnectFormUi->dbFormLabel->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
+        dbConnectFormUi->dbFormLabel->setAlignment(Qt::AlignCenter);\
         DATABASE_IS_NOT_CONNECTED\
         ADD_DB_BUTTON_SETUP
 
@@ -30,7 +33,7 @@
 #define ADD_DB_BUTTON_SETUP\
         dbConnectFormUi->connectToDBButton->setText(TXT_ADD_DB_BTN_LABEL);\
         dbConnectFormUi->disconnectDBButton->setText(TXT_DISCONNECT_DB_BTN_LABEL);\
-        QPixmap pixmap(URL_IMG_ADD_DB);\
+        QPixmap pixmap(IMG_CONNECT);\
         QIcon ButtonIcon(pixmap);\
         dbConnectFormUi->connectToDBButton->setIcon(ButtonIcon);\
         dbConnectFormUi->connectToDBButton->setIconSize(QSize(20, 20));
