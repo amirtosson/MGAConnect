@@ -38,7 +38,7 @@ unsigned int DBConnectForm::GetUserNumber()
 
 bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
 {
-    for(int i =0; i < nMemberCount; ++i)
+    for(unsigned int i =0; i < nMemberCount; ++i)
     {
        table->insertRow(i);
        mgaMembersList[i].ShowInQTalbeRow(table,i);
@@ -48,7 +48,7 @@ bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
 
 bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
 {
-    for(int i =0; i<nUserCount; ++i)
+    for(unsigned int i =0; i<nUserCount; ++i)
     {
        table->insertRow(i);
        mgaUsersList[i].ShowInQTalbeRow(table,i);
@@ -83,7 +83,14 @@ void DBConnectForm::OnDataBaseIsconnected()
     CleanLists();
     DATABASE_IS_CONNECTED
     SERIALIZE_USER_ROLE
-//    bDatabaseIsconnected = true;
+    bDatabaseIsconnected = true;
+    if(eCurrentUserRole == eAdmin)
+    {
+        MGAServerClientMSG msg(EMSGType::eGetUsersList);
+        socket->write(msg.GetMSGAsByteArray());
+        socket->waitForBytesWritten(5000);
+        socket->flush();
+    }
 //    if(eCurrentUserRole == eAdmin)
 //    {
 //        try
@@ -174,8 +181,8 @@ void DBConnectForm::on_connectToDBButton_clicked()
     //msg.InsertInMSGBody(JSON_ATT_USER,dbConnectFormUi->DBUserNameTextBox->text());
     //msg.InsertInMSGBody(JSON_ATT_PWD,dbConnectFormUi->DBPwdTextBox->text());
     msg.InsertInMSGBody(JSON_ATT_HOST,"localhost");
-    msg.InsertInMSGBody(JSON_ATT_USER,"tosson");
-    msg.InsertInMSGBody(JSON_ATT_PWD,"rock255");
+    msg.InsertInMSGBody(JSON_ATT_USER,"user1");
+    msg.InsertInMSGBody(JSON_ATT_PWD,"123456789");
     socket->write(msg.GetMSGAsByteArray());
     socket->waitForBytesWritten(5000);
     socket->flush();

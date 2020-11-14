@@ -4,6 +4,8 @@
 #define MSG_CONNECT_TOSQL_TYPE_NAME         "CTSQLD"
 #define MSG_DISCONNECT_DB_TYPE_NAME         "DCSQLD"
 #define MSG_GET_USER_ROLE_TYPE_NAME         "GURSQL"
+#define MSG_GET_USERS_LIST_TYPE_NAME        "GULSQL"
+
 
 
 //keys
@@ -22,6 +24,9 @@ MGAServerClientMSG::MGAServerClientMSG(EMSGType eMSGType)
         break;
     case EMSGType::eDisconnectDB:
         SetMSGHeader(MSG_ID_KEY,MSG_DISCONNECT_DB_TYPE_NAME);
+        break;
+    case EMSGType::eGetUsersList:
+        SetMSGHeader(MSG_ID_KEY,MSG_GET_USERS_LIST_TYPE_NAME);
         break;
     default:
         break;
@@ -52,6 +57,10 @@ void MGAServerClientMSG::SetCurrentTypeEnum(QString currentTypeName)
     else if(currentTypeName == MSG_DISCONNECT_DB_TYPE_NAME)
     {
        eCurruntMSGType =  EMSGType::eDisconnectDB;
+    }
+    else if(currentTypeName == MSG_GET_USERS_LIST_TYPE_NAME)
+    {
+       eCurruntMSGType =  EMSGType::eGetUsersList;
     }
 }
 
