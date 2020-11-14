@@ -5,7 +5,6 @@
 #include <QStyle>
 #include <QMessageBox>
 
-
 #include "mgamember.h"
 #include "mgauser.h"
 #include "mgalistformtypesenum.h"
@@ -31,7 +30,6 @@ signals:
 private slots:
     void on_okButton_clicked();
     void on_cancelButton_clicked();
-
 
 private:
     Ui::AddNewObjectForm *ui;

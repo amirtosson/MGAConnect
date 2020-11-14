@@ -58,15 +58,16 @@ bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
 
 bool DBConnectForm::AddNewMGAUsers(MGAUser *newUser)
 {
-    if (con->isValid())
-    {
-        ADD_NEW_USER(newUser->GetName().toStdString(),newUser->GetHost().toStdString(),newUser->GetPWD().toStdString(),newUser->GetRole().toStdString())
-        qDebug()<<"valid";
-    }
-    else
-    {
-        qDebug()<<"Invalid";
-    }
+//    if (con->isValid())
+//    {
+//        ADD_NEW_USER(newUser->GetName().toStdString(),newUser->GetHost().toStdString(),newUser->GetPWD().toStdString(),newUser->GetRole().toStdString())
+//        qDebug()<<"valid";
+//    }
+//    else
+//    {
+//        qDebug()<<"Invalid";
+//    }
+    return true;
 
 }
 
@@ -163,16 +164,20 @@ void DBConnectForm::OnDatabaseIsDisconnected()
 void DBConnectForm::on_connectToDBButton_clicked()
 {
 
-    if (!socket->isValid()) socket->connectToHost("localhost", 9999);
+    QHostAddress addressIP ;
+    addressIP.setAddress("192.168.178.28");
+    addressIP.toIPv4Address();
+    if (!socket->isValid()) socket->connectToHost(addressIP, 9999);
+    socket->waitForConnected(5000);
     MGAServerClientMSG msg(EMSGType::eConnectToDB);
     //msg.InsertInMSGBody(JSON_ATT_HOST,dbConnectFormUi->DBURITextBox->text());
     //msg.InsertInMSGBody(JSON_ATT_USER,dbConnectFormUi->DBUserNameTextBox->text());
     //msg.InsertInMSGBody(JSON_ATT_PWD,dbConnectFormUi->DBPwdTextBox->text());
     msg.InsertInMSGBody(JSON_ATT_HOST,"localhost");
-    msg.InsertInMSGBody(JSON_ATT_USER,"user1");
-    msg.InsertInMSGBody(JSON_ATT_PWD,"123456789");
-
+    msg.InsertInMSGBody(JSON_ATT_USER,"tosson");
+    msg.InsertInMSGBody(JSON_ATT_PWD,"rock255");
     socket->write(msg.GetMSGAsByteArray());
+    socket->waitForBytesWritten(5000);
     socket->flush();
 }
 

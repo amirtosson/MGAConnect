@@ -18,7 +18,7 @@ public:
     void SetFirstName(std::string &firstname);
     void SetLastName(std::string &lastname);
     void SetUsnivesityName(std::string &university);
-    void SetEMail(std::__cxx11::string &email);
+    void SetEMail(std::string &email);
     void Print();
 
 

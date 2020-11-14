@@ -24,17 +24,17 @@ void MGAUser::SetName(std::string &name)
     sName.SetFromSTDString(name);
 }
 
-void MGAUser::SetHost(std::__cxx11::string &host)
+void MGAUser::SetHost(std::string &host)
 {
     sHost.SetFromSTDString(host);
 }
 
-void MGAUser::SetRole(std::__cxx11::string &role)
+void MGAUser::SetRole(std::string &role)
 {
     sRole.SetFromSTDString(role);
 }
 
-void MGAUser::SetPWD(std::__cxx11::string &pwd)
+void MGAUser::SetPWD(std::string &pwd)
 {
     sPWD.SetFromSTDString(pwd);
 }
