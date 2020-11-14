@@ -38,5 +38,11 @@
         dbConnectFormUi->connectToDBButton->setIcon(ButtonIcon);\
         dbConnectFormUi->connectToDBButton->setIconSize(QSize(20, 20));
 
+#define SERIALIZE_USER_ROLE\
+    if(sCurrentUserRoleName == ADMIN_ROLE) eCurrentUserRole = eAdmin;\
+    else if (sCurrentUserRoleName == USER_ROLE) eCurrentUserRole = eUser;\
+    else if (sCurrentUserRoleName == GUEST_ROLE) eCurrentUserRole = eGuest;\
+    else if (sCurrentUserRoleName == STUDENT_ROLE) eCurrentUserRole = eStudent;\
+    else eCurrentUserRole = eUNKNOWN;
 
 #endif // MAINWINDOWDBCONNECTIONSETUPS_H

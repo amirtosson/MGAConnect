@@ -39,7 +39,7 @@ void MGAMember::SetUsnivesityName(std::string &university)
     sUniversityName.SetFromSTDString(university);
 }
 
-void MGAMember::SetEMail(std::__cxx11::string &email)
+void MGAMember::SetEMail(std::string &email)
 {
     sEMail.SetFromSTDString(email);
 }

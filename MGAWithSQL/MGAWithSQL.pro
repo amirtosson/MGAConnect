@@ -31,7 +31,6 @@ SOURCES += main.cpp\
     MGAObjects/mgauserobjectguicomponents.cpp
 
 HEADERS  += mainwindow.h\
-    sqlmacro.h \
     dbconnectform.h \
     sidepanel.h \
     mainwindowstyle.h \
@@ -58,7 +57,8 @@ HEADERS  += mainwindow.h\
     addnewobjectform.h \
     MGAObjects/mgastyleenum.h \
     MGAObjects/mgauserobjectguicomponents.h \
-    addnewobjectformresources.h
+    addnewobjectformresources.h \
+    sqlmacro.h
 
 FORMS    += mainwindow.ui \
     dbconnectform.ui \
@@ -71,33 +71,6 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     imageresources.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAStringLib/ -lMGAString
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../MGAStringLib/ -lMGAStringd
-else:unix: LIBS += -L$$OUT_PWD/../MGAStringLib/ -lMGAString
-
-INCLUDEPATH += $$PWD/../MGAStringLib
-DEPENDPATH += $$PWD/../MGAStringLib
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAString.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAStringd.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/MGAString.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/MGAStringd.lib
-else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAString.a
-
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/release/ -lSMTPEmail
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/debug/ -lSMTPEmail
-else:unix: LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/ -lSMTPEmail
-
-INCLUDEPATH += $$PWD/../SmtpClientThirdParty/src
-DEPENDPATH += $$PWD/../SmtpClientThirdParty/src
-
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../mysqlConnect/lib/release/ -lmysqlcppconn
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../mysqlConnect/lib/debug/ -lmysqlcppconn
-else:unix: LIBS += -L$$PWD/../mysqlConnect/lib/ -lmysqlcppconn
-
-INCLUDEPATH += $$PWD/../mysqlConnect/include
-DEPENDPATH += $$PWD/../mysqlConnect/include
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAServerClientMSG/release/ -lMGAServerClientMSG
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../MGAServerClientMSG/debug/ -lMGAServerClientMSG
@@ -111,3 +84,24 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAS
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/release/MGAServerClientMSG.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/debug/MGAServerClientMSG.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/libMGAServerClientMSG.a
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAStringLib/release/ -lMGAString
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../MGAStringLib/debug/ -lMGAString
+else:unix: LIBS += -L$$OUT_PWD/../MGAStringLib/ -lMGAString
+
+INCLUDEPATH += $$PWD/../MGAStringLib
+DEPENDPATH += $$PWD/../MGAStringLib
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/release/libMGAString.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/debug/libMGAString.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/release/MGAString.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/debug/MGAString.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAString.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/release/ -lSMTPEmail
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/debug/ -lSMTPEmail
+else:unix: LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/ -lSMTPEmail
+
+INCLUDEPATH += $$PWD/../SmtpClientThirdParty/src
+DEPENDPATH += $$PWD/../SmtpClientThirdParty/src

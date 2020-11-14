@@ -7,16 +7,18 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QTcpSocket>
+#include <QHostAddress>
 
 #include <vector>
 #include "dbconnectionsetups.h"
-#include "sqlmacro.h"
+//#include "sqlmacro.h"
 #include "mgauserrolesenum.h"
 #include "mgamember.h"
 #include "mgadatabase.h"
 #include "mgauser.h"
 #include "mgaserverclientmsg.h"
 
+#define UNKNOWN_ROLE      "unknown"
 
 namespace Ui {
 class DBConnectForm;
@@ -30,7 +32,7 @@ public:
     explicit DBConnectForm(QWidget *parent = 0);
 
     ~DBConnectForm();
-    DECLAIR_SQL_REQUIRED_MEMBERS
+    //DECLAIR_SQL_REQUIRED_MEMBERS
     EUserRole GetCurrentUserRole();
     QString GetCurrentUserRoleName();
     unsigned int GetUserNumber();

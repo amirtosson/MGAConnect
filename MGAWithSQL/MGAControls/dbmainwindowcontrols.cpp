@@ -16,33 +16,44 @@ bool DBMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
 {
     _sidePanal = new SidePanel(sidePanelWidget);
     _sidePanal->hide();
+    return true;
 }
 
 bool DBMainWindowControls::IntializeDBConnectionForm(QWidget *dbConnectionWidget)
 {
     _dbForm = new DBConnectForm(dbConnectionWidget);
     hasDBForm = true;
+    return true;
+
 }
 
 bool DBMainWindowControls::IntializeMembersListForm(QWidget *membersListWidget)
 {
     _membersListForm = new MGAListForm(membersListWidget, eMemberList);
+    return true;
+
 }
 
 bool DBMainWindowControls::IntializeDatabasesListForm(QWidget *databasesListWidget)
 {
     _databasesListForm = new MGAListForm(databasesListWidget, eDatabasesList);
     hasDatabasesListForm = true;
+    return true;
+
 }
 
 bool DBMainWindowControls::IntializeUsersListForm(QWidget *usersListWidget)
 {
     _usersListForm = new MGAListForm(usersListWidget, eUsersList);
+    return true;
+
 }
 
 bool DBMainWindowControls::AddNewMGAUserToDB()
 {
     _dbForm->AddNewMGAUsers(_usersListForm->GetTheNewUser());
+    return true;
+
 }
 
 bool DBMainWindowControls::ShowMembersList()
@@ -50,11 +61,15 @@ bool DBMainWindowControls::ShowMembersList()
     if(!hasMembersListForm)_dbForm->ShowMembersInQTalbe(_membersListForm->GetUITable());
     _membersListForm->show();
     hasMembersListForm = true;
+    return true;
+
 }
 
 bool DBMainWindowControls::ShowDatabasesList()
 {
     _databasesListForm->show();
+    return true;
+
 }
 
 bool DBMainWindowControls::ShowUsersList()
@@ -62,6 +77,8 @@ bool DBMainWindowControls::ShowUsersList()
     if(!hasUsersListForm)_dbForm->ShowUsersInQTalbe(_usersListForm->GetUITable());
     _usersListForm->show();
     hasUsersListForm = true;
+    return true;
+
 }
 
 void DBMainWindowControls::HideAll()
@@ -85,7 +102,7 @@ EUserRole DBMainWindowControls::GetLoginUserRole()
 
 QString DBMainWindowControls::GetLoginUserRoleName()
 {
-    _dbForm->GetCurrentUserRoleName();
+   return  _dbForm->GetCurrentUserRoleName();
 }
 
 

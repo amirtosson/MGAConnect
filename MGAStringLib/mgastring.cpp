@@ -35,7 +35,7 @@ void MGAString::SetFromQString(QString *qStr)
     sMainString = qStr->toStdString();
 }
 
-void MGAString::SetFromSTDString(std::__cxx11::string str)
+void MGAString::SetFromSTDString(std::string str)
 {
     sMainString = str;
 }

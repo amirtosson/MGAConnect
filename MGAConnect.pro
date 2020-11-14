@@ -10,6 +10,5 @@ CONFIG += ordered
 SUBDIRS += MGAStringLib\
         SmtpClientThirdParty\
         MGAServerClientMSG \
-        MGATcpServer\
         MGAWithSQL
 
