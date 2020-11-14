@@ -3,6 +3,11 @@
 
 #include <QWidget>
 #include <QTableWidget>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QTcpSocket>
+
 #include <vector>
 #include "dbconnectionsetups.h"
 #include "sqlmacro.h"
@@ -10,6 +15,7 @@
 #include "mgamember.h"
 #include "mgadatabase.h"
 #include "mgauser.h"
+#include "mgaserverclientmsg.h"
 
 
 namespace Ui {
@@ -40,6 +46,11 @@ signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
 
+public slots:
+    void connected();
+    void disconnected();
+    void bytesWritten(qint64 bytes);
+    void readyRead();
 
 private slots:
     void OnDataBaseIsconnected();
@@ -57,8 +68,12 @@ private:
     std::vector<MGAMember> mgaMembersList;
     std::vector<MGAUser> mgaUsersList;
     std::vector<MGADatabase> databases;
+    QTcpSocket *socket;
 
     bool IsDataChanged = true;
+
+private:
+    void ServerMSGHandling(MGAServerClientMSG *msg);
 };
 
 #endif // DBCONNECTFORM_H

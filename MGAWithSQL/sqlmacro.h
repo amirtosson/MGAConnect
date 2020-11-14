@@ -28,9 +28,6 @@
 //====================================
 
 #define SERIALIZE_USER_ROLE\
-    START_GETTING_DATA\
-        sCurrentUserRoleName = GET_COLOUMN_BY_ALIAS_AS_QSTRING(TXT_ROLE);\
-    END_GETTING_DATA\
     if(sCurrentUserRoleName == ADMIN_ROLE) eCurrentUserRole = eAdmin;\
     else if (sCurrentUserRoleName == USER_ROLE) eCurrentUserRole = eUser;\
     else if (sCurrentUserRoleName == GUEST_ROLE) eCurrentUserRole = eGuest;\

@@ -5,10 +5,15 @@
 #include <QDebug>
 #include <QString>
 #include <QPushButton>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QTcpSocket>
 
 #include "mainwindowresources.h"
 #include "dbmainwindowcontrols.h"
 #include "mainwindowstyle.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -40,9 +45,20 @@ private slots:
 
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
 
+    void on_pushButton_clicked();
+
+public slots:
+    void connected();
+    void disconnected();
+    void bytesWritten(qint64 bytes);
+    void readyRead();
+
+
+
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
+    QTcpSocket *socket;
 
 };
 

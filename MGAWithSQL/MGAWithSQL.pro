@@ -4,20 +4,15 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       +=core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MGAWithSQL
 TEMPLATE = app
 
-INCLUDEPATH += ../mysqlConnect/include/
 INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
-
-LIBS += -L$$PWD/../mysqlConnect/lib -lmysqlcppconn
-
-
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -89,11 +84,30 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PW
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/MGAStringd.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAStringLib/libMGAString.a
 
-
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/release/ -lSMTPEmail
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/debug/ -lSMTPEmail
 else:unix: LIBS += -L$$OUT_PWD/../SmtpClientThirdParty/ -lSMTPEmail
 
 INCLUDEPATH += $$PWD/../SmtpClientThirdParty/src
 DEPENDPATH += $$PWD/../SmtpClientThirdParty/src
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../mysqlConnect/lib/release/ -lmysqlcppconn
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../mysqlConnect/lib/debug/ -lmysqlcppconn
+else:unix: LIBS += -L$$PWD/../mysqlConnect/lib/ -lmysqlcppconn
+
+INCLUDEPATH += $$PWD/../mysqlConnect/include
+DEPENDPATH += $$PWD/../mysqlConnect/include
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAServerClientMSG/release/ -lMGAServerClientMSG
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../MGAServerClientMSG/debug/ -lMGAServerClientMSG
+else:unix: LIBS += -L$$OUT_PWD/../MGAServerClientMSG/ -lMGAServerClientMSG
+
+INCLUDEPATH += $$PWD/../MGAServerClientMSG
+DEPENDPATH += $$PWD/../MGAServerClientMSG
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/release/libMGAServerClientMSG.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/debug/libMGAServerClientMSG.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/release/MGAServerClientMSG.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/debug/MGAServerClientMSG.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../MGAServerClientMSG/libMGAServerClientMSG.a

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       -=
+QT       +=widgets
 
 TARGET = MGAString
 TEMPLATE = lib

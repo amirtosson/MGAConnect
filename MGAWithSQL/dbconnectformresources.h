@@ -33,6 +33,14 @@
 #define IMG_CONNECTED                   "border-image: url(:/db/Resources/Images/databaseconnected.png);"
 #define IMG_CONNECT                     ":/db/Resources/Icons/connect.png"
 
+//Server Msg JSON defines
+#define JSON_ATT_USER                   "user"
+#define JSON_ATT_HOST                   "host"
+#define JSON_ATT_PWD                    "password"
+#define JSON_ATT_LOGIN_USER_ROLE        "role"
+#define JSON_ATT_CONNECTED              "connected"
+#define JSON_ATT_DISCONNECTED           "disconnected"
+
 
 
 #endif // MGASQLRESOURCES_H

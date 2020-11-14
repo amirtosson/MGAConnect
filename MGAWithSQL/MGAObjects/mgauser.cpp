@@ -69,3 +69,33 @@ int MGAUser::CheckValidity()
     return 1;
 
 }
+
+bool MGAUser::SerializeFromJSON(QJsonDocument *jsonResponse)
+{
+    QJsonArray jsonArray = jsonResponse->array();
+    if(!jsonArray.isEmpty())
+    {
+        int nUserCount;
+        for(nUserCount=0; nUserCount<jsonArray.size(); ++nUserCount)
+        {
+            QJsonObject jsonObject = jsonArray[nUserCount].toObject();
+            QString host= jsonObject.value(MGA_JSON_HOST_NAME).toString();
+            QString user= jsonObject.value(MGA_JSON_USER_NAME).toString();
+            QString role= jsonObject.value(MGA_JSON_ROLE_NAME).toString();
+            sHost.SetFromQString(&host);
+            sName.SetFromQString(&user);
+            sRole.SetFromQString(&role);
+            qDebug()<<"name: " <<sHost.GetAsQString()<<endl;
+            qDebug()<<"role: " <<sRole.GetAsQString()<<endl;
+            qDebug()<<"host: " <<sHost.GetAsQString()<<endl;
+        }
+    }
+
+
+    if(sName.IsEmpty()
+       ||sRole.IsEmpty())
+    {
+        return false;
+    }
+    return  true;
+}

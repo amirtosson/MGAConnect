@@ -85,6 +85,11 @@ bool MGAString::HasSpecialChar()
     return bHasSC;
 }
 
+bool MGAString::IsEmpty()
+{
+    return (sMainString.size() > 0);
+}
+
 std::string MGAString::GetAsStdSting()
 {
     return sMainString.c_str();

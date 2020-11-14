@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
+#include <QJsonObject>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,11 +23,17 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->mainWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
     //ui->sideToolBoxWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
 
+    socket = new QTcpSocket();
+    connect(socket, SIGNAL(connected()), this, SLOT(connected()));
+    connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
+    connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete socket;
 
 }
 
@@ -142,4 +148,59 @@ void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
     default:
         break;
     }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    qDebug() << "Connecting,..";
+
+    if (!socket->isValid()) socket->connectToHost("localhost", 9999);
+    socket->write("CTSQLD\r\nlocalhost\r\nroot\r\nrock255");
+    socket->flush();
+    //socket->waitForBytesWritten(3000);
+
+    //socket->waitForBytesWritten(1000);
+
+    //socket->waitForBytesWritten(3000);
+
+}
+
+
+void MainWindow::connected()
+{
+
+}
+
+void MainWindow::disconnected()
+{
+    qDebug() << "Disconnected!";
+}
+
+void MainWindow::bytesWritten(qint64 bytes)
+{
+    qDebug() << "We wrote: " << bytes;
+    socket->write("Hello Server");
+    socket->flush();
+    socket->waitForBytesWritten(3000);
+}
+
+void MainWindow::readyRead()
+{
+    qDebug() << "Reading...";
+     QJsonDocument jsonResponse = QJsonDocument::fromJson(socket->readAll());
+     MGAUser user;
+    user.SerializeFromJSON(&jsonResponse);
+     //QJsonArray jsonArray = jsonResponse.array();
+
+//     qDebug()<<"name: " <<user.GetName()<<endl;
+//     qDebug()<<"role: " <<user.GetRole()<<endl;
+//     qDebug()<<"host: " <<user.GetHost()<<endl;
+
+
+//     if(!jsonArray.isEmpty())
+//     {
+//         QJsonObject jsonObject = jsonArray.first().toObject();
+//         qDebug()<< jsonObject.value("host").toString();
+//    }
+
 }

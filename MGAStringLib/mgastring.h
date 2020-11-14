@@ -21,6 +21,7 @@ public:
     bool IsValidUserName();
     bool HasNumbers();
     bool HasSpecialChar();
+    bool IsEmpty();
 
     //getters
     std::string GetAsStdSting();

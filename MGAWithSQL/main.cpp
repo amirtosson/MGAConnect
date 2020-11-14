@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QSplashScreen>
 #include <QTimer>
+
 #include "SmtpMime"
 
 int main(int argc, char *argv[])
@@ -13,7 +14,11 @@ int main(int argc, char *argv[])
     //splash->setGeometry(10,10,1000,400);
     splash->show();
     MainWindow w;
+
     QTimer::singleShot(2000, splash,SLOT(close())); // Timer
     QTimer::singleShot(2000,&w,SLOT(show()));
     return a.exec();
+
+
+
 }
