@@ -55,6 +55,15 @@ void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
         SerializeUsersListFromMSG(msg);
         emit UsersListIsReady();
     }
+    else
+    if (msg->GetMSGType() == EMSGType::eAddNewUser)
+    {
+        if (msg->GetValue(JSON_ATT_ADDED, 0)=="true")
+        {
+            CleanLists();
+            ShowUsersInQTalbe(mainTable);
+        }
+    }
 }
 
 EUserRole DBConnectForm::GetCurrentUserRole()
@@ -76,8 +85,8 @@ bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
 {
     for(unsigned int i =0; i < nMemberCount; ++i)
     {
-       table->insertRow(i);
-       mgaMembersList[i].ShowInQTalbeRow(table,i);
+        table->insertRow(i);
+        mgaMembersList[i].ShowInQTalbeRow(table,i);
     }
     return true;
 }
@@ -91,7 +100,7 @@ bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
 
 bool DBConnectForm::AddNewMGAUsers(MGAUser *newUser)
 {
-    MGAServerClientMSG msg(EMSGType::eConnectToDB);
+    MGAServerClientMSG msg(EMSGType::eAddNewUser);
     msg.InsertInMSGBody(JSON_ATT_HOST,newUser->GetHost());
     msg.InsertInMSGBody(JSON_ATT_USER,newUser->GetName());
     msg.InsertInMSGBody(JSON_ATT_PWD,newUser->GetPWD());
@@ -201,9 +210,15 @@ void DBConnectForm::OnDatabaseIsDisconnected()
 
 void DBConnectForm::OnUsersListIsReady()
 {
+    int row = 0;
+    while (mainTable->rowCount() != nUserCount)
+    {
+        mainTable->insertRow(row);
+        row++;
+    }
+
     for(unsigned int i =0; i<nUserCount; ++i)
     {
-       mainTable->insertRow(i);
        mgaUsersList[i].ShowInQTalbeRow(mainTable,i);
     }
 }
@@ -232,6 +247,7 @@ void DBConnectForm::on_disconnectDBButton_clicked()
 
 void DBConnectForm::SerializeUsersListFromMSG(MGAServerClientMSG *msg)
 {
+    CleanLists();
     for (unsigned int i=0; i<msg->GetBodyLength(); ++i )
     {
         QString user;

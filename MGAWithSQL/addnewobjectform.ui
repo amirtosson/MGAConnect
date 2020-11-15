@@ -53,6 +53,10 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>okButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

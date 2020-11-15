@@ -51,7 +51,6 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
     nameEdit->setPlaceholderText(TXT_NAME_PH);
     hostEdit->setPlaceholderText(TXT_HOST_PH);
     pwdEdit->setPlaceholderText(TXT_PWD_PH);
-
     QStringList styleList;
     styleList.append(TXT_ADMIN_ROLE);
     styleList.append(TXT_USER_ROLE);
@@ -60,6 +59,8 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
     roleComboBox->clear();
     roleComboBox->addItems(styleList);
     roleComboBox->setCurrentIndex(-1);
+    QWidget::setTabOrder(nameEdit, hostEdit);
+    return true;
 }
 
 QString MGAUserObjectGUIComponents::GetUserName()

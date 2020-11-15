@@ -73,7 +73,7 @@ private:
     std::vector<MGAUser> mgaUsersList;
     std::vector<MGADatabase> databases;
     QTcpSocket *socket;
-    bool IsDataChanged = true;
+    bool IsUsersListUpdated = false;
     QTableWidget *mainTable;
 
 private:
