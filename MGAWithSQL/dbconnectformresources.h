@@ -41,6 +41,6 @@
 #define JSON_ATT_CONNECTED              "connected"
 #define JSON_ATT_DISCONNECTED           "disconnected"
 
-
+#define MGA_DELIMITER                   "#-#"
 
 #endif // MGASQLRESOURCES_H

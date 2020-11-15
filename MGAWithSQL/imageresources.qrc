@@ -11,6 +11,8 @@
         <file>Resources/Icons/changeuser.png</file>
         <file>Resources/Icons/deleteuser.png</file>
         <file>Resources/Icons/edituser.png</file>
+        <file>Resources/Icons/experiment.png</file>
+        <file>Resources/Icons/meeting.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

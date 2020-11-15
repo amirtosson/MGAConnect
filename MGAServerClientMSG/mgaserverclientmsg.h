@@ -23,7 +23,8 @@ enum class EMSGType
     eConnectToDB,
     eGetUserRole,
     eDisconnectDB,
-    eGetUsersList
+    eGetUsersList,
+    eAddNewUser
 };
 
 class MGAServerClientMSG

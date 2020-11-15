@@ -39,7 +39,7 @@ public:
     bool ShowMembersInQTalbe(QTableWidget *table);
     bool ShowUsersInQTalbe(QTableWidget *table);
     bool AddNewMGAUsers(MGAUser *newUser);
-
+    bool SendServerGetUserListMSG();
 
     void CleanLists();
 
@@ -47,6 +47,7 @@ public:
 signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
+    void UsersListIsReady();
 
 public slots:
     void connected();
@@ -57,6 +58,7 @@ public slots:
 private slots:
     void OnDataBaseIsconnected();
     void OnDatabaseIsDisconnected();
+    void OnUsersListIsReady();
     void on_connectToDBButton_clicked();
     void on_disconnectDBButton_clicked();
 
@@ -71,11 +73,12 @@ private:
     std::vector<MGAUser> mgaUsersList;
     std::vector<MGADatabase> databases;
     QTcpSocket *socket;
-
     bool IsDataChanged = true;
+    QTableWidget *mainTable;
 
 private:
     void ServerMSGHandling(MGAServerClientMSG *msg);
+    void SerializeUsersListFromMSG(MGAServerClientMSG *msg);
 };
 
 #endif // DBCONNECTFORM_H

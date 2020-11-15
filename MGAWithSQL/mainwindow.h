@@ -40,25 +40,12 @@ private slots:
     void HideSidePanel();
 
     void AddNewUserClicked();
-
-
-
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
-
-    void on_pushButton_clicked();
-
-public slots:
-    void connected();
-    void disconnected();
-    void bytesWritten(qint64 bytes);
-    void readyRead();
-
 
 
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
-    QTcpSocket *socket;
 
 };
 

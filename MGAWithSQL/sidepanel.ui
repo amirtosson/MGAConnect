@@ -70,7 +70,7 @@
     <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
   </widget>
-  <widget class="QToolButton" name="addNewDatasetButton">
+  <widget class="QToolButton" name="showExpButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -86,7 +86,7 @@
     <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
   </widget>
-  <widget class="QToolButton" name="addGuestButton">
+  <widget class="QToolButton" name="showAppointmentsButton">
    <property name="geometry">
     <rect>
      <x>0</x>

@@ -5,6 +5,7 @@
 #define MSG_DISCONNECT_DB_TYPE_NAME         "DCSQLD"
 #define MSG_GET_USER_ROLE_TYPE_NAME         "GURSQL"
 #define MSG_GET_USERS_LIST_TYPE_NAME        "GULSQL"
+#define MSG_ADD_NEW_USER_TYPE_NAME          "ANESQL"
 
 
 
@@ -27,6 +28,9 @@ MGAServerClientMSG::MGAServerClientMSG(EMSGType eMSGType)
         break;
     case EMSGType::eGetUsersList:
         SetMSGHeader(MSG_ID_KEY,MSG_GET_USERS_LIST_TYPE_NAME);
+        break;
+    case EMSGType::eAddNewUser:
+        SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_USER_TYPE_NAME);
         break;
     default:
         break;
@@ -62,6 +66,10 @@ void MGAServerClientMSG::SetCurrentTypeEnum(QString currentTypeName)
     {
        eCurruntMSGType =  EMSGType::eGetUsersList;
     }
+    else if(currentTypeName == MSG_ADD_NEW_USER_TYPE_NAME)
+    {
+       eCurruntMSGType =  EMSGType::eAddNewUser;
+    }
 }
 
 void MGAServerClientMSG::InsertInMSGBody(QString key, QString value)
@@ -93,7 +101,6 @@ bool MGAServerClientMSG::GetFromResponse(QByteArray jPesponse)
 {
     QJsonDocument jsonResponse = QJsonDocument::fromJson(jPesponse);
     QJsonArray jsonArray = jsonResponse.array();
-
     // get header
     QStringList kL = jsonArray[0].toObject().keys();
     QString idKey = kL[0];
