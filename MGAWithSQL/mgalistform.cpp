@@ -8,6 +8,10 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
 {
     userListFormUi->setupUi(this);
     BUTTONS_SETUP
+
+    const QIcon searchIcon =  QIcon(":/buttonIcons/Resources/Icons/search.png");
+    QAction *openAct = new QAction(searchIcon,tr("search"), this);
+    userListFormUi->searchTextBox->addAction(openAct,QLineEdit::LeadingPosition);
     switch (eList) {
     case eUsersList:
         {USERS_LIST_FORM_SETUP}
