@@ -57,10 +57,18 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>MGA SQL properties</string>
+   <string>MGAConnect</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="imageresources.qrc">
+    <normaloff>:/logos/Resources/Images/icon.jpg</normaloff>
+    <normalon>:/logos/Resources/Images/icon.jpg</normalon>:/logos/Resources/Images/icon.jpg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="layoutDirection">
@@ -113,6 +121,12 @@
       <width>100</width>
       <height>460</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="baseSize">
      <size>
@@ -204,7 +218,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionFullScreen"/>
    <addaction name="actionOptions"/>
+   <addaction name="actionExit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="layoutDirection">
@@ -212,8 +228,30 @@
    </property>
   </widget>
   <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="imageresources.qrc">
+     <normaloff>:/buttonIcons/Resources/Icons/setting.png</normaloff>:/buttonIcons/Resources/Icons/setting.png</iconset>
+   </property>
    <property name="text">
-    <string>Options</string>
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="imageresources.qrc">
+     <normaloff>:/buttonIcons/Resources/Icons/exit.png</normaloff>:/buttonIcons/Resources/Icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="icon">
+    <iconset resource="imageresources.qrc">
+     <normaloff>:/buttonIcons/Resources/Icons/fit.png</normaloff>:/buttonIcons/Resources/Icons/fit.png</iconset>
+   </property>
+   <property name="text">
+    <string>FullScreen</string>
    </property>
   </action>
  </widget>
@@ -226,6 +264,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="imageresources.qrc"/>
+ </resources>
  <connections/>
 </ui>

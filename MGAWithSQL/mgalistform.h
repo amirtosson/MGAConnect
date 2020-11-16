@@ -34,6 +34,8 @@ private slots:
 
     void NewObjectIsReady();
 
+    void on_searchTextBox_textChanged(const QString &arg1);
+
 signals:
     void NewUserIsReady();
 

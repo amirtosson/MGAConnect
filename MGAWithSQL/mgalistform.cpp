@@ -86,3 +86,20 @@ void MGAListForm::NewObjectIsReady()
    //qstr =  addNewUser->GetTheNewUser().GetName();
    emit NewUserIsReady();
 }
+
+void MGAListForm::on_searchTextBox_textChanged(const QString &arg1)
+{
+    for (int i =0; i< userListFormUi->userListWidget->rowCount(); ++i )
+    {
+        QTableWidgetItem *item = userListFormUi->userListWidget->item(i,0);
+        if(!item->text().contains(arg1))
+        {
+            userListFormUi->userListWidget->hideRow(i);
+        }
+        else
+        {
+            userListFormUi->userListWidget->showRow(i);
+        }
+    }
+
+}

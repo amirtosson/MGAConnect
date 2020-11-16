@@ -43,6 +43,10 @@ private slots:
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
 
 
+    void on_actionFullScreen_triggered();
+
+    void on_actionExit_triggered();
+
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;

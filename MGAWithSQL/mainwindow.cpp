@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#include <QJsonObject>
+#include <QScreen>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -146,3 +145,34 @@ void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
 
 
 
+
+void MainWindow::on_actionFullScreen_triggered()
+{
+    if (this->isFullScreen())
+    {
+        //TODO: not working well
+//        QScreen *screen = QGuiApplication::primaryScreen();
+//        QRect  screenGeometry = screen->geometry();
+//        int height = screenGeometry.height();
+//        int width = screenGeometry.width();
+//        width *= 0.8; // 80% of the screen size
+//        height *= 0.8; // 80% of the screen size
+//        this->setGeometry(50,50,width,height);
+        this->showNormal();
+    }
+    else
+    {
+        this->showFullScreen();
+    }
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, TXT_WATNING, TXT_EXIT_CONFIRMATION,
+                                    QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        this->close();
+    }
+}

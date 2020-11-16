@@ -13,6 +13,10 @@
         <file>Resources/Icons/edituser.png</file>
         <file>Resources/Icons/experiment.png</file>
         <file>Resources/Icons/meeting.png</file>
+        <file>Resources/Icons/setting.png</file>
+        <file>Resources/Icons/exit.png</file>
+        <file>Resources/Icons/fit.png</file>
+        <file>Resources/Icons/search.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>
@@ -24,5 +28,6 @@
     </qresource>
     <qresource prefix="/logos">
         <file>Resources/Images/amg.jpg</file>
+        <file>Resources/Images/icon.jpg</file>
     </qresource>
 </RCC>
