@@ -46,6 +46,26 @@
     userListFormUi->userListWidget->setSelectionBehavior(QAbstractItemView::SelectRows);\
     userListFormUi->userListWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);\
 
+
+#define EXP_LIST_FORM_SETUP\
+    userListFormUi->userListWidget->insertColumn(0);\
+    userListFormUi->userListWidget->insertColumn(1);\
+    userListFormUi->userListWidget->insertColumn(2);\
+    userListFormUi->userListWidget->insertColumn(3);\
+    QStringList q2;\
+    q2.append(TXT_FACILITY);\
+    q2.append(TXT_STARTS_ON);\
+    q2.append(TXT_ENDS_ON);\
+    q2.append(TXT_DESCRIPTION);\
+    userListFormUi->userListWidget->setHorizontalHeaderLabels(q2);\
+    userListFormUi->userListWidget->horizontalHeader()->setStretchLastSection(true);\
+    userListFormUi->userListWidget->setSelectionBehavior(QAbstractItemView::SelectRows);\
+    userListFormUi->userListWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);\
+    userListFormUi->pageTitle->setAlignment(Qt::AlignCenter);\
+    userListFormUi->pageTitle->setText(TXT_EXP_LIST);\
+    userListFormUi->pageTitle->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
+
+
 #define USERS_LIST_FORM_SETUP\
     userListFormUi->userListWidget->insertColumn(0);\
     userListFormUi->userListWidget->insertColumn(1);\

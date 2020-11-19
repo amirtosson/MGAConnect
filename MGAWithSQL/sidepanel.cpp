@@ -46,3 +46,8 @@ void SidePanel::on_showUsersButton_clicked()
 {
     emit ShowUserListButtonIsClicked();
 }
+
+void SidePanel::on_showExpButton_clicked()
+{
+    emit ShowExperimentsListButtonIsClicked();
+}

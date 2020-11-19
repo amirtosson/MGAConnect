@@ -33,6 +33,7 @@ private slots:
     void ShowMemberListClicked();
     void ShowDatabasesListClicked();
     void ShowUserListClicked();
+    void ShowExperimentsListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();

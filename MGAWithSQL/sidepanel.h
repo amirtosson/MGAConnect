@@ -30,10 +30,14 @@ private slots:
     void on_showMemberListButton_clicked();
     void on_showUsersButton_clicked();
 
+    void on_showExpButton_clicked();
+
 signals:
     void DBCOnnectionButtonClicked();
     void ShowMembersListButtonClicked();
     void ShowUserListButtonIsClicked();
+    void ShowExperimentsListButtonIsClicked();
+
     void ShowDatabasesListButtonClicked();
 
 

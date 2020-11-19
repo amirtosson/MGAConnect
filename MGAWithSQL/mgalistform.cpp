@@ -22,6 +22,9 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     case eDatabasesList:
         {DATABASES_LIST_FORM_SETUP}
         break;
+    case eExperimentist:
+        {EXP_LIST_FORM_SETUP}
+        break;
     default:
         break;
     }

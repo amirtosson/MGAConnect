@@ -13,8 +13,20 @@
 #define TXT_ROLE                        "Role"
 #define TXT_USER_NAME                   "Name"
 
+#define TXT_FACILITY                    "Facility"
+#define TXT_STARTS_ON                   "Starts on"
+#define TXT_ENDS_ON                     "Ends on"
+#define TXT_DESCRIPTION                 "Description"
+
+
+#define TXT_ROLE                        "Role"
+#define TXT_USER_NAME                   "Name"
+
+
 #define TXT_USER_LIST                   "MGA Users List"
 #define TXT_MEMBER_LIST                 "MGA Members List"
+#define TXT_EXP_LIST                    "MGA Experiments List"
+
 
 //Styles
 #define STYLE_FONT_24PIX_BOLD           "font-size:24px; font-weight: bold;"

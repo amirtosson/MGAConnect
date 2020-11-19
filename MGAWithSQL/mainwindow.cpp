@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowMembersListButtonClicked()),this ,SLOT(ShowMemberListClicked()));
     connect(_sidePanal, SIGNAL(ShowDatabasesListButtonClicked()),this ,SLOT(ShowDatabasesListClicked()));
     connect(_sidePanal, SIGNAL(ShowUserListButtonIsClicked()),this ,SLOT(ShowUserListClicked()));
+    connect(_sidePanal, SIGNAL(ShowExperimentsListButtonIsClicked()),this ,SLOT(ShowExperimentsListClicked()));
+
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
     ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
@@ -47,7 +49,6 @@ void MainWindow::DBConnectionSetUpClicked()
 
 void MainWindow::ShowMemberListClicked()
 {
-    qDebug() << "hena11";
     HideAll();
     if(!hasMembersListForm)
     {
@@ -78,6 +79,18 @@ void MainWindow::ShowUserListClicked()
     }
     ui->widget->hide();
     ShowUsersList();
+}
+
+void MainWindow::ShowExperimentsListClicked()
+{
+    HideAll();
+    if(!hasExpListForm)
+    {
+        IntializeExperimentsListForm(ui->mainWidget);
+        connect(_experimentsListForm, SIGNAL(NewUserIsReady()),this ,SLOT(AddNewUserClicked()));
+    }
+    ui->widget->hide();
+    ShowExperimentsList();
 }
 
 void MainWindow::StyleHasBeenChanged()

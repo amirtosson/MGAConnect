@@ -49,6 +49,12 @@ bool DBMainWindowControls::IntializeUsersListForm(QWidget *usersListWidget)
 
 }
 
+bool DBMainWindowControls::IntializeExperimentsListForm(QWidget *usersListWidget)
+{
+    _experimentsListForm = new MGAListForm(usersListWidget, eExperimentist);
+    return true;
+}
+
 bool DBMainWindowControls::AddNewMGAUserToDB()
 {
     _dbForm->AddNewMGAUsers(_usersListForm->GetTheNewUser());
@@ -81,6 +87,14 @@ bool DBMainWindowControls::ShowUsersList()
 
 }
 
+bool DBMainWindowControls::ShowExperimentsList()
+{
+   // if(!hasExpListForm)_dbForm              ->ShowUsersInQTalbe(_usersListForm->GetUITable());
+    _experimentsListForm->show();
+    hasExpListForm = true;
+    return true;
+}
+
 void DBMainWindowControls::HideAll()
 {
     if(hasDBForm)_dbForm->hide();
@@ -88,6 +102,7 @@ void DBMainWindowControls::HideAll()
     if(hasMembersListForm)_membersListForm->hide();
     if(hasDatabasesListForm)_databasesListForm->hide();
     if(hasUsersListForm)_usersListForm->hide();
+    if(hasExpListForm)_experimentsListForm->hide();
 }
 
 void DBMainWindowControls::SetLoginUserRole()

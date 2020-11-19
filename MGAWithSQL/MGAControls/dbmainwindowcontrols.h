@@ -26,6 +26,8 @@ public:
     bool IntializeMembersListForm(QWidget *membersListWidget);
     bool IntializeDatabasesListForm(QWidget *databasesListWidget);
     bool IntializeUsersListForm(QWidget *usersListWidget);
+    bool IntializeExperimentsListForm(QWidget *usersListWidget);
+
     bool IntializeDBFOrmConnections();
 
 
@@ -33,6 +35,7 @@ public:
     bool ShowMembersList();
     bool ShowDatabasesList();
     bool ShowUsersList();
+    bool ShowExperimentsList();
     bool AddNewMGAUserToDB();
     void HideAll();
 
@@ -52,12 +55,15 @@ protected:
     MGAListForm *_membersListForm;
     MGAListForm *_databasesListForm;
     MGAListForm *_usersListForm;
+    MGAListForm *_experimentsListForm;
+
 
     bool hasDBForm = false;
     bool hasOptionForm = false;
     bool hasMembersListForm =false;
     bool hasDatabasesListForm =false;
     bool hasUsersListForm =false;
+    bool hasExpListForm =false;
 
     bool IsUsersListChanged =false;
 
