@@ -47,6 +47,7 @@ void MainWindow::DBConnectionSetUpClicked()
 
 void MainWindow::ShowMemberListClicked()
 {
+    qDebug() << "hena11";
     HideAll();
     if(!hasMembersListForm)
     {
@@ -142,8 +143,6 @@ void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
         break;
     }
 }
-
-
 
 
 void MainWindow::on_actionFullScreen_triggered()

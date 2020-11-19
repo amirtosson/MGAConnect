@@ -4,12 +4,27 @@
 #define MSG_CONNECT_TOSQL_TYPE_NAME         "CTSQLD"
 #define MSG_DISCONNECT_DB_TYPE_NAME         "DCSQLD"
 #define MSG_GET_USER_ROLE_TYPE_NAME         "GURSQL"
+
 #define MSG_GET_USERS_LIST_TYPE_NAME        "GULSQL"
-#define MSG_ADD_NEW_USER_TYPE_NAME          "ANESQL"
+#define MSG_ADD_NEW_USER_TYPE_NAME          "ANUSQL"
+#define MSG_DELETE_USER_TYPE_NAME           "DUFSQL"
+#define MSG_EDIT_USER_TYPE_NAME             "EUFSQL"
 
+#define MSG_GET_MEMBERS_LIST_TYPE_NAME      "GMFSQL"
+#define MSG_ADD_NEW_MEMBER_TYPE_NAME        "ANMSQL"
+#define MSG_DELETE_MEMBER_TYPE_NAME         "DMFSQL"
+#define MSG_EDIT_MEMBER_TYPE_NAME           "EMFSQL"
 
+#define MSG_GET_EXP_LIST_TYPE_NAME          "GEXSQL"
+#define MSG_ADD_NEW_EXP_TYPE_NAME           "AEXSQL"
+#define MSG_DELETE_EXP_TYPE_NAME            "DEXSQL"
+#define MSG_EDIT_EXP_TYPE_NAME              "EEXSQL"
 
-//keys
+#define MSG_GET_APPOINTS_LIST_TYPE_NAME     "GAPSQL"
+#define MSG_ADD_NEW_APPOINT_TYPE_NAME       "AAPSQL"
+#define MSG_DELETE_APPOINT_TYPE_NAME        "DAPSQL"
+#define MSG_EDIT_APPOINT_TYPE_NAME          "EAPSQL"
+
 #define MSG_ID_KEY                          "MSG_ID"
 
 
@@ -30,8 +45,49 @@ MGAServerClientMSG::MGAServerClientMSG(EMSGType eMSGType)
         SetMSGHeader(MSG_ID_KEY,MSG_GET_USERS_LIST_TYPE_NAME);
         break;
     case EMSGType::eAddNewUser:
-        SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_USER_TYPE_NAME);
-        break;
+           SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_USER_TYPE_NAME);
+           break;
+    case EMSGType::eEditUser:
+           SetMSGHeader(MSG_ID_KEY,MSG_EDIT_USER_TYPE_NAME);
+           break;
+    case EMSGType::eDeleteUser:
+           SetMSGHeader(MSG_ID_KEY,MSG_DELETE_USER_TYPE_NAME);
+           break;
+    case EMSGType::eGetMembersList:
+           SetMSGHeader(MSG_ID_KEY,MSG_GET_MEMBERS_LIST_TYPE_NAME);
+           break;
+    case EMSGType::eAddNewMember:
+           SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_MEMBER_TYPE_NAME);
+           break;
+    case EMSGType::eEditMember:
+           SetMSGHeader(MSG_ID_KEY,MSG_EDIT_MEMBER_TYPE_NAME);
+           break;
+    case EMSGType::eDeleteMember:
+           SetMSGHeader(MSG_ID_KEY,MSG_DELETE_USER_TYPE_NAME);
+           break;
+    case EMSGType::eGetExpList:
+           SetMSGHeader(MSG_ID_KEY,MSG_GET_EXP_LIST_TYPE_NAME);
+           break;
+    case EMSGType::eAddNewExp:
+           SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_EXP_TYPE_NAME);
+           break;
+    case EMSGType::eEditExp:
+           SetMSGHeader(MSG_ID_KEY,MSG_EDIT_EXP_TYPE_NAME);
+           break;
+    case EMSGType::eDeleteExp:
+           SetMSGHeader(MSG_ID_KEY,MSG_DELETE_EXP_TYPE_NAME);
+           break;
+    case EMSGType::eGetAppointsList:
+           SetMSGHeader(MSG_ID_KEY,MSG_GET_APPOINTS_LIST_TYPE_NAME);
+           break;
+    case EMSGType::eAddNewAppoint:
+           SetMSGHeader(MSG_ID_KEY,MSG_ADD_NEW_APPOINT_TYPE_NAME);
+           break;
+    case EMSGType::eEditAppoint:
+           SetMSGHeader(MSG_ID_KEY,MSG_EDIT_APPOINT_TYPE_NAME);
+           break;
+    case EMSGType::eDeleteAppoint:
+           SetMSGHeader(MSG_ID_KEY,MSG_DELETE_APPOINT_TYPE_NAME);
     default:
         break;
     }
@@ -68,7 +124,11 @@ void MGAServerClientMSG::SetCurrentTypeEnum(QString currentTypeName)
     }
     else if(currentTypeName == MSG_ADD_NEW_USER_TYPE_NAME)
     {
-       eCurruntMSGType =  EMSGType::eAddNewUser;
+      eCurruntMSGType =  EMSGType::eAddNewUser;
+    }
+    else if(currentTypeName == MSG_GET_MEMBERS_LIST_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eGetMembersList;
     }
 }
 
@@ -101,6 +161,7 @@ bool MGAServerClientMSG::GetFromResponse(QByteArray jPesponse)
 {
     QJsonDocument jsonResponse = QJsonDocument::fromJson(jPesponse);
     QJsonArray jsonArray = jsonResponse.array();
+
     // get header
     QStringList kL = jsonArray[0].toObject().keys();
     QString idKey = kL[0];
@@ -122,4 +183,3 @@ QString MGAServerClientMSG::GetValue(QString key, const int col)
 {
      return  jaMSGBody.size();
 }
-

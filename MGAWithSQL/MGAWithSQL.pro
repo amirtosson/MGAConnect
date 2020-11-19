@@ -15,6 +15,7 @@ INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
 
 SOURCES += main.cpp\
+    MGAObjects/mgaexperiment.cpp \
         mainwindow.cpp \
     dbconnectform.cpp \
     sidepanel.cpp \
@@ -31,6 +32,7 @@ SOURCES += main.cpp\
     MGAObjects/mgauserobjectguicomponents.cpp
 
 HEADERS  += mainwindow.h\
+    MGAObjects/mgaexperiment.h \
     dbconnectform.h \
     sidepanel.h \
     mainwindowstyle.h \

@@ -35,12 +35,18 @@
 
 //Server Msg JSON defines
 #define JSON_ATT_USER                   "user"
+#define JSON_ATT_MEMBER                 "member"
 #define JSON_ATT_HOST                   "host"
 #define JSON_ATT_PWD                    "password"
 #define JSON_ATT_LOGIN_USER_ROLE        "role"
 #define JSON_ATT_CONNECTED              "connected"
 #define JSON_ATT_ADDED                  "added"
 #define JSON_ATT_DISCONNECTED           "disconnected"
+#define JSON_ATT_ADDED                  "added"
+#define JSON_ATT_DELETED                "deleted"
+
+#define TRUE                            "true"
+#define FALSE                           "false"
 
 #define MGA_DELIMITER                   "#-#"
 

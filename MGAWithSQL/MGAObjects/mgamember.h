@@ -17,17 +17,23 @@ public:
     //Setter
     void SetFirstName(std::string &firstname);
     void SetLastName(std::string &lastname);
-    void SetUsnivesityName(std::string &university);
+    void SetsWorkingBy(std::string &workingby);
+    void SetID(unsigned int &id);
     void SetEMail(std::string &email);
+    void SetJoinAt(std::string &joinat);
+
     void Print();
 
 
 
 private:
+    unsigned int memberID;
     MGAString sFirstName;
     MGAString sLastName;
-    MGAString sUniversityName;
+    MGAString sWorkingBy;
     MGAString sEMail;
+    //TODO: implement data class
+    MGAString sJoinAt;
 
 };
 

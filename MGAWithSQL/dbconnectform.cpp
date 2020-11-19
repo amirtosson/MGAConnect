@@ -10,6 +10,8 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     connect(this, SIGNAL(DatabaseIsconnected()), this, SLOT(OnDataBaseIsconnected()));
     connect(this, SIGNAL(DatabaseIsDisconnected()), this, SLOT(OnDatabaseIsDisconnected()));
     connect(this, SIGNAL(UsersListIsReady()), this, SLOT(OnUsersListIsReady()));
+    connect(this, SIGNAL(MembersListIsReady()), this, SLOT(OnMembersListIsReady()));
+
     socket = new QTcpSocket();
     QHostAddress addressIP ;
     addressIP.setAddress("192.168.178.28");
@@ -34,7 +36,7 @@ void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
     if(msg->GetMSGType() == EMSGType::eConnectToDB)
     {
 
-        if (msg->GetValue(JSON_ATT_CONNECTED, 0)=="true")
+        if (msg->GetValue(JSON_ATT_CONNECTED, 0)==TRUE)
         {
             sCurrentUserRoleName = msg->GetValue(JSON_ATT_LOGIN_USER_ROLE,1);
             SERIALIZE_USER_ROLE
@@ -44,7 +46,7 @@ void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
     else
     if (msg->GetMSGType() == EMSGType::eDisconnectDB)
     {
-        if (msg->GetValue(JSON_ATT_DISCONNECTED, 0)=="true")
+        if (msg->GetValue(JSON_ATT_DISCONNECTED, 0)==TRUE)
         {
             emit DatabaseIsDisconnected();
         }
@@ -58,11 +60,25 @@ void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
     else
     if (msg->GetMSGType() == EMSGType::eAddNewUser)
     {
-        if (msg->GetValue(JSON_ATT_ADDED, 0)=="true")
+        if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
         {
             CleanLists();
             ShowUsersInQTalbe(mainTable);
         }
+    }
+    else
+    if (msg->GetMSGType() == EMSGType::eEditUser)
+    {
+        if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+        {
+
+        }
+    }
+    else
+    if (msg->GetMSGType() == EMSGType::eGetMembersList)
+    {
+        SerializeMemberssListFromMSG(msg);
+        emit MembersListIsReady();
     }
 }
 
@@ -83,11 +99,8 @@ unsigned int DBConnectForm::GetUserNumber()
 
 bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
 {
-    for(unsigned int i =0; i < nMemberCount; ++i)
-    {
-        table->insertRow(i);
-        mgaMembersList[i].ShowInQTalbeRow(table,i);
-    }
+    mainTable = table;
+    SendServerGetMemberListMSG();
     return true;
 }
 
@@ -119,6 +132,14 @@ bool DBConnectForm::SendServerGetUserListMSG()
     return true;
 }
 
+bool DBConnectForm::SendServerGetMemberListMSG()
+{
+    MGAServerClientMSG msg(EMSGType::eGetMembersList);
+    socket->write(msg.GetMSGAsByteArray());
+    socket->flush();
+    return true;
+}
+
 void DBConnectForm::CleanLists()
 {
    mgaUsersList.clear();
@@ -131,75 +152,6 @@ void DBConnectForm::OnDataBaseIsconnected()
     CleanLists();
     DATABASE_IS_CONNECTED
     bDatabaseIsconnected = true;
-//    if(eCurrentUserRole == eAdmin)
-//    {
-//        try
-//       {
-//            GET_USERS
-//            GET_USERS_COUNTS
-//            if(nUserCount>0)
-//            {
-//                GET_USERS
-//                START_GETTING_DATA
-//                MGAUser mgaUser;
-//                std::string str = res->getString(1).asStdString();
-//                mgaUser.SetName(str);
-//                str = res->getString(2).asStdString();
-//                mgaUser.SetHost(str);
-//                str = res->getString(3).asStdString();
-//                mgaUser.SetRole(str);
-//                mgaUsersList.push_back(mgaUser);
-//                END_GETTING_DATA
-//            }
-//            else
-//            {
-//                throw 404;
-//            }
-//        }
-//        catch(sql::SQLException e)
-//        {
-//            //TODO: add exception handel
-//           qDebug()<<e.what();
-//           return;
-//        }
-
-//        try
-//        {
-//            GET_MEMEBRS_COUNTS
-//            if(nMemberCount>0)
-//            {
-//                GET_MGA_MEMEBRS
-//                START_GETTING_DATA
-//                std::string str = res->getString(1).asStdString();
-//                MGAMember mgaMember;
-//                mgaMember.SetFirstName(str);
-//                str = res->getString(2).asStdString();
-//                mgaMember.SetLastName(str);
-//                str = res->getString(3).asStdString();
-//                mgaMember.SetEMail(str);
-//                str = res->getString(4).asStdString();
-//                mgaMember.SetUsnivesityName(str);
-//                mgaMembersList.push_back(mgaMember);
-//                END_GETTING_DATA
-//            }
-//            else
-//            {
-//                throw 404;
-//            }
-//        }
-//        catch(sql::SQLException e)
-//        {
-//            //TODO: add exception handel
-//           qDebug()<<e.what();
-//           return;
-//        }
-//        catch(int i)
-//        {
-//            //TODO: add exception handel
-//           if(i == 404 ) qDebug()<<"No users found";
-//           return;
-//        }
-//    }
 }
 
 void DBConnectForm::OnDatabaseIsDisconnected()
@@ -220,6 +172,21 @@ void DBConnectForm::OnUsersListIsReady()
     for(unsigned int i =0; i<nUserCount; ++i)
     {
        mgaUsersList[i].ShowInQTalbeRow(mainTable,i);
+    }
+}
+
+void DBConnectForm::OnMembersListIsReady()
+{
+    int row = 0;
+    while (mainTable->rowCount() != nMemberCount)
+    {
+        mainTable->insertRow(row);
+        row++;
+    }
+
+    for(unsigned int i =0; i<nMemberCount; ++i)
+    {
+       mgaMembersList[i].ShowInQTalbeRow(mainTable,i);
     }
 }
 
@@ -269,6 +236,46 @@ void DBConnectForm::SerializeUsersListFromMSG(MGAServerClientMSG *msg)
 
     }
     nUserCount = mgaUsersList.size();
+}
+
+void DBConnectForm::SerializeMemberssListFromMSG(MGAServerClientMSG *msg)
+{
+    CleanLists();
+    for (unsigned int i=0; i<msg->GetBodyLength(); ++i )
+    {
+        QString user;
+        user = msg->GetValue(JSON_ATT_MEMBER,i);
+        std::string str = user.toStdString();
+        size_t pos = 0;
+        std::string delimiter = MGA_DELIMITER;
+        pos = str.find(delimiter);
+        unsigned int  memberID = 2;
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string firstname = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string lastname = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string joinat = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string workingby = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string email = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        MGAMember mgaMember;
+        mgaMember.SetEMail(email);
+        mgaMember.SetFirstName(firstname);
+        mgaMember.SetID(memberID);
+        mgaMember.SetJoinAt(joinat);
+        mgaMember.SetsWorkingBy(workingby);
+        mgaMember.SetLastName(lastname);
+        mgaMembersList.push_back(mgaMember);
+    }
+    nMemberCount = mgaMembersList.size();
 }
 
 void DBConnectForm::connected()

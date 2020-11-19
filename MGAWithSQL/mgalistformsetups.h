@@ -6,10 +6,12 @@
     userListFormUi->userListWidget->insertColumn(1);\
     userListFormUi->userListWidget->insertColumn(2);\
     userListFormUi->userListWidget->insertColumn(3);\
+    userListFormUi->userListWidget->insertColumn(4);\
     QStringList q;\
     q.append(TXT_FIRST_NAME);\
     q.append(TXT_LAST_NAME);\
-    q.append(TXT_UNIVERSITY_NAME);\
+    q.append(TXT_WORKINGBY);\
+    q.append(TXT_JOINED_AT);\
     q.append(TXT_EMAIL);\
     userListFormUi->userListWidget->setHorizontalHeaderLabels(q);\
     userListFormUi->userListWidget->horizontalHeader()->setStretchLastSection(true);\

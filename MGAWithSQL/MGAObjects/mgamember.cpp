@@ -15,12 +15,15 @@ bool MGAMember::ShowInQTalbeRow(QTableWidget *table, int row)
     QTableWidgetItem *lastNameItem = new QTableWidgetItem();;
     *lastNameItem =  sLastName.GetAsQTableWidgitItem();
     table->setItem(row,1, lastNameItem);
-    QTableWidgetItem *universityNameItem = new QTableWidgetItem();
-    *universityNameItem =  sUniversityName.GetAsQTableWidgitItem();
-    table->setItem(row,2,  universityNameItem);
+    QTableWidgetItem *workingByItem = new QTableWidgetItem();
+    *workingByItem =  sWorkingBy.GetAsQTableWidgitItem();
+    table->setItem(row,2,  workingByItem);
+    QTableWidgetItem *joinAtItem = new QTableWidgetItem();
+    *joinAtItem =  sJoinAt.GetAsQTableWidgitItem();
+    table->setItem(row,3,  joinAtItem);
     QTableWidgetItem *eMailItem =  new QTableWidgetItem();
     *eMailItem =  sEMail.GetAsQTableWidgitItem();
-    table->setItem(row,3,  eMailItem);
+    table->setItem(row,4,  eMailItem);
     return true;
 }
 
@@ -34,20 +37,31 @@ void MGAMember::SetLastName(std::string &lastname)
     sLastName.SetFromSTDString(lastname);
 }
 
-void MGAMember::SetUsnivesityName(std::string &university)
+void MGAMember::SetsWorkingBy(std::string &workingby)
 {
-    sUniversityName.SetFromSTDString(university);
+    sWorkingBy.SetFromSTDString(workingby);
 }
+
+void MGAMember::SetID(unsigned int &id)
+{
+    memberID = id;
+}
+
 
 void MGAMember::SetEMail(std::string &email)
 {
     sEMail.SetFromSTDString(email);
 }
 
+void MGAMember::SetJoinAt(std::string &joinat)
+{
+    sJoinAt.SetFromSTDString(joinat);
+}
+
 void MGAMember::Print()
 {
     sEMail.PrintString();
-    sUniversityName.PrintString();
+    sWorkingBy.PrintString();
     sLastName.PrintString();
     sFirstName.PrintString();
 }

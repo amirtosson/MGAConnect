@@ -4,6 +4,8 @@
 #define TXT_FIRST_NAME                  "First Name"
 #define TXT_LAST_NAME                   "Last Name"
 #define TXT_UNIVERSITY_NAME             "University"
+#define TXT_WORKINGBY                   "Working by"
+#define TXT_JOINED_AT                   "Joined at"
 #define TXT_EMAIL                       "E-Mail"
 
 #define TXT_DATABASE                    "Database"
