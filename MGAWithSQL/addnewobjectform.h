@@ -37,6 +37,10 @@ private:
     MGAUser *newUser;
     MGAMember *newMember;
     EListType eCurrentList = eUNKOWN;
+
+private:
+    bool GetNewUser();
+    bool GetNewMember();
 };
 
 #endif // ADDNEWOBJECTFORM_H

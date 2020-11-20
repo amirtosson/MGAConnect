@@ -15,12 +15,14 @@
 
 
 #define TXT_ADD_USER_MSG_BOX_LABEL              "Adding user"
+#define TXT_ADD_MEMBER_MSG_BOX_LABEL            "Adding member"
+
 
 
 //placeholder
-#define TXT_NAME_PH              "name"
-#define TXT_HOST_PH              "host"
-#define TXT_PWD_PH               "password"
+#define TXT_NAME_PH                             "name"
+#define TXT_HOST_PH                             "host"
+#define TXT_PWD_PH                              "password"
 #define TXT_FIRST_NAME_PH                      "firstname"
 #define TXT_LAST_NAME_PH                       "lastname"
 #define TXT_EMAIL_PH                           "example@domain.com"
@@ -28,6 +30,7 @@
 #define TXT_JOIN_AT_PH                         "01.01.2020 12:00"
 
 //texts
-#define TXT_MSG_BOX_ADD_USER        "Are you sure that you want to add this user?"
+#define TXT_MSG_BOX_ADD_USER                    "Are you sure that you want to add this user?"
+#define TXT_MSG_BOX_ADD_MEMBER                  "Are you sure that you want to add this member?"
 
 #endif // ADDNEWOBJECTFORMRESOURCES_H
