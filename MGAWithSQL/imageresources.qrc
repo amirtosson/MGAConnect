@@ -17,6 +17,9 @@
         <file>Resources/Icons/exit.png</file>
         <file>Resources/Icons/fit.png</file>
         <file>Resources/Icons/search.png</file>
+        <file>Resources/Icons/adddefualt.png</file>
+        <file>Resources/Icons/deletedefault.png</file>
+        <file>Resources/Icons/editdefault.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

@@ -36,5 +36,8 @@
 #define IMG_CHANGE_USER                 ":/buttonIcons/Resources/Icons/edituser.png"
 #define IMG_DELETE_USER                 ":/buttonIcons/Resources/Icons/deleteuser.png"
 
+#define IMG_ADD_DEFAULT                 ":/buttonIcons/Resources/Icons/adddefualt.png"
+#define IMG_CHANGE_DEFAULT              ":/buttonIcons/Resources/Icons/editdefault.png"
+#define IMG_DELETE_DEFAULT              ":/buttonIcons/Resources/Icons/deletedefault.png"
 
 #endif // MGARLISTFORMRESOURCES_H

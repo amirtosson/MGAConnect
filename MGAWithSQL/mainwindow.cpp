@@ -127,6 +127,16 @@ void MainWindow::AddNewUserClicked()
     AddNewMGAUserToDB();
 }
 
+void MainWindow::AddNewMemberClicked()
+{
+
+}
+
+void MainWindow::AddNewExpClicked()
+{
+
+}
+
 void MainWindow::on_actionOptions_triggered()
 {
     HideAll();

@@ -25,6 +25,26 @@ public:
     ~MGAListForm();
     MGAUser *GetTheNewUser();
 
+    template<typename T> T GetTheNewObject()
+    {
+        switch (eCurrentListType) {
+        case eUsersList:
+            return addNewObject->GetTheNewUser();
+            break;
+        case eMemberList:
+            return addNewObject->GetTheNewMember();
+            break;
+        case eDatabasesList:
+
+            break;
+        case eExperimentist:
+            return addNewObject->GetTheNewExp();
+            break;
+        default:
+            break;
+        }
+    }
+
 private slots:
     void on_userListWidget_cellPressed(int row, int column);
 
@@ -38,6 +58,9 @@ private slots:
 
 signals:
     void NewUserIsReady();
+    void NewMemberIsReady();
+    void NewExpIsReady();
+
 
 private:
     void SelectionIsChanged(const int id);

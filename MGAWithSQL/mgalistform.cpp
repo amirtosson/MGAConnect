@@ -8,23 +8,32 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     eCurrentListType(eList)
 {
     userListFormUi->setupUi(this);
-    BUTTONS_SETUP
-
     const QIcon searchIcon =  QIcon(":/buttonIcons/Resources/Icons/search.png");
     QAction *openAct = new QAction(searchIcon,tr("search"), this);
     userListFormUi->searchTextBox->addAction(openAct,QLineEdit::LeadingPosition);
     switch (eCurrentListType) {
     case eUsersList:
-        {USERS_LIST_FORM_SETUP}
+        {
+            USERS_LIST_FORM_SETUP
+            BUTTONS_SETUP
+        }
         break;
     case eMemberList:
-        {MEMBERS_LIST_FORM_SETUP}
+        {
+            MEMBERS_LIST_FORM_SETUP
+            BUTTONS_SETUP
+        }
         break;
     case eDatabasesList:
-        {DATABASES_LIST_FORM_SETUP}
+        {
+            DATABASES_LIST_FORM_SETUP
+        }
         break;
     case eExperimentist:
-        {EXP_LIST_FORM_SETUP}
+        {
+            EXP_LIST_FORM_SETUP
+            BUTTONS_SETUP_DEFAULT
+        }
         break;
     default:
         break;
@@ -70,7 +79,7 @@ void MGAListForm::on_addUserButton_clicked()
         if(!hasAddNewObjectForm)
         {
            addNewObject = new AddNewObjectForm(this, eCurrentListType);
-           connect(addNewObject, SIGNAL(NewUserIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
+           connect(addNewObject, SIGNAL(NewObjectIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
            addNewObject->setModal(true);
            addNewObject->exec();
         }
@@ -90,8 +99,22 @@ void MGAListForm::on_addUserButton_clicked()
 
 void MGAListForm::NewObjectIsReady()
 {
-   //qstr =  addNewUser->GetTheNewUser().GetName();
-   emit NewUserIsReady();
+    switch (eCurrentListType) {
+    case eUsersList:
+        emit NewUserIsReady();
+        break;
+    case eMemberList:
+        emit NewMemberIsReady();
+        break;
+    case eDatabasesList:
+        break;
+    case eExperimentist:
+        emit NewExpIsReady();
+        break;
+    default:
+        break;
+    }
+
 }
 
 void MGAListForm::on_searchTextBox_textChanged(const QString &arg1)
@@ -110,3 +133,5 @@ void MGAListForm::on_searchTextBox_textChanged(const QString &arg1)
     }
 
 }
+
+

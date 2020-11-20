@@ -41,6 +41,8 @@ private slots:
     void HideSidePanel();
 
     void AddNewUserClicked();
+    void AddNewMemberClicked();
+    void AddNewExpClicked();
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
 
 

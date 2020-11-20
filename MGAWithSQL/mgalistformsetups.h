@@ -27,6 +27,12 @@
     SET_BTN_ICON(deleteUserButton,IMG_DELETE_USER)\
     DISABLE_BUTTONS
 
+#define BUTTONS_SETUP_DEFAULT\
+    SET_BTN_ICON(addUserButton,IMG_ADD_DEFAULT)\
+    SET_BTN_ICON(editUserButton,IMG_CHANGE_DEFAULT)\
+    SET_BTN_ICON(deleteUserButton,IMG_DELETE_DEFAULT)\
+    DISABLE_BUTTONS
+
 #define DISABLE_BUTTONS\
     userListFormUi->editUserButton->setEnabled(false);\
     userListFormUi->deleteUserButton->setEnabled(false);
