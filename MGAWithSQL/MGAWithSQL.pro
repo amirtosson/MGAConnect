@@ -18,6 +18,7 @@ SOURCES += main.cpp\
     MGAObjects/mgaexperiment.cpp \
         mainwindow.cpp \
     dbconnectform.cpp \
+    MGAObjects/mgamemberguicomponents.cpp \
     sidepanel.cpp \
     optionform.cpp \
     mgawidgetextension.cpp \
@@ -34,6 +35,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h\
     MGAObjects/mgaexperiment.h \
     dbconnectform.h \
+    MGAObjects/mgamemberguicomponents.h \
     sidepanel.h \
     mainwindowstyle.h \
     optionform.h \

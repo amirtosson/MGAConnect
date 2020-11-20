@@ -4,7 +4,8 @@
 
 MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     QWidget(parent),
-    userListFormUi(new Ui::MGAListForm)
+    userListFormUi(new Ui::MGAListForm),
+    eCurrentListType(eList)
 {
     userListFormUi->setupUi(this);
     BUTTONS_SETUP
@@ -12,7 +13,7 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     const QIcon searchIcon =  QIcon(":/buttonIcons/Resources/Icons/search.png");
     QAction *openAct = new QAction(searchIcon,tr("search"), this);
     userListFormUi->searchTextBox->addAction(openAct,QLineEdit::LeadingPosition);
-    switch (eList) {
+    switch (eCurrentListType) {
     case eUsersList:
         {USERS_LIST_FORM_SETUP}
         break;
@@ -38,13 +39,12 @@ QTableWidget *MGAListForm::GetUITable()
 MGAListForm::~MGAListForm()
 {
     delete userListFormUi;
-    if(hasAddNewUserForm) delete addNewUser;
-
+    if(hasAddNewObjectForm) delete addNewObject;
 }
 
 MGAUser *MGAListForm::GetTheNewUser()
 {
-    return  addNewUser->GetTheNewUser();
+    return  addNewObject->GetTheNewUser();
 }
 
 void MGAListForm::on_userListWidget_cellPressed(int row, int column)
@@ -67,17 +67,17 @@ void MGAListForm::on_addUserButton_clicked()
 {
     try
     {
-        if(!hasAddNewUserForm)
+        if(!hasAddNewObjectForm)
         {
-           addNewUser = new AddNewObjectForm(this, eUsersList);
-           connect(addNewUser, SIGNAL(NewUserIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
-           addNewUser->setModal(true);
-           addNewUser->exec();
+           addNewObject = new AddNewObjectForm(this, eCurrentListType);
+           connect(addNewObject, SIGNAL(NewUserIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
+           addNewObject->setModal(true);
+           addNewObject->exec();
         }
 
         else
         {
-            addNewUser->open();
+            addNewObject->open();
         }
     }
     catch(int e)
@@ -85,7 +85,7 @@ void MGAListForm::on_addUserButton_clicked()
         qDebug()<<e;
     }
 
-    hasAddNewUserForm = true;
+    hasAddNewObjectForm = true;
 }
 
 void MGAListForm::NewObjectIsReady()

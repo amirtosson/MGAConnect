@@ -46,9 +46,9 @@ private:
     Ui::MGAListForm *userListFormUi;
     QIcon btnIcon;
     unsigned int nCurrentSelecttonID = -1;
-    AddNewObjectForm *addNewUser;
-
-    bool hasAddNewUserForm = false;
+    EListType eCurrentListType = eUNKOWN;
+    AddNewObjectForm *addNewObject;
+    bool hasAddNewObjectForm = false;
 };
 
 #endif // USERLISTFORM_H

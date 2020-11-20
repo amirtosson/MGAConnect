@@ -9,13 +9,14 @@
 #include "mgauser.h"
 #include "mgalistformtypesenum.h"
 #include "mgauserobjectguicomponents.h"
+#include "mgamemberguicomponents.h"
 
 
 namespace Ui {
 class AddNewObjectForm;
 }
 
-class AddNewObjectForm : public QDialog, public MGAUserObjectGUIComponents
+class AddNewObjectForm : public QDialog, public MGAUserObjectGUIComponents, public MGAMemberGUIComponents
 {
     Q_OBJECT
 

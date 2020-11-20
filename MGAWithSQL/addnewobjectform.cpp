@@ -8,7 +8,7 @@ AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
 {
         ui->setupUi(this);
         eCurrentList = eList;
-        switch (eList) {
+        switch (eCurrentList) {
         case eUsersList:
             {
                 newUser = new MGAUser();
@@ -18,6 +18,7 @@ AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
         case eMemberList:
             {
                 newMember = new MGAMember();
+                IntializeMemberGUIComponents(this);
             }
             break;
         default:

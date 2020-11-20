@@ -22,7 +22,7 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
         return false;
     }
     gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-    gridLayoutWidget->setGeometry(QRect(10, 10, 371, 211));
+    gridLayoutWidget->setGeometry(QRect(10, 10, 370, 210));
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
     gridLayout->setContentsMargins(0, 0, 0, 0);
     nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
