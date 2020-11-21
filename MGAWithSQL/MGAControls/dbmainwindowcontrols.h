@@ -23,10 +23,12 @@ public:
     // Components intialization
     bool IntializeSidePanel(QWidget *sidePanelWidget);
     bool IntializeDBConnectionForm(QWidget *dbConnectionWidget);
-    bool IntializeMembersListForm(QWidget *membersListWidget);
+    bool IntializeMembersListForm(QWidget *membersListWidget);    
     bool IntializeDatabasesListForm(QWidget *databasesListWidget);
     bool IntializeUsersListForm(QWidget *usersListWidget);
     bool IntializeExperimentsListForm(QWidget *usersListWidget);
+    bool IntializeAppointmentsListForm(QWidget *appointsListWidget);
+
 
     bool IntializeDBFOrmConnections();
 
@@ -36,7 +38,11 @@ public:
     bool ShowDatabasesList();
     bool ShowUsersList();
     bool ShowExperimentsList();
+    bool ShowAppointmentsList();
     bool AddNewMGAUserToDB();
+    bool AddNewMGAMemberToDB();
+    bool AddNewMGAExpToDB();
+    bool AddNewMGAAppointmentToDB();
     void HideAll();
 
 public:
@@ -56,6 +62,8 @@ protected:
     MGAListForm *_databasesListForm;
     MGAListForm *_usersListForm;
     MGAListForm *_experimentsListForm;
+    MGAListForm *_appointmentsListForm;
+
 
 
     bool hasDBForm = false;
@@ -64,6 +72,8 @@ protected:
     bool hasDatabasesListForm =false;
     bool hasUsersListForm =false;
     bool hasExpListForm =false;
+    bool hasAppointListForm =false;
+
 
     bool IsUsersListChanged =false;
 

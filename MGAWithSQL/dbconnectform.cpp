@@ -2,6 +2,7 @@
 #include "ui_dbconnectform.h"
 
 
+
 DBConnectForm::DBConnectForm(QWidget *parent) :
     QWidget(parent),
     dbConnectFormUi(new Ui::DBConnectForm)
@@ -22,6 +23,10 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+
+
+
+
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 
@@ -299,4 +304,25 @@ void DBConnectForm::readyRead()
     QByteArray res = socket->readAll();
     msg.GetFromResponse(res);
     ServerMSGHandling(&msg);
+}
+
+void DBConnectForm::on_updateDetailsButton_clicked()
+{
+    QSettings qSetting;
+    if (!qSetting.contains(USER_SETTING_GROUP))
+    {
+        qSetting.beginGroup(USER_SETTING_GROUP);
+
+    }
+    qSetting.setValue(USER_SETTING_USER_NAME, dbConnectFormUi->DBUserNameTextBox->text());
+    qSetting.setValue(USER_SETTING_DB_URI, dbConnectFormUi->DBURITextBox->text());
+
+}
+
+void DBConnectForm::on_loadDetailsButton_clicked()
+{
+    QSettings settings;
+    dbConnectFormUi->DBUserNameTextBox->setText(settings.value(USER_SETTING_USER_NAME_GETTER).toString());
+    dbConnectFormUi->DBURITextBox->setText(settings.value(USER_SETTING_DB_URI_GETTER).toString());
+
 }

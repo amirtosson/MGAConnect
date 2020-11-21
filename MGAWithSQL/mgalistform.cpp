@@ -35,6 +35,12 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
             BUTTONS_SETUP_DEFAULT
         }
         break;
+    case eAppointmentList:
+        {
+            APPOINTS_LIST_FORM_SETUP
+            BUTTONS_SETUP_DEFAULT
+        }
+        break;
     default:
         break;
     }
@@ -99,22 +105,7 @@ void MGAListForm::on_addUserButton_clicked()
 
 void MGAListForm::NewObjectIsReady()
 {
-    switch (eCurrentListType) {
-    case eUsersList:
-        emit NewUserIsReady();
-        break;
-    case eMemberList:
-        emit NewMemberIsReady();
-        break;
-    case eDatabasesList:
-        break;
-    case eExperimentist:
-        emit NewExpIsReady();
-        break;
-    default:
-        break;
-    }
-
+    emit NewObjectIsReadyToAdd(eCurrentListType);
 }
 
 void MGAListForm::on_searchTextBox_textChanged(const QString &arg1)

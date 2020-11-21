@@ -71,6 +71,18 @@
     userListFormUi->pageTitle->setText(TXT_EXP_LIST);\
     userListFormUi->pageTitle->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
 
+#define APPOINTS_LIST_FORM_SETUP\
+    userListFormUi->userListWidget->insertColumn(0);\
+    QStringList q2;\
+    q2.append(TXT_FACILITY);\
+    userListFormUi->userListWidget->setHorizontalHeaderLabels(q2);\
+    userListFormUi->userListWidget->horizontalHeader()->setStretchLastSection(true);\
+    userListFormUi->userListWidget->setSelectionBehavior(QAbstractItemView::SelectRows);\
+    userListFormUi->userListWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);\
+    userListFormUi->pageTitle->setAlignment(Qt::AlignCenter);\
+    userListFormUi->pageTitle->setText(TXT_APPOINTS_LIST);\
+    userListFormUi->pageTitle->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
+
 
 #define USERS_LIST_FORM_SETUP\
     userListFormUi->userListWidget->insertColumn(0);\

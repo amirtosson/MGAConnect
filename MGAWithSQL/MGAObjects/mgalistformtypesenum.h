@@ -6,6 +6,7 @@ extern "C" enum EListType
     eUsersList,
     eMemberList,
     eExperimentist,
+    eAppointmentList,
     eDatabasesList,
     eUNKOWN
 };

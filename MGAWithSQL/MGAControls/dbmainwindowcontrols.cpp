@@ -55,11 +55,32 @@ bool DBMainWindowControls::IntializeExperimentsListForm(QWidget *usersListWidget
     return true;
 }
 
+bool DBMainWindowControls::IntializeAppointmentsListForm(QWidget *appointsListWidget)
+{
+    _appointmentsListForm = new MGAListForm(appointsListWidget, eAppointmentList);
+    return true;
+}
+
 bool DBMainWindowControls::AddNewMGAUserToDB()
 {
     _dbForm->AddNewMGAUsers(_usersListForm->GetTheNewUser());
     return true;
 
+}
+
+bool DBMainWindowControls::AddNewMGAMemberToDB()
+{
+    return true;
+}
+
+bool DBMainWindowControls::AddNewMGAExpToDB()
+{
+    return true;
+}
+
+bool DBMainWindowControls::AddNewMGAAppointmentToDB()
+{
+    return true;
 }
 
 bool DBMainWindowControls::ShowMembersList()
@@ -95,6 +116,13 @@ bool DBMainWindowControls::ShowExperimentsList()
     return true;
 }
 
+bool DBMainWindowControls::ShowAppointmentsList()
+{
+    _appointmentsListForm->show();
+    hasAppointListForm = true;
+    return true;
+}
+
 void DBMainWindowControls::HideAll()
 {
     if(hasDBForm)_dbForm->hide();
@@ -103,6 +131,7 @@ void DBMainWindowControls::HideAll()
     if(hasDatabasesListForm)_databasesListForm->hide();
     if(hasUsersListForm)_usersListForm->hide();
     if(hasExpListForm)_experimentsListForm->hide();
+    if(hasAppointListForm)_appointmentsListForm->hide();
 }
 
 void DBMainWindowControls::SetLoginUserRole()

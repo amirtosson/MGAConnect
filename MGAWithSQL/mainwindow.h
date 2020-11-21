@@ -34,6 +34,7 @@ private slots:
     void ShowDatabasesListClicked();
     void ShowUserListClicked();
     void ShowExperimentsListClicked();
+    void ShowAppointmentsListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();
@@ -41,6 +42,8 @@ private slots:
     void HideSidePanel();
 
     void AddNewUserClicked();
+    void AddNewObjectClicked(EListType eList);
+
     void AddNewMemberClicked();
     void AddNewExpClicked();
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);

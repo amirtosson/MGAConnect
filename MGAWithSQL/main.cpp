@@ -13,6 +13,10 @@ int main(int argc, char *argv[])
     //splash->setPixmap(g.scaled(1000,400,Qt::IgnoreAspectRatio)); // splash picture
     //splash->setGeometry(10,10,1000,400);
     //splash->show();
+    qApp->setApplicationName("MGAConnect");
+    qApp->setOrganizationName("MGA");
+
+    QSettings::setDefaultFormat(QSettings::IniFormat);
     MainWindow w;
 
     //QTimer::singleShot(2000, splash,SLOT(close())); // Timer

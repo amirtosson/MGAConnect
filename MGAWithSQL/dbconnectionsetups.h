@@ -15,8 +15,18 @@
         dbConnectFormUi->dbFormLabel->setText(TXT_FORM_TITLE_LABEL);\
         dbConnectFormUi->dbFormLabel->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
         dbConnectFormUi->dbFormLabel->setAlignment(Qt::AlignCenter);\
+        dbConnectFormUi->loadDetailsButton->setToolTip(TXT_LOAD_DATA_BTN_LABEL);\
+        dbConnectFormUi->updateDetailsButton->setToolTip(TXT_SAVE_DATA_BTN_LABEL);\
+        dbConnectFormUi->connectToDBButton->setText(TXT_ADD_DB_BTN_LABEL);\
+        dbConnectFormUi->disconnectDBButton->setText(TXT_DISCONNECT_DB_BTN_LABEL);\
+        dbConnectFormUi->connectToDBButton->setStyleSheet(STYLE_FONT_12PIX_BOLD);\
+        dbConnectFormUi->disconnectDBButton->setStyleSheet(STYLE_FONT_12PIX_BOLD);\
+        SET_BTN_ICON(loadDetailsButton,IMG_LOAD_DATA)\
+        SET_BTN_ICON(updateDetailsButton,IMG_UPDATE_DATA)\
+        SET_BTN_ICON(connectToDBButton,IMG_CONNECT)\
+        SET_BTN_ICON(disconnectDBButton,IMG_DISCONNECT)\
         DATABASE_IS_NOT_CONNECTED\
-        ADD_DB_BUTTON_SETUP
+        //ADD_DB_BUTTON_SETUP
 
 
 #define DATABASE_IS_CONNECTED\
@@ -44,5 +54,11 @@
     else if (sCurrentUserRoleName == GUEST_ROLE) eCurrentUserRole = eGuest;\
     else if (sCurrentUserRoleName == STUDENT_ROLE) eCurrentUserRole = eStudent;\
     else eCurrentUserRole = eUNKNOWN;
+
+#define SET_BTN_ICON(btn,iconURI)\
+    btnIcon = QIcon(iconURI);\
+    dbConnectFormUi->btn->setIcon(btnIcon);\
+    dbConnectFormUi->btn->setIconSize(QSize(30, 30));
+
 
 #endif // MAINWINDOWDBCONNECTIONSETUPS_H

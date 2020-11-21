@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowDatabasesListButtonClicked()),this ,SLOT(ShowDatabasesListClicked()));
     connect(_sidePanal, SIGNAL(ShowUserListButtonIsClicked()),this ,SLOT(ShowUserListClicked()));
     connect(_sidePanal, SIGNAL(ShowExperimentsListButtonIsClicked()),this ,SLOT(ShowExperimentsListClicked()));
+    connect(_sidePanal, SIGNAL(ShowAppointmentsListButtonClicked()),this ,SLOT(ShowAppointmentsListClicked()));
+
 
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
@@ -75,7 +77,7 @@ void MainWindow::ShowUserListClicked()
     if(!hasUsersListForm)
     {
         IntializeUsersListForm(ui->mainWidget);
-        connect(_usersListForm, SIGNAL(NewUserIsReady()),this ,SLOT(AddNewUserClicked()));
+        connect(_usersListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
     }
     ui->widget->hide();
     ShowUsersList();
@@ -87,10 +89,22 @@ void MainWindow::ShowExperimentsListClicked()
     if(!hasExpListForm)
     {
         IntializeExperimentsListForm(ui->mainWidget);
-        connect(_experimentsListForm, SIGNAL(NewUserIsReady()),this ,SLOT(AddNewUserClicked()));
+        connect(_experimentsListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
     }
     ui->widget->hide();
     ShowExperimentsList();
+}
+
+void MainWindow::ShowAppointmentsListClicked()
+{
+    HideAll();
+    if(!hasAppointListForm)
+    {
+        IntializeAppointmentsListForm(ui->mainWidget);
+        connect(_appointmentsListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+    }
+    ui->widget->hide();
+    ShowAppointmentsList();
 }
 
 void MainWindow::StyleHasBeenChanged()
@@ -125,6 +139,27 @@ void MainWindow::HideSidePanel()
 void MainWindow::AddNewUserClicked()
 {
     AddNewMGAUserToDB();
+}
+
+void MainWindow::AddNewObjectClicked(EListType eList)
+{
+    switch (eList) {
+    case eUsersList:
+        AddNewMGAUserToDB();
+        break;
+    case eMemberList:
+        AddNewMGAMemberToDB();
+        break;
+    case eAppointmentList:
+        AddNewMGAAppointmentToDB();
+        break;
+    case eExperimentist:
+        AddNewMGAExpToDB();
+        break;
+    default:
+        break;
+    }
+
 }
 
 void MainWindow::AddNewMemberClicked()

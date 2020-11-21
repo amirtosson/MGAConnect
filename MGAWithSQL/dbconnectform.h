@@ -8,8 +8,9 @@
 #include <QJsonDocument>
 #include <QTcpSocket>
 #include <QHostAddress>
-
+#include <QSettings>
 #include <vector>
+
 #include "dbconnectionsetups.h"
 //#include "sqlmacro.h"
 #include "mgauserrolesenum.h"
@@ -65,6 +66,10 @@ private slots:
     void on_connectToDBButton_clicked();
     void on_disconnectDBButton_clicked();
 
+    void on_updateDetailsButton_clicked();
+
+    void on_loadDetailsButton_clicked();
+
 private:
     Ui::DBConnectForm *dbConnectFormUi;
     bool bDatabaseIsconnected = false;
@@ -78,6 +83,7 @@ private:
     QTcpSocket *socket;
     bool IsUsersListUpdated = false;
     QTableWidget *mainTable;
+    QIcon btnIcon;
 
 private:
     void ServerMSGHandling(MGAServerClientMSG *msg);
@@ -85,6 +91,7 @@ private:
     void SerializeMemberssListFromMSG(MGAServerClientMSG *msg);
     bool SendServerGetUserListMSG();
     bool SendServerGetMemberListMSG();
+
 
 };
 

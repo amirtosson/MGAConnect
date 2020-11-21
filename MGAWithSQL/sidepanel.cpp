@@ -51,3 +51,8 @@ void SidePanel::on_showExpButton_clicked()
 {
     emit ShowExperimentsListButtonIsClicked();
 }
+
+void SidePanel::on_showAppointmentsButton_clicked()
+{
+    emit ShowAppointmentsListButtonClicked();
+}

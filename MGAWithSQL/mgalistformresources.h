@@ -26,6 +26,8 @@
 #define TXT_USER_LIST                   "MGA Users List"
 #define TXT_MEMBER_LIST                 "MGA Members List"
 #define TXT_EXP_LIST                    "MGA Experiments List"
+#define TXT_APPOINTS_LIST               "MGA Appointments List"
+
 
 
 //Styles

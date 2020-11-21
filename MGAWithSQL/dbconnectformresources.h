@@ -24,14 +24,23 @@
 
 #define TXT_FORM_TITLE_LABEL            "Database parameters"
 
+#define TXT_LOAD_DATA_BTN_LABEL         "Load my saved data"
+#define TXT_SAVE_DATA_BTN_LABEL         "Save my data"
+
+
 //styles
 #define STYLE_FONT_24PIX_BOLD           "font-size:24px; font-weight: bold;"
+#define STYLE_FONT_12PIX_BOLD           "font-size:12px; font-weight: bold;"
+
 
 
 //images URLs
 #define IMG_NOT_CONNECTED               "border-image: url(:/db/Resources/Images/databasenotconnected.png);"
 #define IMG_CONNECTED                   "border-image: url(:/db/Resources/Images/databaseconnected.png);"
-#define IMG_CONNECT                     ":/db/Resources/Icons/connect.png"
+#define IMG_LOAD_DATA                   ":/buttonIcons/Resources/Icons/load.png"
+#define IMG_UPDATE_DATA                 ":/buttonIcons/Resources/Icons/update.png"
+#define IMG_CONNECT                     ":/buttonIcons/Resources/Icons/connected.png"
+#define IMG_DISCONNECT                  ":/buttonIcons/Resources/Icons/disconnected.png"
 
 //Server Msg JSON defines
 #define JSON_ATT_USER                   "user"
@@ -47,6 +56,21 @@
 
 #define TRUE                            "true"
 #define FALSE                           "false"
+
+#define USER_SETTING_GROUP              "usersetting"
+#define USER_SETTING_USER_NAME          "username"
+#define USER_SETTING_DB_NAME            "dbname"
+#define USER_SETTING_DB_URI             "dburi"
+
+#define USER_SETTING_USER_NAME_GETTER   "usersetting/username"
+#define USER_SETTING_DB_NAME_GETTER     "usersetting/dbname"
+#define USER_SETTING_DB_URI_GETTER      "usersetting/dburi"
+
+
+#define STYLE_FONT_12PIX_BOLD           "text-align:bottom; font-size:12px; font-weight: bold;"
+#define STYLE_FONT_16PIX_BOLD           "text-align:bottom; font-size:16px; font-weight: bold;"
+
+
 
 #define MGA_DELIMITER                   "#-#"
 

@@ -20,6 +20,10 @@
         <file>Resources/Icons/adddefualt.png</file>
         <file>Resources/Icons/deletedefault.png</file>
         <file>Resources/Icons/editdefault.png</file>
+        <file>Resources/Icons/load.png</file>
+        <file>Resources/Icons/update.png</file>
+        <file>Resources/Icons/connected.png</file>
+        <file>Resources/Icons/disconnected.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>
