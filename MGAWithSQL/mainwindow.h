@@ -40,19 +40,16 @@ private slots:
     void DatabaseNotConnected();
     void ShowSidePanel();
     void HideSidePanel();
-
     void AddNewUserClicked();
     void AddNewObjectClicked(EListType eList);
-
     void AddNewMemberClicked();
     void AddNewExpClicked();
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
-
-
     void on_actionFullScreen_triggered();
-
     void on_actionExit_triggered();
 
+signals:
+    void SizeChanged(int w, int h);
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;

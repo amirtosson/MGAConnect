@@ -23,10 +23,6 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-
-
-
-
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 

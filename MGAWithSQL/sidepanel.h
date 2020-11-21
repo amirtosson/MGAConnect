@@ -23,6 +23,9 @@ public:
     ~SidePanel();
     void SetCurrentRole(EUserRole eRole);
 
+public slots:
+    void OnSizeChange(int w, int h);
+
 private slots:
     void on_dbConnectBtn_clicked();
     void DatabaseIsConnected();

@@ -8,6 +8,13 @@ SidePanel::SidePanel(QWidget *parent) :
     sidePanelUi(new Ui::SidePanel)
 {
     sidePanelUi->setupUi(this);
+    this->setGeometry(0,0,parent->width(),parent->height());
+    sidePanelUi->dbConnectBtn->setGeometry(0,0 ,this->width(), this->height()/5);
+    sidePanelUi->showUsersButton->setGeometry(0,sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()/5);
+    sidePanelUi->showMemberListButton->setGeometry(0,2*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()/5);
+    sidePanelUi->showExpButton->setGeometry(0,3*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()/5);
+    sidePanelUi->showAppointmentsButton->setGeometry(0,4*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()/5);
+    UPDATE_SIZES(parent->width(),parent->height())
     SIDE_PANEL_UI_COMMPONENTS_SETUP
 
 }
@@ -20,6 +27,11 @@ SidePanel::~SidePanel()
 void SidePanel::SetCurrentRole(EUserRole eRole)
 {
     eCurrentRole = eRole;
+}
+
+void SidePanel::OnSizeChange(int w, int h)
+{
+    UPDATE_SIZES(w,h)
 }
 
 void SidePanel::on_dbConnectBtn_clicked()

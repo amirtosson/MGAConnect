@@ -10,7 +10,10 @@
 #define TXT_SOWM_APPOINTMENTS_BTN_LABEL             "Appointments"
 
 //styles
-#define STYLE_FONT_12PIX_BOLD                       "text-align:bottom; font-size:12px; font-weight: bold;"
+#define STYLE_FONT_12PIX_BOLD                       "text-align:bottom; font-size:12px; "
+
+#define STYLE_FONT_24PIX_BOLD                       "text-align:bottom; font-size:24px; "
+
 
 //images URLs
 #define URL_DB_CONNECT_IMG                          ":/db/Resources/Icons/database.png"

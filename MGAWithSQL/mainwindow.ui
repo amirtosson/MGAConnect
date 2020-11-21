@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>572</height>
+    <width>900</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -78,7 +78,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>9</y>
+      <y>10</y>
       <width>640</width>
       <height>450</height>
      </rect>
@@ -117,9 +117,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>100</width>
-      <height>460</height>
+      <height>400</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -185,13 +185,16 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>470</y>
+      <y>570</y>
       <width>151</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -200,7 +203,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>799</width>
+     <width>900</width>
      <height>20</height>
     </rect>
    </property>

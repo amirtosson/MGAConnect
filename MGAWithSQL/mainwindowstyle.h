@@ -36,7 +36,7 @@
 
 
 #define PUSH_BUTTON_DARK_STYLE\
-        + QString(" QPushButton {font: 75 12pt  TeX Gyre Schola ; background-color:rgb(40, 40, 40); color: white; text-align: center; selection-background-color: transparent;} ")\
+        + QString(" QPushButton {font: 75 12pt  TeX Gyre Schola ;  background-color:rgb(40, 40, 40); color: white; text-align: center; selection-background-color: transparent;} ")\
         + QString(" QPushButton:pressed {color: grey; background-color: rgb(50, 50, 50);}")\
         + QString(" QPushButton:disabled { color:rgb(118, 118, 118);} ")\
         + QString(" QPushButton:focus {outline: none;}")\
@@ -58,7 +58,7 @@
         + QString( " QTableWidget::item:selected { background-color:black; } ")
 
 #define TOOL_BUTTON_DARK_STYLE\
-        + QString(" QToolButton {font: 75 12pt  TeX Gyre Schola ; background-color:rgb(40, 40, 40); color: white; text-align: center; selection-background-color: transparent;} ")\
+        + QString(" QToolButton {font: 75 12pt  TeX Gyre Schola ; font-weight: bold; background-color:rgb(40, 40, 40); color: white; text-align: center; selection-background-color: transparent;} ")\
         + QString(" QToolButton:pressed {color: grey; background-color: rgb(50, 50, 50);}")\
         + QString(" QToolButton:disabled { color:rgb(118, 118, 118);} ")\
         + QString(" QToolButton:focus {outline: none;}")\

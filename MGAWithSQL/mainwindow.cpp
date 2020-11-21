@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowUserListButtonIsClicked()),this ,SLOT(ShowUserListClicked()));
     connect(_sidePanal, SIGNAL(ShowExperimentsListButtonIsClicked()),this ,SLOT(ShowExperimentsListClicked()));
     connect(_sidePanal, SIGNAL(ShowAppointmentsListButtonClicked()),this ,SLOT(ShowAppointmentsListClicked()));
+    connect(this, SIGNAL(SizeChanged(int,int)),_sidePanal ,SLOT(OnSizeChange(const int, const int)));
 
 
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
@@ -207,18 +208,17 @@ void MainWindow::on_actionFullScreen_triggered()
 {
     if (this->isFullScreen())
     {
-        //TODO: not working well
-//        QScreen *screen = QGuiApplication::primaryScreen();
-//        QRect  screenGeometry = screen->geometry();
-//        int height = screenGeometry.height();
-//        int width = screenGeometry.width();
-//        width *= 0.8; // 80% of the screen size
-//        height *= 0.8; // 80% of the screen size
-//        this->setGeometry(50,50,width,height);
+        ui->mainWidget->setGeometry(130,10,640,450);
+        ui->sideToolBoxWidget->setGeometry(10,10,100,400);
+        emit SizeChanged(100,400);
         this->showNormal();
     }
     else
     {
+    //ui->sidePanelStatuscheckBox->setla
+        ui->mainWidget->setGeometry(260,10,1200,900);
+        ui->sideToolBoxWidget->setGeometry(10,10,200,900);
+        emit SizeChanged(200,900);
         this->showFullScreen();
     }
 }
