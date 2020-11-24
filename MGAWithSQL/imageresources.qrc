@@ -24,6 +24,7 @@
         <file>Resources/Icons/update.png</file>
         <file>Resources/Icons/connected.png</file>
         <file>Resources/Icons/disconnected.png</file>
+        <file>Resources/Icons/resetsize.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

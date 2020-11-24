@@ -7,6 +7,8 @@
 
 #include "sidepanelsetups.h"
 #include "mgauserrolesenum.h"
+#include "MGAResizableWidgetAbstract.h"
+
 
 
 namespace Ui {
@@ -14,7 +16,7 @@ class SidePanel;
 }
 
 
-class SidePanel : public QWidget
+class SidePanel : public QWidget, MGAResizableWidget
 {
     Q_OBJECT
 
@@ -24,7 +26,7 @@ public:
     void SetCurrentRole(EUserRole eRole);
 
 public slots:
-    void OnSizeChange(int w, int h);
+    void OnSizeChange(int w, int h) override;
 
 private slots:
     void on_dbConnectBtn_clicked();
@@ -50,6 +52,10 @@ private:
     QPixmap btnPixMap;
     QIcon btnIcon;
     EUserRole eCurrentRole = eUNKNOWN;
+
+private:
+    void UpdateSizes(int w, int h) override;
+    void SetIconSize(int h) override;
 
 };
 

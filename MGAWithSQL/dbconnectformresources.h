@@ -31,6 +31,7 @@
 //styles
 #define STYLE_FONT_24PIX_BOLD           "font-size:24px; font-weight: bold;"
 #define STYLE_FONT_12PIX_BOLD           "font-size:12px; font-weight: bold;"
+#define STYLE_FONT_BOLD                 "font-weight: bold;"
 
 
 

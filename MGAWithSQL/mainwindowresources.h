@@ -11,7 +11,7 @@
 #define TXT_CONNECTED_PRIV                      "You are connected with %1 privilege"
 #define TXT_EXIT_CONFIRMATION                   "Are you sure you want to exit?"
 
+#define STYLE_DARK_FILE_URL                     ":/dark/Resources/dark.txt"
 
-
-
+#define STYLE_BREEZE_FILE_URL                   ":/dark/Resources/breeze.txt"
 #endif // MAINWINDOWRESOURCES_H

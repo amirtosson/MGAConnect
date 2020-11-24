@@ -23,6 +23,7 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
+    UpdateSizes(parent->width(),parent->height());
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 
@@ -141,10 +142,35 @@ bool DBConnectForm::SendServerGetMemberListMSG()
     return true;
 }
 
+void DBConnectForm::UpdateSizes(int w, int h)
+{
+    this->setGeometry(0,0, w , h);
+    dbConnectFormUi->dbFormLabel->setGeometry(10,10, w  - 20, 50);
+    QRect enteriesRec(30,80, 0.75*w-60, 0.5*h);
+    dbConnectFormUi->enteriesWidget->setGeometry(enteriesRec);
+    //dbConnectFormUi->databaseIconWidget->setGeometry(30,0.71*h,0.17*w,0.2*h);
+    dbConnectFormUi->databaseIconWidget->setGeometry(30,0.71*h,0.17*w,0.2*h);
+    QRect buttonsRec(dbConnectFormUi->databaseIconWidget->width() + 60+0.01*w, 0.71*h, 0.43*w, 0.1*h);
+    dbConnectFormUi->buttonsWidget->setGeometry(buttonsRec);
+}
+
+void DBConnectForm::SetIconSize(int h)
+{
+    dbConnectFormUi->disconnectDBButton->setIconSize(QSize(h, h));
+    dbConnectFormUi->connectToDBButton->setIconSize(QSize(h, h));
+}
+
 void DBConnectForm::CleanLists()
 {
    mgaUsersList.clear();
    mgaMembersList.clear();
+}
+
+void DBConnectForm::OnSizeChange(int w, int h)
+{
+    w = MAIN_WIDGET_WIDTH_RATIO*w;
+    h = MAIN_WIDGET_HEIGHT_RATIO*h;
+    UpdateSizes(w,h);
 }
 
 void DBConnectForm::OnDataBaseIsconnected()

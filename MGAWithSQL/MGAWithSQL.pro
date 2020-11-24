@@ -33,6 +33,7 @@ SOURCES += main.cpp\
     MGAObjects/mgauserobjectguicomponents.cpp
 
 HEADERS  += mainwindow.h\
+    MGAControls/MGAResizableWidgetAbstract.h \
     MGAObjects/mgaexperiment.h \
     dbconnectform.h \
     MGAObjects/mgamemberguicomponents.h \
@@ -73,7 +74,8 @@ FORMS    += mainwindow.ui \
     addnewobjectform.ui
 
 RESOURCES += \
-    imageresources.qrc
+    imageresources.qrc \
+    styles.qrc
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../MGAServerClientMSG/release/ -lMGAServerClientMSG

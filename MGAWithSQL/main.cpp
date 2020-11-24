@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     //QTimer::singleShot(2000, splash,SLOT(close())); // Timer
     //QTimer::singleShot(2000,&w,SLOT(show()));
 
-    w.show();
+    w.showNormal();
     return a.exec();
 
 }

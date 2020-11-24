@@ -10,14 +10,16 @@
 #include <QHostAddress>
 #include <QSettings>
 #include <vector>
+#include <QRect>
+
 
 #include "dbconnectionsetups.h"
-//#include "sqlmacro.h"
 #include "mgauserrolesenum.h"
 #include "mgamember.h"
 #include "mgadatabase.h"
 #include "mgauser.h"
 #include "mgaserverclientmsg.h"
+#include "MGAResizableWidgetAbstract.h"
 
 #define UNKNOWN_ROLE      "unknown"
 
@@ -25,7 +27,7 @@ namespace Ui {
 class DBConnectForm;
 }
 
-class DBConnectForm : public QWidget
+class DBConnectForm : public QWidget, MGAResizableWidget
 {
     Q_OBJECT
 
@@ -40,10 +42,10 @@ public:
     bool ShowMembersInQTalbe(QTableWidget *table);
     bool ShowUsersInQTalbe(QTableWidget *table);
     bool AddNewMGAUsers(MGAUser *newUser);
-
-
     void CleanLists();
 
+public slots:
+    void OnSizeChange(int w, int h) override;
 
 signals:
     void DatabaseIsconnected();
@@ -92,6 +94,9 @@ private:
     bool SendServerGetUserListMSG();
     bool SendServerGetMemberListMSG();
 
+private:
+    void UpdateSizes(int w, int h) override;
+    void SetIconSize(int h) override;
 
 };
 

@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,8 +15,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>700</width>
-    <height>500</height>
+    <width>900</width>
+    <height>700</height>
    </size>
   </property>
   <property name="palette">
@@ -83,34 +86,40 @@
       <height>450</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>640</width>
+      <height>450</height>
+     </size>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
     <widget class="QWidget" name="widget" native="true">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
-       <width>461</width>
-       <height>221</height>
+       <width>611</width>
+       <height>421</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-    </widget>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>256</y>
-       <width>421</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Welcome </string>
-     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>280</y>
+        <width>421</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Welcome </string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="MGAWidgetExtension" name="sideToolBoxWidget" native="true">
@@ -209,6 +218,9 @@
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="layoutDirection">
     <enum>Qt::RightToLeft</enum>
    </property>
@@ -224,6 +236,7 @@
    <addaction name="actionFullScreen"/>
    <addaction name="actionOptions"/>
    <addaction name="actionExit"/>
+   <addaction name="actionResetSize"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="layoutDirection">
@@ -255,6 +268,21 @@
    </property>
    <property name="text">
     <string>FullScreen</string>
+   </property>
+  </action>
+  <action name="actionResetSize">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="imageresources.qrc">
+     <normaloff>:/buttonIcons/Resources/Icons/resetsize.png</normaloff>:/buttonIcons/Resources/Icons/resetsize.png</iconset>
+   </property>
+   <property name="text">
+    <string>ResetSize</string>
+   </property>
+   <property name="toolTip">
+    <string>Back to the original size</string>
    </property>
   </action>
  </widget>

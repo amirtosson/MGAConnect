@@ -1,12 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QScreen>
+#include <QApplication>
+#include <QStyleFactory>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
 
     IntializeSidePanel(ui->sideToolBoxWidget);
@@ -23,7 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
     ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
     this->statusBar()->showMessage(TXT_NOT_CONNECTED);
-    USE_STYLE(eDarkStyle)
+    USE_STYLE(eCurrentStyle)
+    defaultGeometry = this->geometry();
     //ui->mainWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
     //ui->sideToolBoxWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
 
@@ -45,6 +48,7 @@ void MainWindow::DBConnectionSetUpClicked()
         connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),this ,SLOT(DatabaseNotConnected()));
         connect(_dbForm, SIGNAL(DatabaseIsconnected()),_sidePanal ,SLOT(DatabaseIsConnected()));
         connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),_sidePanal ,SLOT(DatabaseIsDisconnected()));
+        connect(this, SIGNAL(SizeChanged(int,int)),_dbForm ,SLOT(OnSizeChange(const int, const int)));
     }
     ui->widget->hide();
     _dbForm->show();
@@ -110,7 +114,8 @@ void MainWindow::ShowAppointmentsListClicked()
 
 void MainWindow::StyleHasBeenChanged()
 {
-    USE_STYLE(_OptionForm->eCurrentStyle)
+    eCurrentStyle = _OptionForm->eCurrentStyle;
+    USE_STYLE(eCurrentStyle)
     this->update();
 }
 
@@ -208,18 +213,11 @@ void MainWindow::on_actionFullScreen_triggered()
 {
     if (this->isFullScreen())
     {
-        ui->mainWidget->setGeometry(130,10,640,450);
-        ui->sideToolBoxWidget->setGeometry(10,10,100,400);
-        emit SizeChanged(100,400);
-        this->showNormal();
+        ResetToOriginalSize();
     }
     else
     {
-    //ui->sidePanelStatuscheckBox->setla
-        ui->mainWidget->setGeometry(260,10,1200,900);
-        ui->sideToolBoxWidget->setGeometry(10,10,200,900);
-        emit SizeChanged(200,900);
-        this->showFullScreen();
+        SetToFullScreen();
     }
 }
 
@@ -232,4 +230,56 @@ void MainWindow::on_actionExit_triggered()
     {
         this->close();
     }
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    if ((this->isFullScreen())
+        ||((event->size().width() == defaultGeometry.width())
+           && (event->size().height() == defaultGeometry.height())))
+    {
+        return;
+    }
+    ui->actionResetSize->setEnabled(true);
+    int height = event->size().height();
+    int width = event->size().width();
+    QString style = this->styleSheet();
+    style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*width);
+    this->setStyleSheet(style);
+    ui->mainWidget->setGeometry(0.14*width,10 , 0.6*width , 0.7*height);
+    ui->sideToolBoxWidget->setGeometry(10,10,0.1*width,0.8*height);
+    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*height,250,40);
+    emit SizeChanged(width,height);
+}
+
+void MainWindow::ResetToOriginalSize()
+{
+    this->showNormal();
+    this->resize(defaultGeometry.width(),defaultGeometry.height());
+    ui->mainWidget->setGeometry(130,10,640,450);
+    ui->sideToolBoxWidget->setGeometry(10,10,100,400);
+    ui->sidePanelStatuscheckBox->setGeometry(10,500,150,25);
+    USE_STYLE(eCurrentStyle)
+    emit SizeChanged(defaultGeometry.width(),defaultGeometry.height());
+    ui->actionResetSize->setEnabled(false);
+}
+
+void MainWindow::SetToFullScreen()
+{
+    QRect rec = QApplication::desktop()->screenGeometry();
+    int height = rec.height();
+    int width = rec.width();
+    QString style = this->styleSheet();
+    style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*width);
+    this->setStyleSheet(style);
+    ui->mainWidget->setGeometry(260,10 , 0.6*width , 0.7*height);
+    ui->sideToolBoxWidget->setGeometry(10,10,0.1*width,0.8*height);
+    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*height,250,40);
+    emit SizeChanged(width,height);
+    this->showFullScreen();
+}
+
+void MainWindow::on_actionResetSize_triggered()
+{
+    ResetToOriginalSize();
 }

@@ -13,21 +13,19 @@
         dbConnectFormUi->DBPwdTextBox->setPlaceholderText(TXT_DB_PASSWORD_PH);\
         dbConnectFormUi->DBPwdTextBox->setEchoMode(QLineEdit::Password);\
         dbConnectFormUi->dbFormLabel->setText(TXT_FORM_TITLE_LABEL);\
-        dbConnectFormUi->dbFormLabel->setStyleSheet(STYLE_FONT_24PIX_BOLD);\
+        dbConnectFormUi->dbFormLabel->setStyleSheet(STYLE_FONT_BOLD);\
         dbConnectFormUi->dbFormLabel->setAlignment(Qt::AlignCenter);\
         dbConnectFormUi->loadDetailsButton->setToolTip(TXT_LOAD_DATA_BTN_LABEL);\
         dbConnectFormUi->updateDetailsButton->setToolTip(TXT_SAVE_DATA_BTN_LABEL);\
         dbConnectFormUi->connectToDBButton->setText(TXT_ADD_DB_BTN_LABEL);\
         dbConnectFormUi->disconnectDBButton->setText(TXT_DISCONNECT_DB_BTN_LABEL);\
-        dbConnectFormUi->connectToDBButton->setStyleSheet(STYLE_FONT_12PIX_BOLD);\
-        dbConnectFormUi->disconnectDBButton->setStyleSheet(STYLE_FONT_12PIX_BOLD);\
+        dbConnectFormUi->connectToDBButton->setStyleSheet(STYLE_FONT_BOLD);\
+        dbConnectFormUi->disconnectDBButton->setStyleSheet(STYLE_FONT_BOLD);\
         SET_BTN_ICON(loadDetailsButton,IMG_LOAD_DATA)\
         SET_BTN_ICON(updateDetailsButton,IMG_UPDATE_DATA)\
         SET_BTN_ICON(connectToDBButton,IMG_CONNECT)\
         SET_BTN_ICON(disconnectDBButton,IMG_DISCONNECT)\
         DATABASE_IS_NOT_CONNECTED\
-        //ADD_DB_BUTTON_SETUP
-
 
 #define DATABASE_IS_CONNECTED\
         dbConnectFormUi->databaseIconWidget->setStyleSheet(IMG_CONNECTED);\
@@ -38,15 +36,6 @@
         dbConnectFormUi->databaseIconWidget->setStyleSheet(IMG_NOT_CONNECTED);\
         dbConnectFormUi->connectToDBButton->setEnabled(true);\
         dbConnectFormUi->disconnectDBButton->setEnabled(false);
-
-
-#define ADD_DB_BUTTON_SETUP\
-        dbConnectFormUi->connectToDBButton->setText(TXT_ADD_DB_BTN_LABEL);\
-        dbConnectFormUi->disconnectDBButton->setText(TXT_DISCONNECT_DB_BTN_LABEL);\
-        QPixmap pixmap(IMG_CONNECT);\
-        QIcon ButtonIcon(pixmap);\
-        dbConnectFormUi->connectToDBButton->setIcon(ButtonIcon);\
-        dbConnectFormUi->connectToDBButton->setIconSize(QSize(20, 20));
 
 #define SERIALIZE_USER_ROLE\
     if(sCurrentUserRoleName == ADMIN_ROLE) eCurrentUserRole = eAdmin;\

@@ -48,11 +48,21 @@ private slots:
     void on_actionFullScreen_triggered();
     void on_actionExit_triggered();
 
+    void on_actionResetSize_triggered();
+
 signals:
     void SizeChanged(int w, int h);
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
+    EMGAStyle eCurrentStyle = eDarkStyle;
+    QRect defaultGeometry;
+
+protected:
+    void resizeEvent(QResizeEvent* event);
+    void ResetToOriginalSize();
+    void SetToFullScreen();
+
 
 };
 

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/dark">
+        <file>Resources/dark.txt</file>
+        <file>Resources/breeze.txt</file>
+    </qresource>
+</RCC>

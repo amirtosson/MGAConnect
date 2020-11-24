@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QObject>
 #include <QMainWindow>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "dbconnectform.h"
 #include "sidepanel.h"

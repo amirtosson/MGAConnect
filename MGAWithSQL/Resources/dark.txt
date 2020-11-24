@@ -1,0 +1,103 @@
+QWidget
+{
+    	color: #eff0f1;
+    	background-color: rgb(30 , 30, 30);
+    	selection-background-color:#3daee9;
+    	selection-color: #eff0f1;
+    	background-clip: border;
+    	border-image: none;
+    	border: 0px transparent black;
+    	outline: 0;
+}
+
+QPushButton 
+{  
+	background-color:rgb(40, 40, 40); 
+	color: white; text-align: center;
+	selection-background-color: transparent;
+}
+
+QPushButton:pressed 
+{
+	color: grey; background-color: rgb(50, 50, 50);
+}
+QPushButton:disabled 
+{ 
+	color:rgb(118, 118, 118);
+} 
+
+QPushButton:focus 
+{
+	outline: none;
+}
+
+QPushButton:hover 
+{
+	border: 2px solid black; background-color: rgb(80, 80, 80);
+}
+
+QToolButton 
+{ 
+	font-weight: bold; 
+	background-color:rgb(40, 40, 40); 
+	color: white; text-align: center; 
+	selection-background-color: transparent;
+}
+
+QToolButton:pressed 
+{
+	color: grey; 
+	background-color: rgb(50, 50, 50);
+}
+
+QToolButton:disabled 
+{ 
+	color:rgb(118, 118, 118);
+}
+
+QToolButton:focus 
+{
+	outline: none;
+}
+
+QToolButton:hover 
+{
+	border: 2px solid black; 
+	background-color: rgb(80, 80, 80);
+} 
+
+QHeaderView::section 
+{ 
+	background-color:black; 
+} 
+
+QTableWidget::item:selected 
+{ 
+	background-color:black; 
+}
+
+QCheckBox:focus
+{
+	border: none; 
+	outline: none;
+}
+
+QDialod 
+{ 
+	background-color: rgb(30 , 30, 30); 
+	color: white; 
+	selection-background-color: transparent;
+}
+
+QComboBox 
+{
+	color: white;
+} 
+
+QComboBox:focus 
+{
+	border: none; outline: none;
+}
+
+
+
