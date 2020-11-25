@@ -8,6 +8,7 @@
 #include "mgalistformresources.h"
 #include "mgalistformsetups.h"
 #include "mgalistformtypesenum.h"
+#include "MGAResizableWidgetAbstract.h"
 
 #define MGA_LIST_TYPY eMemberList
 
@@ -15,7 +16,7 @@ namespace Ui {
 class MGAListForm;
 }
 
-class MGAListForm : public QWidget
+class MGAListForm : public QWidget, MGAResizableWidget
 {
     Q_OBJECT
 
@@ -36,6 +37,9 @@ private slots:
 
     void on_searchTextBox_textChanged(const QString &arg1);
 
+public slots:
+    virtual void OnSizeChange(int w, int h) override;
+
 signals:
     void NewUserIsReady();
     void NewMemberIsReady();
@@ -55,6 +59,11 @@ private:
     EListType eCurrentListType = eUNKOWN;
     AddNewObjectForm *addNewObject;
     bool hasAddNewObjectForm = false;
+    void UpdateTableColumsWidth(int w);
+
+private:
+    void UpdateSizes(int w, int h) override;
+    void SetIconSize(int h) override;
 };
 
 #endif // USERLISTFORM_H

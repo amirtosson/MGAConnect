@@ -18,12 +18,11 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     addressIP.setAddress("192.168.178.28");
     addressIP.toIPv4Address();
     socket->disconnectFromHost();
-    socket->connectToHost(addressIP, 9999);
+    socket->connectToHost("Tosson-pnCCD", 9999);
     socket->waitForConnected(5000);
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    UpdateSizes(parent->width(),parent->height());
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 
@@ -145,12 +144,10 @@ bool DBConnectForm::SendServerGetMemberListMSG()
 void DBConnectForm::UpdateSizes(int w, int h)
 {
     this->setGeometry(0,0, w , h);
-    dbConnectFormUi->dbFormLabel->setGeometry(10,10, w  - 20, 50);
-    QRect enteriesRec(30,80, 0.75*w-60, 0.5*h);
-    dbConnectFormUi->enteriesWidget->setGeometry(enteriesRec);
-    //dbConnectFormUi->databaseIconWidget->setGeometry(30,0.71*h,0.17*w,0.2*h);
-    dbConnectFormUi->databaseIconWidget->setGeometry(30,0.71*h,0.17*w,0.2*h);
-    QRect buttonsRec(dbConnectFormUi->databaseIconWidget->width() + 60+0.01*w, 0.71*h, 0.43*w, 0.1*h);
+    dbConnectFormUi->dbFormLabel->resize(w  - 20, 50);
+    dbConnectFormUi->enteriesWidget->resize(DB_FORM_ENTRIES_WIDTH_RATIO*w-DB_FORM_60PX_MARGIN, DB_FORM_ENTRIES_HEIGHT_RATIO*h);
+    dbConnectFormUi->databaseIconWidget->setGeometry(30,0.71*h,DB_FORM_DB_ICON_WIDTH_RATIO*w,DB_FORM_DB_ICON_HEIGHT_RATIO*h);
+    QRect buttonsRec(dbConnectFormUi->databaseIconWidget->width() + DB_FORM_60PX_MARGIN+0.01*w, dbConnectFormUi->databaseIconWidget->y(), DB_FORM_BUTTON_WIDTH_RATIO*w, DB_FORM_BUTTON_HEIGHT_RATIO*h);
     dbConnectFormUi->buttonsWidget->setGeometry(buttonsRec);
 }
 

@@ -52,6 +52,7 @@ private slots:
 
 signals:
     void SizeChanged(int w, int h);
+
 private:
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
@@ -62,6 +63,7 @@ protected:
     void resizeEvent(QResizeEvent* event);
     void ResetToOriginalSize();
     void SetToFullScreen();
+    void UpdateSizes(int w, int h);
 
 
 };

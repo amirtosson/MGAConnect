@@ -19,4 +19,5 @@
             QTextStream stream(&file);\
             QString s = stream.readAll();\
             this->setStyleSheet(s);\
+            ui->mainWidget->setStyleSheet(QString("QWidget { background-color: rgb(153, 153, 150); color: white; selection-background-color: transparent;} QPushButton:focus {outline: none;}") );\
         };

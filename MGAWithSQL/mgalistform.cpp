@@ -11,10 +11,11 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
     const QIcon searchIcon =  QIcon(":/buttonIcons/Resources/Icons/search.png");
     QAction *openAct = new QAction(searchIcon,tr("search"), this);
     userListFormUi->searchTextBox->addAction(openAct,QLineEdit::LeadingPosition);
+
     switch (eCurrentListType) {
     case eUsersList:
         {
-            USERS_LIST_FORM_SETUP
+            USERS_LIST_FORM_SETUP           
             BUTTONS_SETUP
         }
         break;
@@ -73,6 +74,31 @@ void MGAListForm::SelectionIsChanged(const int id)
     nCurrentSelecttonID = id;
 }
 
+void MGAListForm::UpdateTableColumsWidth(int w)
+{
+    for (int i = 0; i < (userListFormUi->userListWidget->columnCount()-1);++i )
+    {
+        userListFormUi->userListWidget->setColumnWidth(i, w / (userListFormUi->userListWidget->columnCount()));
+    }
+
+}
+
+void MGAListForm::UpdateSizes(int w, int h)
+{
+    this->resize(w,h);
+    userListFormUi->pageTitle->resize(w-20,50);
+    userListFormUi->userListWidget->resize(TABLE_VIEW_WIDTH_RATIO*w, h-260);
+    UpdateTableColumsWidth(TABLE_VIEW_WIDTH_RATIO*w);
+    SetIconSize(h*TABLE_VIEW_ICON_RATIO);
+}
+
+void MGAListForm::SetIconSize(int h)
+{
+    userListFormUi->editUserButton->setIconSize(QSize(h, h));
+    userListFormUi->deleteUserButton->setIconSize(QSize(h, h));
+    userListFormUi->addUserButton->setIconSize(QSize(h, h));
+}
+
 void MGAListForm::on_editUserButton_clicked()
 {
 
@@ -123,6 +149,13 @@ void MGAListForm::on_searchTextBox_textChanged(const QString &arg1)
         }
     }
 
+}
+
+void MGAListForm::OnSizeChange(int w, int h)
+{
+    w = MAIN_WIDGET_WIDTH_RATIO*w;
+    h = MAIN_WIDGET_HEIGHT_RATIO*h;
+    UpdateSizes(w,h);
 }
 
 

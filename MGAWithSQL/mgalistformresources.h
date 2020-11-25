@@ -32,6 +32,8 @@
 
 //Styles
 #define STYLE_FONT_24PIX_BOLD           "font-size:24px; font-weight: bold;"
+#define STYLE_FONT_BOLD                 "font-weight: bold;"
+
 
 //images URLs
 #define IMG_ADD_USER                    ":/buttonIcons/Resources/Icons/adduser.png"

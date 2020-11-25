@@ -66,11 +66,11 @@ void SidePanel::UpdateSizes(int w, int h)
 {
     this->setGeometry(0,0,w,h);
     SetIconSize(h*SIDE_PANEL_ICON_RATIO);
-    sidePanelUi->dbConnectBtn->setGeometry(0,0 ,this->width(), this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showUsersButton->setGeometry(0,sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showMemberListButton->setGeometry(0,2*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showExpButton->setGeometry(0,3*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showAppointmentsButton->setGeometry(0,4*sidePanelUi->dbConnectBtn->height() ,this->width(), this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
+    sidePanelUi->dbConnectBtn->setGeometry(0,0 ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
+    sidePanelUi->showUsersButton->setGeometry(0,sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
+    sidePanelUi->showMemberListButton->setGeometry(0,2*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
+    sidePanelUi->showExpButton->setGeometry(0,3*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
+    sidePanelUi->showAppointmentsButton->setGeometry(0,4*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
     this->update();
 }
 

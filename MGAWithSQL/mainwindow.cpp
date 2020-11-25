@@ -19,17 +19,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowExperimentsListButtonIsClicked()),this ,SLOT(ShowExperimentsListClicked()));
     connect(_sidePanal, SIGNAL(ShowAppointmentsListButtonClicked()),this ,SLOT(ShowAppointmentsListClicked()));
     connect(this, SIGNAL(SizeChanged(int,int)),_sidePanal ,SLOT(OnSizeChange(const int, const int)));
-
-
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
+
     ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
     this->statusBar()->showMessage(TXT_NOT_CONNECTED);
     USE_STYLE(eCurrentStyle)
     defaultGeometry = this->geometry();
-    //ui->mainWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
-    //ui->sideToolBoxWidget->setStyleSheet("background-color: rgb(50, 50, 50);");
-
+    UpdateSizes(defaultGeometry.width(),defaultGeometry.height());
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +46,7 @@ void MainWindow::DBConnectionSetUpClicked()
         connect(_dbForm, SIGNAL(DatabaseIsconnected()),_sidePanal ,SLOT(DatabaseIsConnected()));
         connect(_dbForm, SIGNAL(DatabaseIsDisconnected()),_sidePanal ,SLOT(DatabaseIsDisconnected()));
         connect(this, SIGNAL(SizeChanged(int,int)),_dbForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
     }
     ui->widget->hide();
     _dbForm->show();
@@ -60,6 +58,9 @@ void MainWindow::ShowMemberListClicked()
     if(!hasMembersListForm)
     {
         IntializeMembersListForm(ui->mainWidget);
+        connect(_membersListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+        connect(this, SIGNAL(SizeChanged(int,int)),_membersListForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
     }
     ui->widget->hide();
     ShowMembersList();
@@ -83,6 +84,8 @@ void MainWindow::ShowUserListClicked()
     {
         IntializeUsersListForm(ui->mainWidget);
         connect(_usersListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+        connect(this, SIGNAL(SizeChanged(int,int)),_usersListForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
     }
     ui->widget->hide();
     ShowUsersList();
@@ -95,6 +98,8 @@ void MainWindow::ShowExperimentsListClicked()
     {
         IntializeExperimentsListForm(ui->mainWidget);
         connect(_experimentsListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+        connect(this, SIGNAL(SizeChanged(int,int)),_experimentsListForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
     }
     ui->widget->hide();
     ShowExperimentsList();
@@ -107,6 +112,8 @@ void MainWindow::ShowAppointmentsListClicked()
     {
         IntializeAppointmentsListForm(ui->mainWidget);
         connect(_appointmentsListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+        connect(this, SIGNAL(SizeChanged(int,int)),_appointmentsListForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
     }
     ui->widget->hide();
     ShowAppointmentsList();
@@ -243,24 +250,16 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->actionResetSize->setEnabled(true);
     int height = event->size().height();
     int width = event->size().width();
-    QString style = this->styleSheet();
-    style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*width);
-    this->setStyleSheet(style);
-    ui->mainWidget->setGeometry(0.14*width,10 , 0.6*width , 0.7*height);
-    ui->sideToolBoxWidget->setGeometry(10,10,0.1*width,0.8*height);
-    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*height,250,40);
-    emit SizeChanged(width,height);
+    UpdateSizes(width,height);
 }
 
 void MainWindow::ResetToOriginalSize()
 {
     this->showNormal();
+    int height = defaultGeometry.height();
+    int width = defaultGeometry.width();
     this->resize(defaultGeometry.width(),defaultGeometry.height());
-    ui->mainWidget->setGeometry(130,10,640,450);
-    ui->sideToolBoxWidget->setGeometry(10,10,100,400);
-    ui->sidePanelStatuscheckBox->setGeometry(10,500,150,25);
-    USE_STYLE(eCurrentStyle)
-    emit SizeChanged(defaultGeometry.width(),defaultGeometry.height());
+    UpdateSizes(width,height);
     ui->actionResetSize->setEnabled(false);
 }
 
@@ -269,14 +268,19 @@ void MainWindow::SetToFullScreen()
     QRect rec = QApplication::desktop()->screenGeometry();
     int height = rec.height();
     int width = rec.width();
-    QString style = this->styleSheet();
-    style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*width);
-    this->setStyleSheet(style);
-    ui->mainWidget->setGeometry(260,10 , 0.6*width , 0.7*height);
-    ui->sideToolBoxWidget->setGeometry(10,10,0.1*width,0.8*height);
-    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*height,250,40);
-    emit SizeChanged(width,height);
+    UpdateSizes(width,height);
     this->showFullScreen();
+}
+
+void MainWindow::UpdateSizes(int w, int h)
+{
+    QString style = this->styleSheet();
+    style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*w);
+    this->setStyleSheet(style);
+    ui->mainWidget->setGeometry(0.14*w, 10 , MAIN_WIDGET_WIDTH_RATIO*w , MAIN_WIDGET_HEIGHT_RATIO*h);
+    ui->sideToolBoxWidget->setGeometry(10,10,0.1*w,0.8*h);
+    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*h,250,40);
+    emit SizeChanged(w,h);
 }
 
 void MainWindow::on_actionResetSize_triggered()
