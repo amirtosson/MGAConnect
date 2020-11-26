@@ -15,6 +15,9 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
         roleComboBox = new QComboBox(gridLayoutWidget);
         roleLabel = new QLabel(gridLayoutWidget);
 
+        errorText = new QLabel(widget);
+        errorText->setObjectName(QString::fromUtf8("errorText"));
+
     }
     catch(...)
     {
@@ -22,7 +25,7 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
         return false;
     }
     gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-    gridLayoutWidget->setGeometry(QRect(10, 10, 370, 210));
+    gridLayoutWidget->setGeometry(QRect(20, 20, widget->width() -40 ,widget->height()*0.6));
     gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
     gridLayout->setContentsMargins(0, 0, 0, 0);
     nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
@@ -42,12 +45,13 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
     roleLabel->setObjectName(QString::fromUtf8("roleLabel"));
     gridLayout->addWidget(roleLabel, 3, 0, 1, 1);
 
-
     nameLabel->setText(TXT_NAME_LABEL);
     hostLabel->setText(TXT_HOST_LABEL);
     pwdLabel->setText(TXT_PWD_LABEL);
     roleLabel->setText(TXT_ROLE_LABEL);
     pwdEdit->setEchoMode(QLineEdit::Password);
+    nameEdit->setClearButtonEnabled(true);
+    hostEdit->setClearButtonEnabled(true);
     nameEdit->setPlaceholderText(TXT_NAME_PH);
     hostEdit->setPlaceholderText(TXT_HOST_PH);
     pwdEdit->setPlaceholderText(TXT_PWD_PH);
@@ -60,7 +64,34 @@ bool MGAUserObjectGUIComponents::IntializeUserGUIComponents(QWidget *widget)
     roleComboBox->addItems(styleList);
     roleComboBox->setCurrentIndex(-1);
     QWidget::setTabOrder(nameEdit, hostEdit);
+
+
+    ResizeComponents(widget->width(),widget->height());
+    QIcon icon;
+    icon.addFile(QString::fromUtf8(":/buttonIcons/Resources/Icons/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+    okButton->setIcon(icon);
+    okButton->setIconSize(QSize(20, 20));
+
+    QIcon icon1;
+    icon1.addFile(QString::fromUtf8(":/buttonIcons/Resources/Icons/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+    cancelButton->setIcon(icon1);
+    cancelButton->setIconSize(QSize(20, 20));
+
+    widget->setWindowTitle(QCoreApplication::translate("AddNewObjectForm", "OBBA", nullptr));
+    okButton->setText(QCoreApplication::translate("AddNewObjectForm", "OK", nullptr));
+    cancelButton->setText(QCoreApplication::translate("AddNewObjectForm", "Cancel", nullptr));
+    QMetaObject::connectSlotsByName(widget);
     return true;
+}
+
+void MGAUserObjectGUIComponents::ResizeComponents(int w, int h)
+{
+     gridLayoutWidget->resize(w-40,h*0.6);
+     cancelButton->setGeometry(QRect(w*0.5, gridLayoutWidget->height() +20, w*0.2, h*0.1));
+     okButton->setGeometry(QRect(w*0.5 + cancelButton->width() + 20, gridLayoutWidget->height() +20, w*0.2, h*0.1));
+     errorText->setGeometry(QRect(20, gridLayoutWidget->height() +20, w*0.4, h*0.1));
+     okButton->setIconSize(QSize(okButton->height()-10, okButton->height()-10));
+     cancelButton->setIconSize(QSize(okButton->height()-10, okButton->height()-10));
 }
 
 QString MGAUserObjectGUIComponents::GetUserName()

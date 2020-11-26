@@ -90,6 +90,7 @@ void MGAListForm::UpdateSizes(int w, int h)
     userListFormUi->userListWidget->resize(TABLE_VIEW_WIDTH_RATIO*w, h-260);
     UpdateTableColumsWidth(TABLE_VIEW_WIDTH_RATIO*w);
     SetIconSize(h*TABLE_VIEW_ICON_RATIO);
+    emit SizeChanged(w,h);
 }
 
 void MGAListForm::SetIconSize(int h)
@@ -112,12 +113,14 @@ void MGAListForm::on_addUserButton_clicked()
         {
            addNewObject = new AddNewObjectForm(this, eCurrentListType);
            connect(addNewObject, SIGNAL(NewObjectIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
+           connect(this, SIGNAL(SizeChanged(int, int)),addNewObject ,SLOT(OnSizeChange(const int, const int)));
            addNewObject->setModal(true);
            addNewObject->exec();
         }
 
         else
         {
+            emit SizeChanged(this->width(),this->height());
             addNewObject->open();
         }
     }

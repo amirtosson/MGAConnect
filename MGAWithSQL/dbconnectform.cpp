@@ -20,6 +20,7 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     socket->disconnectFromHost();
     socket->connectToHost("Tosson-pnCCD", 9999);
     socket->waitForConnected(5000);
+
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));

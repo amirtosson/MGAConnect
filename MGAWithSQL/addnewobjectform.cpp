@@ -1,18 +1,38 @@
 #include "addnewobjectform.h"
-#include "ui_addnewobjectform.h"
 
+
+void AddNewObjectForm::setupUi(QDialog *AddNewObjectForm)
+{
+    if (AddNewObjectForm->objectName().isEmpty())
+    {
+        AddNewObjectForm->setObjectName(QString::fromUtf8("AddNewObjectForm"));
+    }
+    AddNewObjectForm->resize(400,300);
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    sizePolicy.setHorizontalStretch(5);
+    sizePolicy.setVerticalStretch(5);
+    sizePolicy.setHeightForWidth(AddNewObjectForm->sizePolicy().hasHeightForWidth());
+    AddNewObjectForm->setSizePolicy(sizePolicy);
+
+    okButton = new QPushButton(AddNewObjectForm);
+    okButton->setObjectName(QString::fromUtf8("OkButton"));
+    cancelButton = new QPushButton(AddNewObjectForm);
+    cancelButton->setObjectName(QString::fromUtf8("CancelButton"));
+
+    QMetaObject::connectSlotsByName(AddNewObjectForm);
+}
 
 AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
-        QDialog(parent),
-        ui(new Ui::AddNewObjectForm)
+        QDialog(parent)
 {
-        ui->setupUi(this);
+        setupUi(this);
         eCurrentList = eList;
         switch (eCurrentList) {
         case eUsersList:
             {
                 newUser = new MGAUser();
-                IntializeUserGUIComponents(this);
+                if (IntializeUserGUIComponents(this))
+                ResizeComponents(this->width(), this->height());
             }
             break;
         case eMemberList:
@@ -31,7 +51,7 @@ AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
 
 AddNewObjectForm::~AddNewObjectForm()
 {
-    delete ui;
+    //delete ui;
     switch (eCurrentList) {
     case eUsersList:
         delete newUser;
@@ -59,7 +79,12 @@ MGAExperiment *AddNewObjectForm::GetTheNewExp()
     return newExp;
 }
 
-void AddNewObjectForm::on_okButton_clicked()
+void AddNewObjectForm::OnSizeChange(int w, int h)
+{
+    UpdateSizes(w,h);
+}
+
+void AddNewObjectForm::on_OkButton_clicked()
 {
 
     switch (eCurrentList) {
@@ -93,7 +118,7 @@ void AddNewObjectForm::on_okButton_clicked()
 
 }
 
-void AddNewObjectForm::on_cancelButton_clicked()
+void AddNewObjectForm::on_CancelButton_clicked()
 {
     this->close();
 }
@@ -113,7 +138,19 @@ bool AddNewObjectForm::AcceptNewUser()
 
 bool AddNewObjectForm::AcceptNewMember()
 {
-
-
     return true;
 }
+
+void AddNewObjectForm::UpdateSizes(int w, int h)
+{
+    w = w*0.75;
+    h = h*0.75;
+    this->resize(w,h);
+    ResizeComponents(w,h);
+}
+
+void AddNewObjectForm::SetIconSize(int h)
+{
+
+}
+

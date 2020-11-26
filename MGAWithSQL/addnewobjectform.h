@@ -11,17 +11,19 @@
 #include "mgalistformtypesenum.h"
 #include "mgauserobjectguicomponents.h"
 #include "mgamemberguicomponents.h"
+#include "MGAResizableWidgetAbstract.h"
+
+#include <QtCore/QVariant>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
 
 
-namespace Ui {
-class AddNewObjectForm;
-}
-
-class AddNewObjectForm : public QDialog, public MGAUserObjectGUIComponents, public MGAMemberGUIComponents
+class AddNewObjectForm : public QDialog, private MGAUserObjectGUIComponents, public MGAMemberGUIComponents, MGAResizableWidget
 {
     Q_OBJECT
 
 public:
+     void setupUi(QDialog *AddNewObjectForm);
     explicit AddNewObjectForm(QWidget *parent = 0, EListType eList = eUNKOWN);
     ~AddNewObjectForm();
     MGAUser *GetTheNewUser();
@@ -31,12 +33,14 @@ public:
 signals:
     void NewObjectIsToBeAdded();
 
+public slots:
+    void OnSizeChange(int w, int h) override;
+
 private slots:
-    void on_okButton_clicked();
-    void on_cancelButton_clicked();
+    void on_OkButton_clicked() override;
+    void on_CancelButton_clicked() override;
 
 private:
-    Ui::AddNewObjectForm *ui;
     MGAUser *newUser;
     MGAMember *newMember;
     MGAExperiment *newExp;
@@ -45,6 +49,10 @@ private:
 private:
     bool AcceptNewUser();
     bool AcceptNewMember();
+
+private:
+    void UpdateSizes(int w, int h) override;
+    void SetIconSize(int h) override;
 };
 
 #endif // ADDNEWOBJECTFORM_H

@@ -46,7 +46,7 @@ signals:
     void NewExpIsReady();
 
     void NewObjectIsReadyToAdd(EListType eList);
-
+    void SizeChanged(int w, int h);
 
 
 private:

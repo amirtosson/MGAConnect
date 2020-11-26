@@ -16,6 +16,7 @@ QPushButton
         color: white;
         text-align: center;
 	selection-background-color: transparent;
+        padding: 4px;
 }
 
 QPushButton:pressed 
@@ -45,6 +46,7 @@ QToolButton
 	background-color:rgb(40, 40, 40); 
 	color: white; text-align: center; 
 	selection-background-color: transparent;
+        padding: 4px;
 }
 
 QToolButton:enabled

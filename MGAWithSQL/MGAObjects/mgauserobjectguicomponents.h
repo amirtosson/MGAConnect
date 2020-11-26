@@ -22,12 +22,18 @@ class MGAUserObjectGUIComponents
 
 public:
     bool IntializeUserGUIComponents(QWidget *widget);
+    void ResizeComponents(int w, int h);
     QString GetUserName();
     QString GetUserHost();
     QString GetUserPWD();
     QString GetUserRole();
 
-private:
+
+public slots:
+    virtual void on_OkButton_clicked() = 0;
+    virtual void on_CancelButton_clicked() = 0;
+
+protected:
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
     QLabel *nameLabel;
@@ -38,6 +44,9 @@ private:
     QLineEdit *pwdEdit;
     QComboBox *roleComboBox;
     QLabel *roleLabel;
+    QPushButton *okButton;
+    QPushButton *cancelButton;
+    QLabel *errorText;
 };
 
 
