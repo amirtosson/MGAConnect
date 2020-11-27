@@ -19,6 +19,8 @@
 #include "mgadatabase.h"
 #include "mgauser.h"
 #include "mgaserverclientmsg.h"
+#include "mgaappointment.h"
+#include "mgaexperiment.h"
 #include "MGAResizableWidgetAbstract.h"
 
 #define UNKNOWN_ROLE      "unknown"
@@ -39,8 +41,7 @@ public:
     EUserRole GetCurrentUserRole();
     QString GetCurrentUserRoleName();
     unsigned int GetUserNumber();
-    bool ShowMembersInQTalbe(QTableWidget *table);
-    bool ShowUsersInQTalbe(QTableWidget *table);
+    bool ShowListInQTalbe(QTableWidget *table, EMSGType eMsgType);
     bool AddNewMGAUsers(MGAUser *newUser);
     void CleanLists();
 
@@ -50,8 +51,10 @@ public slots:
 signals:
     void DatabaseIsconnected();
     void DatabaseIsDisconnected();
-    void UsersListIsReady();
-    void MembersListIsReady();
+    void ListIsReady(EMSGType eMsgType);
+    void ExpListIsReady();
+    void AppointListIsReady();
+
 
 
 public slots:
@@ -63,13 +66,10 @@ public slots:
 private slots:
     void OnDataBaseIsconnected();
     void OnDatabaseIsDisconnected();
-    void OnUsersListIsReady();
-    void OnMembersListIsReady();
+    void OnListIsReady(EMSGType eMsgType);
     void on_connectToDBButton_clicked();
     void on_disconnectDBButton_clicked();
-
     void on_updateDetailsButton_clicked();
-
     void on_loadDetailsButton_clicked();
 
 private:
@@ -79,11 +79,17 @@ private:
     QString sCurrentUserRoleName = UNKNOWN_ROLE;
     unsigned int nMemberCount = 0;
     unsigned int nUserCount = 0;
+    unsigned int nExpCount = 0;
+    unsigned int nAppointCount = 0;
     std::vector<MGAMember> mgaMembersList;
     std::vector<MGAUser> mgaUsersList;
+    std::vector<MGAExperiment> mgaExpsList;
+    std::vector<MGAAppointment> mgaAppointsList;
     std::vector<MGADatabase> databases;
     QTcpSocket *socket;
     bool IsUsersListUpdated = false;
+    EMSGType eCurrentMsgType = EMSGType::eUNKNOWN;
+
     QTableWidget *mainTable;
     QIcon btnIcon;
 
@@ -91,8 +97,10 @@ private:
     void ServerMSGHandling(MGAServerClientMSG *msg);
     void SerializeUsersListFromMSG(MGAServerClientMSG *msg);
     void SerializeMemberssListFromMSG(MGAServerClientMSG *msg);
-    bool SendServerGetUserListMSG();
-    bool SendServerGetMemberListMSG();
+    void SerializeExpsListFromMSG(MGAServerClientMSG *msg);
+    void SerializeAppointmentsListFromMSG(MGAServerClientMSG *msg);
+    bool SendServerGetListMSG(EMSGType eMsgType);
+
 
 private:
     void UpdateSizes(int w, int h) override;

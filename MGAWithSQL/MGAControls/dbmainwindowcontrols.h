@@ -12,6 +12,7 @@
 #include "optionform.h"
 #include "mainwindowresources.h"
 #include "mgalistform.h"
+#include "mgaserverclientmsg.h"
 
 class DBMainWindowControls
 {

@@ -10,15 +10,15 @@ bool MGAExperiment::ShowInQTalbeRow(QTableWidget *table, int row)
     QTableWidgetItem *FaciltyNameItem = new QTableWidgetItem();
     *FaciltyNameItem =  sFaciltyName.GetAsQTableWidgitItem();
     table->setItem(row,0, FaciltyNameItem);
-    QTableWidgetItem *DescriptionItem = new QTableWidgetItem();;
-    *DescriptionItem =  sDescription.GetAsQTableWidgitItem();
-    table->setItem(row,1, DescriptionItem);
     QTableWidgetItem *StartTimeItem = new QTableWidgetItem();
     *StartTimeItem =  sStartTime.GetAsQTableWidgitItem();
-    table->setItem(row,2,  StartTimeItem);
+    table->setItem(row,1,  StartTimeItem);
     QTableWidgetItem *EndTimeItem = new QTableWidgetItem();
     *EndTimeItem =  sEndTime.GetAsQTableWidgitItem();
-    table->setItem(row,3,  EndTimeItem);
+    table->setItem(row,2,  EndTimeItem);
+    QTableWidgetItem *DescriptionItem = new QTableWidgetItem();;
+    *DescriptionItem =  sDescription.GetAsQTableWidgitItem();
+    table->setItem(row,3, DescriptionItem);
     return true;
 }
 

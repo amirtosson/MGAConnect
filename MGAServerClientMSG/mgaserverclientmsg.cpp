@@ -126,9 +126,61 @@ void MGAServerClientMSG::SetCurrentTypeEnum(QString currentTypeName)
     {
       eCurruntMSGType =  EMSGType::eAddNewUser;
     }
+    else if(currentTypeName == MSG_DELETE_USER_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eDeleteUser;
+    }
+    else if(currentTypeName == MSG_EDIT_USER_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eEditUser;
+    }
     else if(currentTypeName == MSG_GET_MEMBERS_LIST_TYPE_NAME)
     {
       eCurruntMSGType =  EMSGType::eGetMembersList;
+    }
+    else if(currentTypeName == MSG_EDIT_MEMBER_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eEditMember;
+    }
+    else if(currentTypeName == MSG_ADD_NEW_MEMBER_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eAddNewMember;
+    }
+    else if(currentTypeName == MSG_DELETE_USER_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eDeleteMember;
+    }
+    else if(currentTypeName == MSG_GET_EXP_LIST_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eGetExpList;
+    }
+    else if(currentTypeName == MSG_EDIT_EXP_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eEditExp;
+    }
+    else if(currentTypeName == MSG_ADD_NEW_EXP_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eAddNewExp;
+    }
+    else if(currentTypeName == MSG_DELETE_EXP_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eDeleteExp;
+    }
+    else if(currentTypeName == MSG_GET_APPOINTS_LIST_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eGetAppointsList;
+    }
+    else if(currentTypeName == MSG_EDIT_APPOINT_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eEditAppoint;
+    }
+    else if(currentTypeName == MSG_ADD_NEW_APPOINT_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eAddNewAppoint;
+    }
+    else if(currentTypeName == MSG_DELETE_APPOINT_TYPE_NAME)
+    {
+      eCurruntMSGType =  EMSGType::eDeleteAppoint;
     }
 }
 

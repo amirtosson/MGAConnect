@@ -73,8 +73,14 @@
 
 #define APPOINTS_LIST_FORM_SETUP\
     userListFormUi->userListWidget->insertColumn(0);\
+    userListFormUi->userListWidget->insertColumn(1);\
+    userListFormUi->userListWidget->insertColumn(2);\
+    userListFormUi->userListWidget->insertColumn(3);\
     QStringList q2;\
-    q2.append(TXT_FACILITY);\
+    q2.append(TXT_STARTS_ON);\
+    q2.append(TXT_ENDS_ON);\
+    q2.append(TXT_GUESTS);\
+    q2.append(TXT_DESCRIPTION);\
     userListFormUi->userListWidget->setHorizontalHeaderLabels(q2);\
     FIXED_SETUPS\
     userListFormUi->pageTitle->setText(TXT_APPOINTS_LIST);\

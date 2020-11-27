@@ -10,8 +10,7 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     dbConnectFormUi->setupUi(this);
     connect(this, SIGNAL(DatabaseIsconnected()), this, SLOT(OnDataBaseIsconnected()));
     connect(this, SIGNAL(DatabaseIsDisconnected()), this, SLOT(OnDatabaseIsDisconnected()));
-    connect(this, SIGNAL(UsersListIsReady()), this, SLOT(OnUsersListIsReady()));
-    connect(this, SIGNAL(MembersListIsReady()), this, SLOT(OnMembersListIsReady()));
+    connect(this, SIGNAL(ListIsReady(EMSGType)), this, SLOT(OnListIsReady(const EMSGType)));
 
     socket = new QTcpSocket();
     QHostAddress addressIP ;
@@ -27,6 +26,8 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 
+
+
 DBConnectForm::~DBConnectForm()
 {
     delete dbConnectFormUi;
@@ -35,52 +36,152 @@ DBConnectForm::~DBConnectForm()
 void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
 {
     QString host, user, password;
-    if(msg->GetMSGType() == EMSGType::eConnectToDB)
-    {
+    eCurrentMsgType = msg->GetMSGType();
 
-        if (msg->GetValue(JSON_ATT_CONNECTED, 0)==TRUE)
+    switch (eCurrentMsgType) {
+    case EMSGType::eConnectToDB:
         {
-            sCurrentUserRoleName = msg->GetValue(JSON_ATT_LOGIN_USER_ROLE,1);
-            SERIALIZE_USER_ROLE
-            emit DatabaseIsconnected();
+            if (msg->GetValue(JSON_ATT_CONNECTED, 0)==TRUE)
+            {
+                sCurrentUserRoleName = msg->GetValue(JSON_ATT_LOGIN_USER_ROLE,1);
+                SERIALIZE_USER_ROLE
+                emit DatabaseIsconnected();
+            }
         }
-    }
-    else
-    if (msg->GetMSGType() == EMSGType::eDisconnectDB)
-    {
-        if (msg->GetValue(JSON_ATT_DISCONNECTED, 0)==TRUE)
+        break;
+    case EMSGType::eDisconnectDB:
         {
-            emit DatabaseIsDisconnected();
+            if (msg->GetValue(JSON_ATT_DISCONNECTED, 0)==TRUE)
+            {
+                emit DatabaseIsDisconnected();
+            }
         }
-    }
-    else
-    if (msg->GetMSGType() == EMSGType::eGetUsersList)
-    {
-        SerializeUsersListFromMSG(msg);
-        emit UsersListIsReady();
-    }
-    else
-    if (msg->GetMSGType() == EMSGType::eAddNewUser)
-    {
-        if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+        break;
+    case  EMSGType::eGetUsersList:
         {
-            CleanLists();
-            ShowUsersInQTalbe(mainTable);
+            SerializeUsersListFromMSG(msg);
+            emit ListIsReady(eCurrentMsgType);
         }
-    }
-    else
-    if (msg->GetMSGType() == EMSGType::eEditUser)
-    {
-        if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+        break;
+    case EMSGType::eAddNewUser:
+        {
+            if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+            {
+                CleanLists();
+                ShowListInQTalbe(mainTable, EMSGType::eGetUsersList);
+            }
+        }
+        break;
+    case EMSGType::eEditUser:
+        {
+            if (msg->GetValue(JSON_ATT_EDITED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eDeleteUser:
+        {
+            if (msg->GetValue(JSON_ATT_DELETED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eGetMembersList:
+        {
+            SerializeMemberssListFromMSG(msg);
+            emit ListIsReady(eCurrentMsgType);
+        }
+        break;
+    case EMSGType::eAddNewMember:
+        {
+            if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+            {
+                CleanLists();
+                ShowListInQTalbe(mainTable,EMSGType::eGetMembersList);
+            }
+        }
+        break;
+    case EMSGType::eEditMember:
+        {
+            if (msg->GetValue(JSON_ATT_EDITED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eDeleteMember:
+        {
+            if (msg->GetValue(JSON_ATT_DELETED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eGetExpList:
+        {
+            SerializeExpsListFromMSG(msg);
+            emit ListIsReady(eCurrentMsgType);
+        }
+        break;
+    case EMSGType::eAddNewExp:
+        {
+            if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+            {
+                CleanLists();
+                //ShowUsersInQTalbe(mainTable);
+            }
+        }
+        break;
+    case EMSGType::eEditExp:
+        {
+            if (msg->GetValue(JSON_ATT_EDITED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eDeleteExp:
+        {
+            if (msg->GetValue(JSON_ATT_DELETED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eGetAppointsList:
+        {
+            if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
+            {
+                SerializeAppointmentsListFromMSG(msg);
+                emit ListIsReady(eCurrentMsgType);
+            }
+        }
+        break;
+    case EMSGType::eAddNewAppoint:
         {
 
         }
-    }
-    else
-    if (msg->GetMSGType() == EMSGType::eGetMembersList)
-    {
-        SerializeMemberssListFromMSG(msg);
-        emit MembersListIsReady();
+        break;
+    case EMSGType::eEditAppoint:
+        {
+            if (msg->GetValue(JSON_ATT_EDITED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    case EMSGType::eDeleteAppoint:
+        {
+            if (msg->GetValue(JSON_ATT_DELETED, 0)==TRUE)
+            {
+
+            }
+        }
+        break;
+    default:
+        break;
     }
 }
 
@@ -99,17 +200,18 @@ unsigned int DBConnectForm::GetUserNumber()
     return nMemberCount;
 }
 
-bool DBConnectForm::ShowMembersInQTalbe(QTableWidget *table)
+bool DBConnectForm::ShowListInQTalbe(QTableWidget *table, EMSGType eMsgType)
 {
     mainTable = table;
-    SendServerGetMemberListMSG();
+    SendServerGetListMSG(eMsgType);
     return true;
 }
 
-bool DBConnectForm::ShowUsersInQTalbe(QTableWidget *table)
+bool DBConnectForm::SendServerGetListMSG(EMSGType eMsgType)
 {
-    mainTable = table;
-    SendServerGetUserListMSG();
+    MGAServerClientMSG msg(eMsgType);
+    socket->write(msg.GetMSGAsByteArray());
+    socket->flush();
     return true;
 }
 
@@ -122,22 +224,6 @@ bool DBConnectForm::AddNewMGAUsers(MGAUser *newUser)
     msg.InsertInMSGBody(JSON_ATT_LOGIN_USER_ROLE,newUser->GetRole());
     socket->write(msg.GetMSGAsByteArray());
     socket->waitForBytesWritten(1000);
-    socket->flush();
-    return true;
-}
-
-bool DBConnectForm::SendServerGetUserListMSG()
-{
-    MGAServerClientMSG msg(EMSGType::eGetUsersList);
-    socket->write(msg.GetMSGAsByteArray());
-    socket->flush();
-    return true;
-}
-
-bool DBConnectForm::SendServerGetMemberListMSG()
-{
-    MGAServerClientMSG msg(EMSGType::eGetMembersList);
-    socket->write(msg.GetMSGAsByteArray());
     socket->flush();
     return true;
 }
@@ -162,6 +248,8 @@ void DBConnectForm::CleanLists()
 {
    mgaUsersList.clear();
    mgaMembersList.clear();
+   mgaAppointsList.clear();
+   mgaExpsList.clear();
 }
 
 void DBConnectForm::OnSizeChange(int w, int h)
@@ -185,33 +273,41 @@ void DBConnectForm::OnDatabaseIsDisconnected()
     DATABASE_IS_NOT_CONNECTED
 }
 
-void DBConnectForm::OnUsersListIsReady()
+void DBConnectForm::OnListIsReady(EMSGType eMsgType)
 {
-    int row = 0;
-    while (mainTable->rowCount() != nUserCount)
+    switch (eMsgType) {
+    case EMSGType::eGetUsersList:
     {
-        mainTable->insertRow(row);
-        row++;
-    }
+        int row = 0;
+        while (mainTable->rowCount() != nUserCount)
+        {
+            mainTable->insertRow(row);
+            row++;
+        }
 
-    for(unsigned int i =0; i<nUserCount; ++i)
-    {
-       mgaUsersList[i].ShowInQTalbeRow(mainTable,i);
+        for(unsigned int i =0; i<nUserCount; ++i)
+        {
+           mgaUsersList[i].ShowInQTalbeRow(mainTable,i);
+        }
     }
-}
-
-void DBConnectForm::OnMembersListIsReady()
-{
-    int row = 0;
-    while (mainTable->rowCount() != nMemberCount)
+        break;
+    case EMSGType::eGetMembersList:
     {
-        mainTable->insertRow(row);
-        row++;
+        int row = 0;
+        while (mainTable->rowCount() != nMemberCount)
+        {
+            mainTable->insertRow(row);
+            row++;
+        }
+
+        for(unsigned int i =0; i<nMemberCount; ++i)
+        {
+           mgaMembersList[i].ShowInQTalbeRow(mainTable,i);
+        }
     }
-
-    for(unsigned int i =0; i<nMemberCount; ++i)
-    {
-       mgaMembersList[i].ShowInQTalbeRow(mainTable,i);
+        break;
+    default:
+        break;
     }
 }
 
@@ -235,7 +331,6 @@ void DBConnectForm::on_disconnectDBButton_clicked()
     socket->write(msg.GetMSGAsByteArray());
     socket->flush();
 }
-
 
 void DBConnectForm::SerializeUsersListFromMSG(MGAServerClientMSG *msg)
 {
@@ -301,6 +396,77 @@ void DBConnectForm::SerializeMemberssListFromMSG(MGAServerClientMSG *msg)
         mgaMembersList.push_back(mgaMember);
     }
     nMemberCount = mgaMembersList.size();
+}
+
+void DBConnectForm::SerializeExpsListFromMSG(MGAServerClientMSG *msg)
+{
+    CleanLists();
+    for (unsigned int i=0; i<msg->GetBodyLength(); ++i )
+    {
+        QString exp;
+        exp = msg->GetValue(JSON_ATT_EXPERIMENT,i);
+        std::string str = exp.toStdString();
+        size_t pos = 0;
+        std::string delimiter = MGA_DELIMITER;
+        pos = str.find(delimiter);
+        unsigned int  expID = 2;
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string faciltyname = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string description = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string starttime = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string endtime = str.substr(0, pos);
+        MGAExperiment mgaExp;
+        mgaExp.SetFaciltyName(faciltyname);
+        mgaExp.SetDescription(description);
+        mgaExp.SetStartTime(starttime);
+        mgaExp.SetEndTime(endtime);
+        mgaExp.SetExpID(expID);
+        mgaExpsList.push_back(mgaExp);
+    }
+    nExpCount = mgaExpsList.size();
+}
+
+void DBConnectForm::SerializeAppointmentsListFromMSG(MGAServerClientMSG *msg)
+{
+    CleanLists();
+    for (unsigned int i=0; i<msg->GetBodyLength(); ++i )
+    {
+        QString appoint;
+        appoint = msg->GetValue(JSON_ATT_APPOINTMENT,i);
+        std::string str = appoint.toStdString();
+        size_t pos = 0;
+        std::string delimiter = MGA_DELIMITER;
+        pos = str.find(delimiter);
+        unsigned int  appointID = 2;
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string starttime = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string endtime = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string description = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string guests = str.substr(0, pos);
+
+        MGAAppointment mgaAppoint;
+        mgaAppoint.SetDescription(description);
+        mgaAppoint.SetStartTime(starttime);
+        mgaAppoint.SetEndTime(endtime);
+        mgaAppoint.SetGuests(guests);
+        mgaAppoint.SetAppointID(appointID);
+        mgaAppointsList.push_back(mgaAppoint);
+    }
+    nAppointCount = mgaAppointsList.size();
 }
 
 void DBConnectForm::connected()

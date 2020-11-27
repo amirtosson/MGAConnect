@@ -17,6 +17,8 @@
 #define TXT_STARTS_ON                   "Starts on"
 #define TXT_ENDS_ON                     "Ends on"
 #define TXT_DESCRIPTION                 "Description"
+#define TXT_GUESTS                      "Guests"
+
 
 
 #define TXT_ROLE                        "Role"

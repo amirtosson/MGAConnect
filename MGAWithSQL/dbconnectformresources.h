@@ -52,8 +52,13 @@
 #define JSON_ATT_CONNECTED              "connected"
 #define JSON_ATT_ADDED                  "added"
 #define JSON_ATT_DISCONNECTED           "disconnected"
-#define JSON_ATT_ADDED                  "added"
+#define JSON_ATT_EDITED                 "edited"
 #define JSON_ATT_DELETED                "deleted"
+#define JSON_ATT_EXPERIMENT             "experiment"
+#define JSON_ATT_APPOINTMENT            "appointment"
+
+
+
 
 #define TRUE                            "true"
 #define FALSE                           "false"

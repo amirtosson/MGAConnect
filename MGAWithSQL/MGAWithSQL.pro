@@ -15,6 +15,7 @@ INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
 
 SOURCES += main.cpp\
+    MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
         mainwindow.cpp \
     dbconnectform.cpp \
@@ -34,6 +35,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h\
     MGAControls/MGAResizableWidgetAbstract.h \
+    MGAObjects/mgaappointment.h \
     MGAObjects/mgaexperiment.h \
     dbconnectform.h \
     MGAObjects/mgamemberguicomponents.h \

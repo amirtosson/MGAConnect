@@ -1,23 +1,24 @@
-#ifndef MGAEXPERIMENT_H
-#define MGAEXPERIMENT_H
+#ifndef MGAAPPOINTMENT_H
+#define MGAAPPOINTMENT_H
 #include "mgastring.h"
 
-class MGAExperiment
+
+class MGAAppointment
 {
 public:
-    MGAExperiment();
+    MGAAppointment();
     bool ShowInQTalbeRow(QTableWidget *table, int row);
     //Setter
-    void SetFaciltyName(std::string &faciltyname);
+    void SetGuests(std::string &guests);
     void SetDescription(std::string &description);
     void SetStartTime(std::string &starttime);
-    void SetExpID(unsigned int &id);
+    void SetAppointID(unsigned int &id);
     void SetEndTime(std::string &endtime);
 
 
 private:
-    unsigned int expID;
-    MGAString sFaciltyName;
+    unsigned int appointID;
+    MGAString sGuests;
     MGAString sDescription;
     //TODO: implement date class
     MGAString sStartTime;
@@ -25,4 +26,5 @@ private:
 
 };
 
-#endif // MGAEXPERIMENT_H
+
+#endif // MGAAPPOINTMENT_H

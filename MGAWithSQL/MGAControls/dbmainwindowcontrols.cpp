@@ -85,7 +85,7 @@ bool DBMainWindowControls::AddNewMGAAppointmentToDB()
 
 bool DBMainWindowControls::ShowMembersList()
 {
-    if(!hasMembersListForm)_dbForm->ShowMembersInQTalbe(_membersListForm->GetUITable());
+    if(!hasMembersListForm)_dbForm->ShowListInQTalbe(_membersListForm->GetUITable(), EMSGType::eGetMembersList);
     _membersListForm->show();
     hasMembersListForm = true;
     return true;
@@ -101,7 +101,7 @@ bool DBMainWindowControls::ShowDatabasesList()
 
 bool DBMainWindowControls::ShowUsersList()
 {
-    if(!hasUsersListForm)_dbForm->ShowUsersInQTalbe(_usersListForm->GetUITable());
+    if(!hasUsersListForm)_dbForm->ShowListInQTalbe(_usersListForm->GetUITable(), EMSGType::eGetUsersList);
     _usersListForm->show();
     hasUsersListForm = true;
     return true;

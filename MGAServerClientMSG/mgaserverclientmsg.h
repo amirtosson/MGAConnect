@@ -31,7 +31,8 @@ enum class EMSGType
     eGetAppointsList,
     eAddNewAppoint,
     eDeleteAppoint,
-    eEditAppoint
+    eEditAppoint,
+    eUNKNOWN
 };
 
 class MGAServerClientMSG

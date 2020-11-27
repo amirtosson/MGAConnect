@@ -21,7 +21,7 @@ class MGAListForm : public QWidget, MGAResizableWidget
     Q_OBJECT
 
 public:
-    explicit MGAListForm(QWidget *parent = 0, EListType eList = eMemberList);
+    explicit MGAListForm(QWidget *parent = 0, EListType eList = eUNKOWN);
     QTableWidget *GetUITable();
     ~MGAListForm();
     MGAUser *GetTheNewUser();
