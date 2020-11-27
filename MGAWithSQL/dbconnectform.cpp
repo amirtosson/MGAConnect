@@ -26,8 +26,6 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     DBCONNECTION_UI_COMMPONENTS_SETUP
 }
 
-
-
 DBConnectForm::~DBConnectForm()
 {
     delete dbConnectFormUi;
@@ -152,11 +150,8 @@ void DBConnectForm::ServerMSGHandling(MGAServerClientMSG *msg)
         break;
     case EMSGType::eGetAppointsList:
         {
-            if (msg->GetValue(JSON_ATT_ADDED, 0)==TRUE)
-            {
-                SerializeAppointmentsListFromMSG(msg);
-                emit ListIsReady(eCurrentMsgType);
-            }
+            SerializeAppointmentsListFromMSG(msg);
+            emit ListIsReady(eCurrentMsgType);
         }
         break;
     case EMSGType::eAddNewAppoint:
@@ -306,6 +301,37 @@ void DBConnectForm::OnListIsReady(EMSGType eMsgType)
         }
     }
         break;
+
+    case EMSGType::eGetExpList:
+    {
+        int row = 0;
+        while (mainTable->rowCount() != nExpCount)
+        {
+            mainTable->insertRow(row);
+            row++;
+        }
+
+        for(unsigned int i =0; i<nExpCount; ++i)
+        {
+           mgaExpsList[i].ShowInQTalbeRow(mainTable,i);
+        }
+    }
+        break;
+    case EMSGType::eGetAppointsList:
+    {
+        int row = 0;
+        while (mainTable->rowCount() != nAppointCount)
+        {
+            mainTable->insertRow(row);
+            row++;
+        }
+
+        for(unsigned int i =0; i<nAppointCount; ++i)
+        {
+           mgaAppointsList[i].ShowInQTalbeRow(mainTable,i);
+        }
+    }
+        break;
     default:
         break;
     }
@@ -415,13 +441,13 @@ void DBConnectForm::SerializeExpsListFromMSG(MGAServerClientMSG *msg)
         std::string faciltyname = str.substr(0, pos);
         str.erase(0, pos + delimiter.length());
         pos = str.find(delimiter);
-        std::string description = str.substr(0, pos);
-        str.erase(0, pos + delimiter.length());
-        pos = str.find(delimiter);
         std::string starttime = str.substr(0, pos);
         str.erase(0, pos + delimiter.length());
         pos = str.find(delimiter);
         std::string endtime = str.substr(0, pos);
+        str.erase(0, pos + delimiter.length());
+        pos = str.find(delimiter);
+        std::string description = str.substr(0, pos);
         MGAExperiment mgaExp;
         mgaExp.SetFaciltyName(faciltyname);
         mgaExp.SetDescription(description);
@@ -453,11 +479,10 @@ void DBConnectForm::SerializeAppointmentsListFromMSG(MGAServerClientMSG *msg)
         std::string endtime = str.substr(0, pos);
         str.erase(0, pos + delimiter.length());
         pos = str.find(delimiter);
-        std::string description = str.substr(0, pos);
+        std::string guests = str.substr(0, pos);
         str.erase(0, pos + delimiter.length());
         pos = str.find(delimiter);
-        std::string guests = str.substr(0, pos);
-
+        std::string description = str.substr(0, pos);
         MGAAppointment mgaAppoint;
         mgaAppoint.SetDescription(description);
         mgaAppoint.SetStartTime(starttime);

@@ -110,7 +110,7 @@ bool DBMainWindowControls::ShowUsersList()
 
 bool DBMainWindowControls::ShowExperimentsList()
 {
-   // if(!hasExpListForm)_dbForm              ->ShowUsersInQTalbe(_usersListForm->GetUITable());
+    if(!hasExpListForm)_dbForm->ShowListInQTalbe(_experimentsListForm->GetUITable(), EMSGType::eGetExpList);
     _experimentsListForm->show();
     hasExpListForm = true;
     return true;
@@ -118,6 +118,7 @@ bool DBMainWindowControls::ShowExperimentsList()
 
 bool DBMainWindowControls::ShowAppointmentsList()
 {
+    if(!hasAppointListForm)_dbForm->ShowListInQTalbe(_appointmentsListForm->GetUITable(), EMSGType::eGetAppointsList);
     _appointmentsListForm->show();
     hasAppointListForm = true;
     return true;
