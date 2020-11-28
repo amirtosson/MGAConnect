@@ -1,44 +1,30 @@
 #include "addnewobjectform.h"
 
-
-void AddNewObjectForm::setupUi(QDialog *AddNewObjectForm)
-{
-    if (AddNewObjectForm->objectName().isEmpty())
-    {
-        AddNewObjectForm->setObjectName(QString::fromUtf8("AddNewObjectForm"));
-    }
-    AddNewObjectForm->resize(400,300);
-    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    sizePolicy.setHorizontalStretch(5);
-    sizePolicy.setVerticalStretch(5);
-    sizePolicy.setHeightForWidth(AddNewObjectForm->sizePolicy().hasHeightForWidth());
-    AddNewObjectForm->setSizePolicy(sizePolicy);
-
-    okButton = new QPushButton(AddNewObjectForm);
-    okButton->setObjectName(QString::fromUtf8("OkButton"));
-    cancelButton = new QPushButton(AddNewObjectForm);
-    cancelButton->setObjectName(QString::fromUtf8("CancelButton"));
-
-    QMetaObject::connectSlotsByName(AddNewObjectForm);
-}
-
 AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
         QDialog(parent)
 {
-        setupUi(this);
         eCurrentList = eList;
+        setupUi(this, eCurrentList);
+        ResizeComponents(this->width(), this->height());
         switch (eCurrentList) {
         case eUsersList:
             {
                 newUser = new MGAUser();
-                if (IntializeUserGUIComponents(this))
-                ResizeComponents(this->width(), this->height());
             }
             break;
         case eMemberList:
             {
                 newMember = new MGAMember();
-                IntializeMemberGUIComponents(this);
+            }
+            break;
+        case eExperimentist:
+            {
+                newExp = new MGAExperiment();
+            }
+            break;
+        case eAppointmentList:
+            {
+                newAppoint = new MGAAppointment();
             }
             break;
         default:
@@ -59,6 +45,12 @@ AddNewObjectForm::~AddNewObjectForm()
     case eMemberList:
         delete newMember;
         break;
+    case eExperimentist:
+        delete newExp;
+        break;
+    case eAppointmentList:
+        delete newAppoint;
+        break;
     default:
         break;
     }
@@ -69,12 +61,12 @@ MGAUser* AddNewObjectForm::GetTheNewUser()
     return newUser;
 }
 
-MGAMember *AddNewObjectForm::GetTheNewMember()
+MGAMember* AddNewObjectForm::GetTheNewMember()
 {
     return newMember;
 }
 
-MGAExperiment *AddNewObjectForm::GetTheNewExp()
+MGAExperiment* AddNewObjectForm::GetTheNewExp()
 {
     return newExp;
 }
@@ -143,8 +135,8 @@ bool AddNewObjectForm::AcceptNewMember()
 
 void AddNewObjectForm::UpdateSizes(int w, int h)
 {
-    w = w*0.75;
-    h = h*0.75;
+    w = w * ADD_NEW_FORM_WIDTH_RATIO;
+    h = h * ADD_NEW_FORM_HEIGHT_RATIO;
     this->resize(w,h);
     ResizeComponents(w,h);
 }

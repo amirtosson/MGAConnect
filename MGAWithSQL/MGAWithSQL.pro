@@ -13,13 +13,14 @@ TEMPLATE = app
 
 INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
+INCLUDEPATH += MGACommonGUIViews/
 
 SOURCES += main.cpp\
+    MGACommonGUIViews/mganewobjectformview.cpp \
     MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
         mainwindow.cpp \
     dbconnectform.cpp \
-    MGAObjects/mgamemberguicomponents.cpp \
     sidepanel.cpp \
     optionform.cpp \
     mgawidgetextension.cpp \
@@ -30,15 +31,14 @@ SOURCES += main.cpp\
     mgaemailform.cpp \
     MGAObjects/mgamember.cpp \
     MGAObjects/mgauser.cpp \
-    addnewobjectform.cpp \
-    MGAObjects/mgauserobjectguicomponents.cpp
+    addnewobjectform.cpp
 
 HEADERS  += mainwindow.h\
+    MGACommonGUIViews/mganewobjectformview.h \
     MGAControls/MGAResizableWidgetAbstract.h \
     MGAObjects/mgaappointment.h \
     MGAObjects/mgaexperiment.h \
     dbconnectform.h \
-    MGAObjects/mgamemberguicomponents.h \
     sidepanel.h \
     mainwindowstyle.h \
     optionform.h \
@@ -63,7 +63,6 @@ HEADERS  += mainwindow.h\
     MGAObjects/mgauser.h \
     addnewobjectform.h \
     MGAObjects/mgastyleenum.h \
-    MGAObjects/mgauserobjectguicomponents.h \
     addnewobjectformresources.h \
     sqlmacro.h
 

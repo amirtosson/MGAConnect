@@ -39,6 +39,18 @@ void MGAUser::SetPWD(std::string &pwd)
     sPWD.SetFromSTDString(pwd);
 }
 
+bool MGAUser::SetFromQStringList(QStringList &fields)
+{
+    if (fields.size() != 3) return false;
+    QString str = fields.at(0);
+    sName.SetFromQString(&str);
+    str = fields.at(1);
+    sHost.SetFromQString(&str);
+    str = fields.at(2);
+    sPWD.SetFromQString(&str);
+    return true;
+}
+
 QString MGAUser::GetName()
 {
     return sName.GetAsQString();

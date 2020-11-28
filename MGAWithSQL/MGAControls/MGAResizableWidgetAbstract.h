@@ -24,6 +24,11 @@
 #define DB_FORM_ICON_RATIO                      0.06
 #define DB_FORM_60PX_MARGIN                     60
 
+// Add new Object form
+#define ADD_NEW_FORM_WIDTH_RATIO                0.75
+#define ADD_NEW_FORM_HEIGHT_RATIO               0.75
+
+
 
 // list form WidGet
 #define TABLE_VIEW_WIDTH_RATIO                  0.78

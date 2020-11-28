@@ -51,6 +51,7 @@ signals:
 
 private:
     void SelectionIsChanged(const int id);
+    void UpdateTableColumsWidth(int w);
 
 private:
     Ui::MGAListForm *userListFormUi;
@@ -59,7 +60,6 @@ private:
     EListType eCurrentListType = eUNKOWN;
     AddNewObjectForm *addNewObject;
     bool hasAddNewObjectForm = false;
-    void UpdateTableColumsWidth(int w);
 
 private:
     void UpdateSizes(int w, int h) override;

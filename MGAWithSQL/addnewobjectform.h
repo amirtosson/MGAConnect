@@ -8,9 +8,8 @@
 #include "mgamember.h"
 #include "mgauser.h"
 #include "mgaexperiment.h"
-#include "mgalistformtypesenum.h"
-#include "mgauserobjectguicomponents.h"
-#include "mgamemberguicomponents.h"
+#include "mgaappointment.h"
+#include "mganewobjectformview.h"
 #include "MGAResizableWidgetAbstract.h"
 
 #include <QtCore/QVariant>
@@ -18,17 +17,16 @@
 #include <QtWidgets/QDialog>
 
 
-class AddNewObjectForm : public QDialog, private MGAUserObjectGUIComponents, public MGAMemberGUIComponents, MGAResizableWidget
+class AddNewObjectForm : public QDialog, private MGANewObjectFormView, MGAResizableWidget
 {
     Q_OBJECT
 
 public:
-     void setupUi(QDialog *AddNewObjectForm);
     explicit AddNewObjectForm(QWidget *parent = 0, EListType eList = eUNKOWN);
     ~AddNewObjectForm();
-    MGAUser *GetTheNewUser();
-    MGAMember *GetTheNewMember();
-    MGAExperiment *GetTheNewExp();
+    MGAUser* GetTheNewUser();
+    MGAMember* GetTheNewMember();
+    MGAExperiment* GetTheNewExp();
 
 signals:
     void NewObjectIsToBeAdded();
@@ -44,6 +42,7 @@ private:
     MGAUser *newUser;
     MGAMember *newMember;
     MGAExperiment *newExp;
+    MGAAppointment *newAppoint;
     EListType eCurrentList = eUNKOWN;
 
 private:

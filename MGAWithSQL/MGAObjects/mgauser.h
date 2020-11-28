@@ -30,6 +30,7 @@ public:
     void SetHost(std::string &host);
     void SetRole(std::string &role);
     void SetPWD(std::string &pwd);
+    bool SetFromQStringList(QStringList &fields);
 
     //getter
     QString GetName();
