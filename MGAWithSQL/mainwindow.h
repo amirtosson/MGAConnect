@@ -9,11 +9,17 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QTcpSocket>
+#include <QPainter>
+#include <QScreen>
+#include <QApplication>
+#include <QStyleFactory>
+#include <QPainter>
+#include <QPainterPath>
 
 #include "mainwindowresources.h"
 #include "dbmainwindowcontrols.h"
 #include "mainwindowstyle.h"
-
+#include "QrCode.hpp"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +41,7 @@ private slots:
     void ShowUserListClicked();
     void ShowExperimentsListClicked();
     void ShowAppointmentsListClicked();
+    void ShowGroupsListClicked();
     void StyleHasBeenChanged();
     void DatabaseHasConnection();
     void DatabaseNotConnected();
@@ -50,6 +57,9 @@ private slots:
 
     void on_actionResetSize_triggered();
 
+    virtual void paintEvent(QPaintEvent *event);
+
+
 signals:
     void SizeChanged(int w, int h);
 
@@ -58,12 +68,14 @@ private:
     bool sidePanelIsFixed =false;
     EMGAStyle eCurrentStyle = eDarkStyle;
     QRect defaultGeometry;
+    QPainter *p;
 
 protected:
     void resizeEvent(QResizeEvent* event);
     void ResetToOriginalSize();
     void SetToFullScreen();
     void UpdateSizes(int w, int h);
+
 
 
 };

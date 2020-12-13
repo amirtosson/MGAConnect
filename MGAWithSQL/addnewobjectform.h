@@ -11,6 +11,7 @@
 #include "mgaappointment.h"
 #include "mganewobjectformview.h"
 #include "MGAResizableWidgetAbstract.h"
+#include "MGAObject.h"
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>

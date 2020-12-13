@@ -42,7 +42,7 @@ QPushButton:hover
 
 QToolButton
 { 
-	font-weight: bold; 
+
 	background-color:rgb(40, 40, 40); 
 	color: white; text-align: center; 
 	selection-background-color: transparent;

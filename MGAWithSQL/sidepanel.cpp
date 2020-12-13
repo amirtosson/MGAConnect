@@ -1,20 +1,20 @@
 #include "sidepanel.h"
-#include "ui_sidepanel.h"
+//#include "ui_sidepanel.h"
 #include <QSize>
-
+#include "QDebug"
 
 SidePanel::SidePanel(QWidget *parent) :
-    QWidget(parent),
-    sidePanelUi(new Ui::SidePanel)
+    QWidget(parent)
 {
-    sidePanelUi->setupUi(this);
-    UpdateSizes(parent->width(),parent->height());
-    SIDE_PANEL_UI_COMMPONENTS_SETUP
+    setupUi(this, eCurrentRole);
+    ResizeComponents(parent->width(),parent->height());
+    //SIDE_PANEL_UI_COMMPONENTS_SETUP
+    //UpdateSizes(parent->width(),parent->height());
 }
 
 SidePanel::~SidePanel()
 {
-    delete sidePanelUi;
+
 }
 
 void SidePanel::SetCurrentRole(EUserRole eRole)
@@ -34,12 +34,12 @@ void SidePanel::on_dbConnectBtn_clicked()
 
 void SidePanel::DatabaseIsConnected()
 {
-    ENABLE_BUTTONS
+    ButtonsState(true);
 }
 
 void SidePanel::DatabaseIsDisconnected()
 {
-    DISABLE_BUTTONS
+    ButtonsState(false);
 }
 
 void SidePanel::on_showMemberListButton_clicked()
@@ -62,23 +62,18 @@ void SidePanel::on_showAppointmentsButton_clicked()
     emit ShowAppointmentsListButtonClicked();
 }
 
+void SidePanel::on_showGroupsButton_clicked()
+{
+    emit ShowGroupsButtonClicked();
+}
+
 void SidePanel::UpdateSizes(int w, int h)
 {
-    this->setGeometry(0,0,w,h);
-    SetIconSize(h*SIDE_PANEL_ICON_RATIO);
-    sidePanelUi->dbConnectBtn->setGeometry(0,0 ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showUsersButton->setGeometry(0,sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showMemberListButton->setGeometry(0,2*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showExpButton->setGeometry(0,3*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    sidePanelUi->showAppointmentsButton->setGeometry(0,4*sidePanelUi->dbConnectBtn->height() ,this->width()-10, this->height()*SIDE_PANEL_BUTTON_HEIGHT_RATIO);
-    this->update();
+    this->resize(w,h);
+    ResizeComponents(w,h);
 }
 
 void SidePanel::SetIconSize(int h)
 {
-    sidePanelUi->dbConnectBtn->setIconSize(QSize(h, h));
-    sidePanelUi->showUsersButton->setIconSize(QSize(h, h));
-    sidePanelUi->showMemberListButton->setIconSize(QSize(h, h));
-    sidePanelUi->showExpButton->setIconSize(QSize(h, h));
-    sidePanelUi->showAppointmentsButton->setIconSize(QSize(h, h));
+
 }

@@ -17,7 +17,7 @@ DBConnectForm::DBConnectForm(QWidget *parent) :
     addressIP.setAddress("192.168.178.28");
     addressIP.toIPv4Address();
     socket->disconnectFromHost();
-    socket->connectToHost("Tosson-pnCCD", 9999);
+    socket->connectToHost("192.168.178.28", 9999);
     socket->waitForConnected(5000);
 
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));

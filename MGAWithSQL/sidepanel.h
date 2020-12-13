@@ -7,16 +7,12 @@
 
 #include "sidepanelsetups.h"
 #include "mgauserrolesenum.h"
-#include "MGAResizableWidgetAbstract.h"
+#include "mgasidepanelview.h"
+#include "mgasidepanelview.h"
 
 
 
-namespace Ui {
-class SidePanel;
-}
-
-
-class SidePanel : public QWidget, MGAResizableWidget
+class SidePanel : public QWidget, MGAResizableWidget, MGASidePanelView
 {
     Q_OBJECT
 
@@ -29,13 +25,15 @@ public slots:
     void OnSizeChange(int w, int h) override;
 
 private slots:
-    void on_dbConnectBtn_clicked();
+    void on_dbConnectBtn_clicked() override;
     void DatabaseIsConnected();
     void DatabaseIsDisconnected();
-    void on_showMemberListButton_clicked();
-    void on_showUsersButton_clicked();
-    void on_showExpButton_clicked();
-    void on_showAppointmentsButton_clicked();
+    void on_showMemberListButton_clicked() override;
+    void on_showUsersButton_clicked() override;
+    void on_showExpButton_clicked() override;
+    void on_showAppointmentsButton_clicked() override;
+    void on_showGroupsButton_clicked() override;
+
 
 signals:
     void DBCOnnectionButtonClicked();
@@ -44,11 +42,13 @@ signals:
     void ShowExperimentsListButtonIsClicked();
     void ShowAppointmentsListButtonClicked();
     void ShowDatabasesListButtonClicked();
+    void ShowGroupsButtonClicked();
+
 
 
 
 private:
-    Ui::SidePanel *sidePanelUi;
+    //Ui::SidePanel *sidePanelUi;
     QPixmap btnPixMap;
     QIcon btnIcon;
     EUserRole eCurrentRole = eUNKNOWN;

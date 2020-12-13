@@ -4,10 +4,12 @@
 
 // GUI Components size ratio
 //Side panel
-#define SIDE_PANEL_WIDTH_RATIO                  0.111
-#define SIDE_PANEL_HEIGHT_RATIO                 0.571
-#define SIDE_PANEL_BUTTON_HEIGHT_RATIO          0.2
-#define SIDE_PANEL_ICON_RATIO                   0.1
+#define SIDE_PANEL_WIDTH_RATIO                  0.12
+#define SIDE_PANEL_HEIGHT_RATIO                 0.8
+#define SIDE_PANEL_BUTTON_HEIGHT_RATIO          0.8
+#define SIDE_PANEL_ICON_RATIO                   0.5
+#define SIDE_PANEL_MARGIN_RATIO                 0.1
+#define SIDE_PANEL_HEIGHT_TO_WIDTH              80
 
 
 // Main widget
@@ -31,7 +33,7 @@
 
 
 // list form WidGet
-#define TABLE_VIEW_WIDTH_RATIO                  0.78
+#define TABLE_VIEW_WIDTH_RATIO                  0.9
 #define TABLE_VIEW_ICON_RATIO                   0.05
 
 class MGAResizableWidget

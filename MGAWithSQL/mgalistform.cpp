@@ -42,6 +42,13 @@ MGAListForm::MGAListForm(QWidget *parent, EListType eList) :
             BUTTONS_SETUP_DEFAULT
         }
         break;
+    case eGroupsList:
+        {
+            GROUPSS_LIST_FORM_SETUP
+            BUTTONS_SETUP_COLLABORATION
+
+        }
+        break;
     default:
         break;
     }
@@ -70,7 +77,14 @@ void MGAListForm::on_userListWidget_cellPressed(int row, int column)
 
 void MGAListForm::SelectionIsChanged(const int id)
 {
-    ENABLE_BUTTONS
+    if(eCurrentListType == eGroupsList)
+    {
+        ENABLE_BUTTONS_COLLABORATION
+    }
+    else
+    {
+        ENABLE_BUTTONS
+    }
     nCurrentSelecttonID = id;
 }
 
@@ -88,7 +102,7 @@ void MGAListForm::UpdateSizes(int w, int h)
     this->resize(w,h);
     userListFormUi->pageTitle->resize(w-20,50);
     userListFormUi->userListWidget->resize(TABLE_VIEW_WIDTH_RATIO*w, h-260);
-    UpdateTableColumsWidth(TABLE_VIEW_WIDTH_RATIO*w);
+    UpdateTableColumsWidth(TABLE_VIEW_WIDTH_RATIO * userListFormUi->userListWidget->width());
     SetIconSize(h*TABLE_VIEW_ICON_RATIO);
     emit SizeChanged(w,h);
 }
@@ -107,29 +121,36 @@ void MGAListForm::on_editUserButton_clicked()
 
 void MGAListForm::on_addUserButton_clicked()
 {
-    try
+    if(eCurrentListType == eGroupsList)
     {
-        if(!hasAddNewObjectForm)
+
+    }
+    else
+    {
+        try
         {
-           addNewObject = new AddNewObjectForm(this, eCurrentListType);
-           connect(addNewObject, SIGNAL(NewObjectIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
-           connect(this, SIGNAL(SizeChanged(int, int)),addNewObject ,SLOT(OnSizeChange(const int, const int)));
-           addNewObject->setModal(true);
-           addNewObject->exec();
+            if(!hasAddNewObjectForm)
+            {
+               addNewObject = new AddNewObjectForm(this, eCurrentListType);
+               connect(addNewObject, SIGNAL(NewObjectIsToBeAdded()),this ,SLOT(NewObjectIsReady()));
+               connect(this, SIGNAL(SizeChanged(int, int)),addNewObject ,SLOT(OnSizeChange(const int, const int)));
+               addNewObject->setModal(true);
+               addNewObject->exec();
+            }
+
+            else
+            {
+                emit SizeChanged(this->width(),this->height());
+                addNewObject->open();
+            }
+        }
+        catch(int e)
+        {
+            qDebug()<<e;
         }
 
-        else
-        {
-            emit SizeChanged(this->width(),this->height());
-            addNewObject->open();
-        }
+        hasAddNewObjectForm = true;
     }
-    catch(int e)
-    {
-        qDebug()<<e;
-    }
-
-    hasAddNewObjectForm = true;
 }
 
 void MGAListForm::NewObjectIsReady()

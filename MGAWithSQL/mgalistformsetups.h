@@ -20,6 +20,18 @@
     SET_BTN_ICON(deleteUserButton,IMG_DELETE_DEFAULT)\
     DISABLE_BUTTONS
 
+#define BUTTONS_SETUP_COLLABORATION\
+    SET_BTN_ICON(addUserButton,IMG_COLLABORATION)\
+    userListFormUi->editUserButton->setHidden(true);\
+    userListFormUi->deleteUserButton->setHidden(true);\
+    DISABLE_BUTTONS_COLLABORATION
+
+#define DISABLE_BUTTONS_COLLABORATION\
+    userListFormUi->addUserButton->setEnabled(false);\
+
+#define ENABLE_BUTTONS_COLLABORATION\
+    userListFormUi->addUserButton->setEnabled(true);\
+
 #define MEMBERS_LIST_FORM_SETUP\
     userListFormUi->userListWidget->insertColumn(0);\
     userListFormUi->userListWidget->insertColumn(1);\
@@ -97,6 +109,26 @@
     userListFormUi->userListWidget->setHorizontalHeaderLabels(q3);\
     FIXED_SETUPS\
     userListFormUi->pageTitle->setText(TXT_USER_LIST);\
+
+
+#define GROUPSS_LIST_FORM_SETUP\
+    userListFormUi->userListWidget->insertColumn(0);\
+    userListFormUi->userListWidget->insertColumn(1);\
+    userListFormUi->userListWidget->insertColumn(2);\
+    userListFormUi->userListWidget->insertColumn(3);\
+    userListFormUi->userListWidget->insertColumn(4);\
+    userListFormUi->userListWidget->insertColumn(5);\
+    QStringList q3;\
+    q3.append(TXT_GROUPE_NAME);\
+    q3.append(TXT_UNIVERSITY_NAME);\
+    q3.append(TXT_DEPARTMENT);\
+    q3.append(TXT_LEADERS);\
+    q3.append(TXT_INTERESTS);\
+    q3.append(TXT_DESCRIPTION);\
+    userListFormUi->userListWidget->setHorizontalHeaderLabels(q3);\
+    FIXED_SETUPS\
+    userListFormUi->pageTitle->setText(TXT_GROUPS_LIST);\
+
 
 #define SET_BTN_ICON(btn,iconURI)\
     btnIcon = QIcon(iconURI);\

@@ -27,6 +27,8 @@
         <file>Resources/Icons/resetsize.png</file>
         <file>Resources/Icons/cancel.png</file>
         <file>Resources/Icons/ok.png</file>
+        <file>Resources/Icons/cooperation.png</file>
+        <file>Resources/Icons/grouptask.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

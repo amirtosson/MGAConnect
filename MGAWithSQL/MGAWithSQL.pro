@@ -17,10 +17,13 @@ INCLUDEPATH += MGACommonGUIViews/
 
 SOURCES += main.cpp\
     MGACommonGUIViews/mganewobjectformview.cpp \
+    MGACommonGUIViews/mgasidepanelview.cpp \
     MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
+    QrCode.cpp \
         mainwindow.cpp \
     dbconnectform.cpp \
+    mgachatform.cpp \
     sidepanel.cpp \
     optionform.cpp \
     mgawidgetextension.cpp \
@@ -35,10 +38,14 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h\
     MGACommonGUIViews/mganewobjectformview.h \
+    MGACommonGUIViews/mgasidepanelview.h \
     MGAControls/MGAResizableWidgetAbstract.h \
+    MGAObjects/MGAObject.h \
     MGAObjects/mgaappointment.h \
     MGAObjects/mgaexperiment.h \
+    QrCode.hpp \
     dbconnectform.h \
+    mgachatform.h \
     sidepanel.h \
     mainwindowstyle.h \
     optionform.h \
@@ -68,6 +75,7 @@ HEADERS  += mainwindow.h\
 
 FORMS    += mainwindow.ui \
     dbconnectform.ui \
+    mgachatform.ui \
     sidepanel.ui \
     optionform.ui \
     mgalistform.ui \

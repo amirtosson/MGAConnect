@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QScreen>
-#include <QApplication>
-#include <QStyleFactory>
+#include "MGAObject.h"
+
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    IntializeChatDialog(this);
     IntializeSidePanel(ui->sideToolBoxWidget);
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
     connect(_sidePanal, SIGNAL(ShowMembersListButtonClicked()),this ,SLOT(ShowMemberListClicked()));
@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowUserListButtonIsClicked()),this ,SLOT(ShowUserListClicked()));
     connect(_sidePanal, SIGNAL(ShowExperimentsListButtonIsClicked()),this ,SLOT(ShowExperimentsListClicked()));
     connect(_sidePanal, SIGNAL(ShowAppointmentsListButtonClicked()),this ,SLOT(ShowAppointmentsListClicked()));
+    connect(_sidePanal, SIGNAL(ShowGroupsButtonClicked()),this ,SLOT(ShowGroupsListClicked()));
+
     connect(this, SIGNAL(SizeChanged(int,int)),_sidePanal ,SLOT(OnSizeChange(const int, const int)));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
     connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
@@ -117,6 +119,20 @@ void MainWindow::ShowAppointmentsListClicked()
     }
     ui->widget->hide();
     ShowAppointmentsList();
+}
+
+void MainWindow::ShowGroupsListClicked()
+{
+    HideAll();
+    if(!hasGroupsListForm)
+    {
+        IntializeGroupsListForm(ui->mainWidget);
+        //connect(_appointmentsListForm, SIGNAL(NewObjectIsReadyToAdd(EListType)),this ,SLOT(AddNewObjectClicked(const EListType)));
+        connect(this, SIGNAL(SizeChanged(int,int)),_groupsListForm ,SLOT(OnSizeChange(const int, const int)));
+        emit SizeChanged(this->size().width(),this->size().height());
+    }
+    ui->widget->hide();
+    ShowGroupsList();
 }
 
 void MainWindow::StyleHasBeenChanged()
@@ -241,9 +257,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    if ((this->isFullScreen())
-        ||((event->size().width() == defaultGeometry.width())
-           && (event->size().height() == defaultGeometry.height())))
+    if ((this->isFullScreen()))
     {
         return;
     }
@@ -278,8 +292,8 @@ void MainWindow::UpdateSizes(int w, int h)
     style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*w);
     this->setStyleSheet(style);
     ui->mainWidget->setGeometry(0.14*w, 10 , MAIN_WIDGET_WIDTH_RATIO*w , MAIN_WIDGET_HEIGHT_RATIO*h);
-    ui->sideToolBoxWidget->setGeometry(10,10,0.1*w,0.8*h);
-    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*h,250,40);
+    ui->sideToolBoxWidget->setGeometry(10,10,0.12*w,0.8*h);
+    ui->sidePanelStatuscheckBox->setGeometry(10,0.85*h,250,40);
     emit SizeChanged(w,h);
 }
 
@@ -287,3 +301,33 @@ void MainWindow::on_actionResetSize_triggered()
 {
     ResetToOriginalSize();
 }
+
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+//    QPixmap map(100,100);
+
+
+//    QPainter Painter(this);
+
+//    Painter.fillRect(event->rect(), QBrush(QColor(64, 32, 64)));
+//    using namespace qrcodegen;
+//    qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText("https://google.com", qrcodegen::QrCode::Ecc::MEDIUM);
+
+//    Painter.scale(5,5);
+//Painter.setBackground(QBrush(Qt::white));
+//    for (int y = 0; y < qr.getSize(); y++) {
+//        for (int x = 0; x < qr.getSize(); x++) {
+//            int color = qr.getModule(x, y);  // 0 for white, 1 for black
+//            if (color == 1) {Painter.setPen(QPen(Qt::black));}
+//            else {
+//               Painter.setPen(QPen(Qt::white));
+//            }
+
+//            Painter.drawPoint(QPoint(x+130,y+100));
+//        }
+//    }
+
+
+}
+
+

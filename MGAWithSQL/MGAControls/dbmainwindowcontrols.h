@@ -13,6 +13,8 @@
 #include "mainwindowresources.h"
 #include "mgalistform.h"
 #include "mgaserverclientmsg.h"
+#include "mgachatform.h"
+
 
 class DBMainWindowControls
 {
@@ -24,6 +26,7 @@ public:
 
 public:
     // Components intialization
+    bool IntializeChatDialog(QWidget *parent);
     bool IntializeSidePanel(QWidget *sidePanelWidget);
     bool IntializeDBConnectionForm(QWidget *dbConnectionWidget);
     bool IntializeMembersListForm(QWidget *membersListWidget);    
@@ -31,6 +34,8 @@ public:
     bool IntializeUsersListForm(QWidget *usersListWidget);
     bool IntializeExperimentsListForm(QWidget *usersListWidget);
     bool IntializeAppointmentsListForm(QWidget *appointsListWidget);
+    bool IntializeGroupsListForm(QWidget *groupsListWidget);
+
 
 
     bool IntializeDBFOrmConnections();
@@ -39,6 +44,7 @@ public:
 public:
     bool ShowMembersList();
     bool ShowDatabasesList();
+    bool ShowGroupsList();
     bool ShowUsersList();
     bool ShowExperimentsList();
     bool ShowAppointmentsList();
@@ -66,6 +72,9 @@ protected:
     MGAListForm *_usersListForm;
     MGAListForm *_experimentsListForm;
     MGAListForm *_appointmentsListForm;
+    MGAListForm *_groupsListForm;
+    MGAChatForm *_chatForm;
+
 
 
 
@@ -76,6 +85,8 @@ protected:
     bool hasUsersListForm =false;
     bool hasExpListForm =false;
     bool hasAppointListForm =false;
+    bool hasGroupsListForm =false;
+
 
 
     bool IsUsersListChanged =false;

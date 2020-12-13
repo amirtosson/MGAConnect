@@ -19,6 +19,10 @@
 #define TXT_DESCRIPTION                 "Description"
 #define TXT_GUESTS                      "Guests"
 
+#define TXT_GROUPE_NAME                 "Group name"
+#define TXT_LEADERS                     "Leader/s"
+#define TXT_INTERESTS                   "Interests"
+#define TXT_DEPARTMENT                  "Department"
 
 
 #define TXT_ROLE                        "Role"
@@ -29,6 +33,7 @@
 #define TXT_MEMBER_LIST                 "MGA Members List"
 #define TXT_EXP_LIST                    "MGA Experiments List"
 #define TXT_APPOINTS_LIST               "MGA Appointments List"
+#define TXT_GROUPS_LIST                 "MGA Groups List"
 
 
 
@@ -41,6 +46,9 @@
 #define IMG_ADD_USER                    ":/buttonIcons/Resources/Icons/adduser.png"
 #define IMG_CHANGE_USER                 ":/buttonIcons/Resources/Icons/edituser.png"
 #define IMG_DELETE_USER                 ":/buttonIcons/Resources/Icons/deleteuser.png"
+
+#define IMG_COLLABORATION                ":/buttonIcons/Resources/Icons/grouptask.png"
+
 
 #define IMG_ADD_DEFAULT                 ":/buttonIcons/Resources/Icons/adddefualt.png"
 #define IMG_CHANGE_DEFAULT              ":/buttonIcons/Resources/Icons/editdefault.png"

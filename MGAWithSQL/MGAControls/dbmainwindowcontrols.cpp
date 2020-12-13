@@ -12,6 +12,14 @@ DBMainWindowControls::~DBMainWindowControls()
     if(hasDatabasesListForm)delete _databasesListForm;
 }
 
+bool DBMainWindowControls::IntializeChatDialog(QWidget *parent)
+{
+    _chatForm = new MGAChatForm(parent);
+    _chatForm->setWindowFlags(Qt::Window | Qt::FramelessWindowHint );
+    _chatForm->show();
+    return true;
+}
+
 bool DBMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
 {
     _sidePanal = new SidePanel(sidePanelWidget);
@@ -61,6 +69,12 @@ bool DBMainWindowControls::IntializeAppointmentsListForm(QWidget *appointsListWi
     return true;
 }
 
+bool DBMainWindowControls::IntializeGroupsListForm(QWidget *groupsListWidget)
+{
+    _groupsListForm = new MGAListForm(groupsListWidget, eGroupsList);
+    return true;
+}
+
 bool DBMainWindowControls::AddNewMGAUserToDB()
 {
     _dbForm->AddNewMGAUsers(_usersListForm->GetTheNewUser());
@@ -97,6 +111,13 @@ bool DBMainWindowControls::ShowDatabasesList()
     _databasesListForm->show();
     return true;
 
+}
+
+bool DBMainWindowControls::ShowGroupsList()
+{
+    _groupsListForm->show();
+    hasGroupsListForm = true;
+    return true;
 }
 
 bool DBMainWindowControls::ShowUsersList()
