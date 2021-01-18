@@ -14,4 +14,10 @@
 #define STYLE_DARK_FILE_URL                     ":/dark/Resources/dark.txt"
 
 #define STYLE_BREEZE_FILE_URL                   ":/dark/Resources/breeze.txt"
+
+#define ICON_CHAT_URL                           ":/buttonIcons/Resources/Icons/chat.png"
+#define ICON_NO_CHAT_URL                        ":/buttonIcons/Resources/Icons/nochat.png"
+
+
+
 #endif // MAINWINDOWRESOURCES_H

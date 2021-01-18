@@ -213,7 +213,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -236,6 +236,7 @@
    <addaction name="actionFullScreen"/>
    <addaction name="actionOptions"/>
    <addaction name="actionExit"/>
+   <addaction name="actionChat"/>
    <addaction name="actionResetSize"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
@@ -283,6 +284,15 @@
    </property>
    <property name="toolTip">
     <string>Back to the original size</string>
+   </property>
+  </action>
+  <action name="actionChat">
+   <property name="icon">
+    <iconset resource="imageresources.qrc">
+     <normaloff>:/buttonIcons/Resources/Icons/nochat.png</normaloff>:/buttonIcons/Resources/Icons/nochat.png</iconset>
+   </property>
+   <property name="text">
+    <string>Chat</string>
    </property>
   </action>
  </widget>

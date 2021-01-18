@@ -331,3 +331,25 @@ void MainWindow::paintEvent(QPaintEvent *event)
 }
 
 
+
+void MainWindow::on_actionChat_triggered()
+{
+    if(HasChatWindow)
+    {
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(ICON_NO_CHAT_URL), QSize(), QIcon::Normal, QIcon::Off);
+        ui->actionChat->setIcon(icon);
+        HasChatWindow = !HasChatWindow;
+        ShowChatWindow();
+    }
+    else
+    {
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(ICON_CHAT_URL), QSize(), QIcon::Normal, QIcon::Off);
+        ui->actionChat->setIcon(icon);
+        HasChatWindow = !HasChatWindow;
+        HideChatWindow();
+    }
+
+}
+

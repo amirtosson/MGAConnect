@@ -35,13 +35,7 @@ public:
     bool IntializeExperimentsListForm(QWidget *usersListWidget);
     bool IntializeAppointmentsListForm(QWidget *appointsListWidget);
     bool IntializeGroupsListForm(QWidget *groupsListWidget);
-
-
-
     bool IntializeDBFOrmConnections();
-
-
-public:
     bool ShowMembersList();
     bool ShowDatabasesList();
     bool ShowGroupsList();
@@ -53,9 +47,9 @@ public:
     bool AddNewMGAExpToDB();
     bool AddNewMGAAppointmentToDB();
     void HideAll();
-
-public:
     void SetLoginUserRole();
+    void HideChatWindow();
+    void ShowChatWindow();
 
 
 public:
@@ -75,23 +69,16 @@ protected:
     MGAListForm *_groupsListForm;
     MGAChatForm *_chatForm;
 
-
-
-
     bool hasDBForm = false;
     bool hasOptionForm = false;
-    bool hasMembersListForm =false;
-    bool hasDatabasesListForm =false;
-    bool hasUsersListForm =false;
-    bool hasExpListForm =false;
-    bool hasAppointListForm =false;
-    bool hasGroupsListForm =false;
-
-
-
-    bool IsUsersListChanged =false;
-
-
+    bool hasMembersListForm = false;
+    bool hasDatabasesListForm = false;
+    bool hasUsersListForm = false;
+    bool hasExpListForm = false;
+    bool hasAppointListForm = false;
+    bool hasGroupsListForm = false;
+    bool IsUsersListChanged = false;
+    bool HasChatWindow = true;
 };
 
 #endif // DBMAINWINDOWCONTROLS_H

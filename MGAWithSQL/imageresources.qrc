@@ -29,6 +29,11 @@
         <file>Resources/Icons/ok.png</file>
         <file>Resources/Icons/cooperation.png</file>
         <file>Resources/Icons/grouptask.png</file>
+        <file>Resources/Icons/chat.png</file>
+        <file>Resources/Icons/nochat.png</file>
+        <file>Resources/Icons/collapse.png</file>
+        <file>Resources/Icons/expand.png</file>
+        <file>Resources/Icons/icon-chat.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

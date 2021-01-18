@@ -54,10 +54,9 @@ private slots:
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
     void on_actionFullScreen_triggered();
     void on_actionExit_triggered();
-
     void on_actionResetSize_triggered();
-
     virtual void paintEvent(QPaintEvent *event);
+    void on_actionChat_triggered();
 
 
 signals:

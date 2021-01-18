@@ -161,6 +161,16 @@ void DBMainWindowControls::SetLoginUserRole()
     _sidePanal->SetCurrentRole(_dbForm->GetCurrentUserRole());
 }
 
+void DBMainWindowControls::HideChatWindow()
+{
+    _chatForm->hide();
+}
+
+void DBMainWindowControls::ShowChatWindow()
+{
+    _chatForm->show();
+}
+
 EUserRole DBMainWindowControls::GetLoginUserRole()
 {
     return _dbForm->GetCurrentUserRole();
