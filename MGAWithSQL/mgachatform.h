@@ -32,6 +32,9 @@ protected:
 private slots:
     void on_resizeBtn_clicked();
     void on_chatBotMGAChat_clicked();
+    void on_minimizeBtn_clicked();
+    void on_closeBtn_clicked();
+
     void NoMSGBoxIsOpened();
 
 private:
@@ -43,7 +46,7 @@ private:
     QPoint _mousePosition;
     QRect closedRect;
     QRect openedRect;
-    //TODO: make it unique. only one chat form dialog is aloowed (for now)
+    //TODO: make it unique. only one chat form dialog is allowed (for now)
     MGAChatMSGDialog *_chatForm;
 };
 

@@ -1,5 +1,6 @@
 #include "mgachatform.h"
 #include "ui_mgachatform.h"
+#include <QDebug>
 
 MGAChatForm::MGAChatForm(QWidget *parent) :
     QWidget(parent),
@@ -8,6 +9,9 @@ MGAChatForm::MGAChatForm(QWidget *parent) :
 {
     setupUi(this);
     resizeBtn->setCursor(QCursor(Qt::ArrowCursor));
+    minimizeBtn->setCursor(QCursor(Qt::ArrowCursor));
+    closeBtn->setCursor(QCursor(Qt::ArrowCursor));
+    scrollArea->setCursor(QCursor(Qt::ArrowCursor));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -71,18 +75,25 @@ void MGAChatForm::on_resizeBtn_clicked()
         //this->showMinimized();
         //this->setGeometry(closedRect);
     }
-
-
 }
 
 void MGAChatForm::on_chatBotMGAChat_clicked()
 {
     this->setWindowOpacity(0.5);
     this->setEnabled(false);
-    _chatForm = new MGAChatMSGDialog();
+    _chatForm = new MGAChatMSGDialog(this->parentWidget());
     connect(_chatForm, SIGNAL(MSGBoxIsClosed()),this ,SLOT(NoMSGBoxIsOpened()));
-
     _chatForm->show();
+}
+
+void MGAChatForm::on_minimizeBtn_clicked()
+{
+    this->showMinimized();
+}
+
+void MGAChatForm::on_closeBtn_clicked()
+{
+    this->close();
 }
 
 void MGAChatForm::NoMSGBoxIsOpened()

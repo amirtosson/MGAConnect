@@ -21,6 +21,8 @@ public:
 private slots:
     virtual void on_resizeBtn_clicked()=0;
     virtual void on_chatBotMGAChat_clicked()=0;
+    virtual void on_minimizeBtn_clicked()=0;
+    virtual void on_closeBtn_clicked()=0;
 
 protected:
     QToolButton *resizeBtn;

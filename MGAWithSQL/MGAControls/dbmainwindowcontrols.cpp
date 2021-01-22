@@ -154,6 +154,7 @@ void DBMainWindowControls::HideAll()
     if(hasUsersListForm)_usersListForm->hide();
     if(hasExpListForm)_experimentsListForm->hide();
     if(hasAppointListForm)_appointmentsListForm->hide();
+    if(hasGroupsListForm)_groupsListForm->hide();
 }
 
 void DBMainWindowControls::SetLoginUserRole()

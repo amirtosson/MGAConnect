@@ -24,7 +24,7 @@ void MGAChatFormView::setupUi(QWidget *ChatForm)
 
     }
 
-
+    ChatForm->setWindowTitle("PPPPP");
     if (ChatForm->objectName().isEmpty())
     {
         ChatForm->setObjectName(QString::fromUtf8("MGAChatForm"));
@@ -60,6 +60,13 @@ void MGAChatFormView::setupUi(QWidget *ChatForm)
     QIcon icon1;
     icon1.addFile(QString::fromUtf8(URL_EXPAND_ICON), QSize(), QIcon::Normal, QIcon::On);
     resizeBtn->setIcon(icon1);
+    QIcon icon2;
+    icon2.addFile(QString::fromUtf8(URL_MINIMIZE_ICON), QSize(), QIcon::Normal, QIcon::On);
+    minimizeBtn->setIcon(icon2);
+    QIcon icon3;
+    icon3.addFile(QString::fromUtf8(URL_CLOSE_ICON), QSize(), QIcon::Normal, QIcon::On);
+    closeBtn->setIcon(icon3);
+
 
     QMetaObject::connectSlotsByName(ChatForm);
 
