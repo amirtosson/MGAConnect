@@ -51,6 +51,8 @@ private slots:
     void AddNewObjectClicked(EListType eList);
     void AddNewMemberClicked();
     void AddNewExpClicked();
+    void OnChatBotMSGSent(QString botMSG);
+
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
     void on_actionFullScreen_triggered();
     void on_actionExit_triggered();
@@ -59,8 +61,11 @@ private slots:
     void on_actionChat_triggered();
 
 
+
 signals:
     void SizeChanged(int w, int h);
+    void MSGRecieved(QString chatMSG, int senderID);
+
 
 private:
     Ui::MainWindow *ui;

@@ -17,13 +17,14 @@ public:
 
 private slots:
     void on_MGAChatMSGDialog_finished(int result);
-
     void on_msgTextEditBox_textChanged();
-
     void on_sendButton_clicked();
+
+    void OnMSGRecieved(QString chatMsg);
 
 signals:
     void MSGBoxIsClosed();
+    void MSGHasBeenSent(QString chatMsg);
 
 private:
     Ui::MGAChatMSGDialog *ui;

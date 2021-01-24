@@ -24,7 +24,7 @@ void MGAChatFormView::setupUi(QWidget *ChatForm)
 
     }
 
-    ChatForm->setWindowTitle("PPPPP");
+    ChatForm->setWindowTitle(TXT_MGA_CHAT_TITLE);
     if (ChatForm->objectName().isEmpty())
     {
         ChatForm->setObjectName(QString::fromUtf8("MGAChatForm"));
@@ -48,6 +48,7 @@ void MGAChatFormView::setupUi(QWidget *ChatForm)
     scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
     scrollAreaWidgetContents->setGeometry(QRect(0, 0, 279, 159));
     chatBotMGAChat->setObjectName(QString::fromUtf8("chatBotMGAChat"));
+    chatBotMGAChat->setText(TXT_MGA_CHATBOT);
     chatBotMGAChat->setGeometry(QRect(0, 0, 279, 36));
     chatBotMGAChat->setLayoutDirection(Qt::LeftToRight);
     scrollArea->setWidget(scrollAreaWidgetContents);

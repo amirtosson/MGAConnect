@@ -3,6 +3,8 @@
 
 //text
 #define TXT_MGA_CHATBOT                             "MGA Chatbot"
+#define TXT_MGA_CHAT_TITLE                           "MGA Chat"
+
 
 
 

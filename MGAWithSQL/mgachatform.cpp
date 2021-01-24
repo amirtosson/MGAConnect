@@ -20,6 +20,11 @@ MGAChatForm::MGAChatForm(QWidget *parent) :
     closedRect = this->geometry();
     openedRect.setRect(closedRect.bottomRight().x() - 300, closedRect.bottomRight().y()- 420, 305,400);
     HideBtns();
+    _chatForm = new MGAChatMSGDialog(this->parentWidget());
+    connect(_chatForm, SIGNAL(MSGBoxIsClosed()),this ,SLOT(NoMSGBoxIsOpened()));
+    connect(_chatForm, SIGNAL(MSGHasBeenSent(QString)),this ,SLOT(OnMSGHasBeenSent(QString)));
+    connect(this, SIGNAL(ChatBotMSGHasBeenRecieved(QString)),_chatForm ,SLOT(OnMSGRecieved(QString)));
+
 }
 
 MGAChatForm::~MGAChatForm()
@@ -81,8 +86,7 @@ void MGAChatForm::on_chatBotMGAChat_clicked()
 {
     this->setWindowOpacity(0.5);
     this->setEnabled(false);
-    _chatForm = new MGAChatMSGDialog(this->parentWidget());
-    connect(_chatForm, SIGNAL(MSGBoxIsClosed()),this ,SLOT(NoMSGBoxIsOpened()));
+    MSGRecieverID = -1;
     _chatForm->show();
 }
 
@@ -94,6 +98,19 @@ void MGAChatForm::on_minimizeBtn_clicked()
 void MGAChatForm::on_closeBtn_clicked()
 {
     this->close();
+}
+
+void MGAChatForm::OnMSGHasBeenSent(QString chatMsg)
+{
+    if(MSGRecieverID == -1)
+    {
+        emit ChatBotMSGHasBeenSent(chatMsg);
+    }
+}
+
+void MGAChatForm::OnMSGHasBeenRecieved(QString chatMsg, int senderID)
+{
+    if(senderID == -1) emit ChatBotMSGHasBeenRecieved(chatMsg);
 }
 
 void MGAChatForm::NoMSGBoxIsOpened()

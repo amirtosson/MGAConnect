@@ -21,8 +21,13 @@ public:
     explicit MGAChatForm(QWidget *parent = nullptr);
     ~MGAChatForm();
 
-private:
+//private:
     //Ui::MGAChatForm *ui;
+
+signals:
+    void ChatBotMSGHasBeenSent(QString chatMsg);
+    void ChatBotMSGHasBeenRecieved(QString chatMsg);
+
 
 protected:
     virtual void mousePressEvent( QMouseEvent *e );
@@ -34,6 +39,9 @@ private slots:
     void on_chatBotMGAChat_clicked();
     void on_minimizeBtn_clicked();
     void on_closeBtn_clicked();
+
+    void OnMSGHasBeenSent(QString chatMsg);
+    void OnMSGHasBeenRecieved(QString chatMsg, int senderID);
 
     void NoMSGBoxIsOpened();
 
@@ -48,6 +56,8 @@ private:
     QRect openedRect;
     //TODO: make it unique. only one chat form dialog is allowed (for now)
     MGAChatMSGDialog *_chatForm;
+    //-1 for Bot
+    int MSGRecieverID = -1;
 };
 
 #endif // MGACHATFORM_H

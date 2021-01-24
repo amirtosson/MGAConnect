@@ -37,7 +37,18 @@ void MGAChatMSGDialog::on_sendButton_clicked()
 {
     QString msg = ui->msgTextEditBox->toPlainText();
     msgHist += "\n";
+    msgHist += "you: ";
     msgHist += msg;
+    emit MSGHasBeenSent(msg);
     ui->msgBrowser->setText(msgHist);
     ui->msgTextEditBox->clear();
+}
+
+void MGAChatMSGDialog::OnMSGRecieved(QString chatMsg)
+{
+    msgHist += "\n";
+    msgHist += "\n";
+    msgHist += "MGA: ";
+    msgHist += chatMsg;
+    ui->msgBrowser->setText(msgHist);
 }
