@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "MGAObject.h"
-
+#include <QDesktopServices>
 
 
 
@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     USE_STYLE(eCurrentStyle)
     defaultGeometry = this->geometry();
     UpdateSizes(defaultGeometry.width(),defaultGeometry.height());
+
 }
 
 MainWindow::~MainWindow()
@@ -362,3 +363,9 @@ void MainWindow::on_actionChat_triggered()
 
 }
 
+
+void MainWindow::on_OpenWebSiteButton_clicked()
+{
+    QString link = "https://www.tosson.net";
+    QDesktopServices::openUrl(QUrl(link));
+}

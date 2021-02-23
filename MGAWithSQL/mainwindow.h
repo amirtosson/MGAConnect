@@ -62,6 +62,8 @@ private slots:
 
 
 
+    void on_OpenWebSiteButton_clicked();
+
 signals:
     void SizeChanged(int w, int h);
     void MSGRecieved(QString chatMSG, int senderID);
