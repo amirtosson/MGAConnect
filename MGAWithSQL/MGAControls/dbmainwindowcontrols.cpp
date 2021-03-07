@@ -14,30 +14,76 @@ DBMainWindowControls::~DBMainWindowControls()
 
 bool DBMainWindowControls::IntializeChatDialog(QWidget *parent)
 {
-    _chatForm = new MGAChatForm(parent);
-    _chatForm->setWindowFlags(Qt::Window | Qt::FramelessWindowHint );
-    _chatForm->show();
+    try
+    {
+        _chatForm = new MGAChatForm(parent);
+        _chatForm->setWindowFlags(Qt::Window | Qt::FramelessWindowHint );
+        _chatForm->show();
+    }
+    catch (...)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool DBMainWindowControls::IntializeChatbot()
+{
+    try
+    {
+        socket = new QTcpSocket();
+        _chatbotServer = new MGAChatBotServerControls(socket);
+    }
+    catch (...)
+    {
+        return false;
+    }
     return true;
 }
 
 bool DBMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
 {
-    _sidePanal = new SidePanel(sidePanelWidget);
-    _sidePanal->hide();
+    try
+    {
+        _sidePanal = new SidePanel(sidePanelWidget);
+        _sidePanal->hide();
+    }
+    catch (...)
+    {
+        return false;
+    }
+
     return true;
 }
 
 bool DBMainWindowControls::IntializeDBConnectionForm(QWidget *dbConnectionWidget)
 {
-    _dbForm = new DBConnectForm(dbConnectionWidget);
-    hasDBForm = true;
+    try
+    {
+        _dbForm = new DBConnectForm(dbConnectionWidget);
+        hasDBForm = true;
+    }
+    catch (...)
+    {
+        return false;
+    }
+
     return true;
 
 }
 
 bool DBMainWindowControls::IntializeMembersListForm(QWidget *membersListWidget)
 {
-    _membersListForm = new MGAListForm(membersListWidget, eMemberList);
+
+    try
+    {
+        _membersListForm = new MGAListForm(membersListWidget, eMemberList);
+    }
+    catch (...)
+    {
+        return false;
+    }
     return true;
 
 }

@@ -2,12 +2,11 @@
 #define MGACHATMSGDIALOG_H
 
 #include <QDialog>
+#include "mgachatmsgdialogview.h"
 
-namespace Ui {
-class MGAChatMSGDialog;
-}
 
-class MGAChatMSGDialog : public QDialog
+
+class MGAChatMSGDialog : public QDialog, MGAChatMSGDialogView
 {
     Q_OBJECT
 
@@ -27,7 +26,6 @@ signals:
     void MSGHasBeenSent(QString chatMsg);
 
 private:
-    Ui::MGAChatMSGDialog *ui;
     QString msgHist;
 };
 

@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <utility>
 
 #include "dbconnectform.h"
 #include "sidepanel.h"
@@ -14,6 +15,7 @@
 #include "mgalistform.h"
 #include "mgaserverclientmsg.h"
 #include "mgachatform.h"
+#include "mgachatbotservercontrols.h"
 
 
 class DBMainWindowControls
@@ -27,6 +29,7 @@ public:
 public:
     // Components intialization
     bool IntializeChatDialog(QWidget *parent);
+    bool IntializeChatbot();
     bool IntializeSidePanel(QWidget *sidePanelWidget);
     bool IntializeDBConnectionForm(QWidget *dbConnectionWidget);
     bool IntializeMembersListForm(QWidget *membersListWidget);    
@@ -68,6 +71,9 @@ protected:
     MGAListForm *_appointmentsListForm;
     MGAListForm *_groupsListForm;
     MGAChatForm *_chatForm;
+    MGAChatBotServerControls *_chatbotServer;
+    QTcpSocket *socket;
+
 
     bool hasDBForm = false;
     bool hasOptionForm = false;

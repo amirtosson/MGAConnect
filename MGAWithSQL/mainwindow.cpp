@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    IntializeChatDialog(this);
-    IntializeSidePanel(ui->sideToolBoxWidget);
+
+    if(!IntializeChatDialog(this) || !IntializeSidePanel(ui->sideToolBoxWidget) || !IntializeChatbot()) return;
+
     connect(_sidePanal, SIGNAL(DBCOnnectionButtonClicked()),this ,SLOT(DBConnectionSetUpClicked()));
     connect(_sidePanal, SIGNAL(ShowMembersListButtonClicked()),this ,SLOT(ShowMemberListClicked()));
     connect(_sidePanal, SIGNAL(ShowDatabasesListButtonClicked()),this ,SLOT(ShowDatabasesListClicked()));
@@ -20,8 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_sidePanal, SIGNAL(ShowAppointmentsListButtonClicked()),this ,SLOT(ShowAppointmentsListClicked()));
     connect(_sidePanal, SIGNAL(ShowGroupsButtonClicked()),this ,SLOT(ShowGroupsListClicked()));
 
-    connect(_chatForm, SIGNAL(ChatBotMSGHasBeenSent(QString)),this ,SLOT(OnChatBotMSGSent(QString)));
-    connect(this, SIGNAL(MSGRecieved(QString, int)),_chatForm ,SLOT(OnMSGHasBeenRecieved(QString, int)));
+    connect(_chatForm, SIGNAL(ChatBotMSGHasBeenSent(QString)),_chatbotServer ,SLOT(UserToChatBotMSGHasBeenSent(QString)));
+    connect(_chatbotServer, SIGNAL(MSGRecieved(QString, int)), _chatForm ,SLOT(OnMSGHasBeenRecieved(QString, int)));
 
 
     connect(this, SIGNAL(SizeChanged(int,int)),_sidePanal ,SLOT(OnSizeChange(const int, const int)));
@@ -204,11 +205,6 @@ void MainWindow::AddNewMemberClicked()
 void MainWindow::AddNewExpClicked()
 {
 
-}
-
-void MainWindow::OnChatBotMSGSent(QString botMSG)
-{
-    emit MSGRecieved("MSGRecieved", -1);
 }
 
 void MainWindow::on_actionOptions_triggered()

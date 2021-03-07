@@ -1,28 +1,24 @@
 #include "mainwindow.h"
+#include "mgaconnectsplashscreendefinations.h"
+#include "mgaconnectsplashscreen.h"
 #include <QApplication>
-#include <QSplashScreen>
-#include <QTimer>
+#include <QMovie>
 
 #include "SmtpMime"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //QSplashScreen *splash = new QSplashScreen;
-    //QPixmap g = QPixmap(":/logos/Resources/Images/amg.jpg");
-    //splash->setPixmap(g.scaled(1000,400,Qt::IgnoreAspectRatio)); // splash picture
-    //splash->setGeometry(10,10,1000,400);
-    //splash->show();
+    MGAConnectSplashScreen *splash = new MGAConnectSplashScreen(eStartingApp);
+    splash->ShowSplash(3000);
     qApp->setApplicationName("MGAConnect");
     qApp->setOrganizationName("MGA");
-
     QSettings::setDefaultFormat(QSettings::IniFormat);
     MainWindow w;
 
-    //QTimer::singleShot(2000, splash,SLOT(close())); // Timer
-    //QTimer::singleShot(2000,&w,SLOT(show()));
 
-    w.showNormal();
+
+    QTimer::singleShot(1000,&w, SLOT(showNormal()));
+    delete splash;
     return a.exec();
-
 }

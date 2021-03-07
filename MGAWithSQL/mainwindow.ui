@@ -64,7 +64,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="imageresources.qrc">
-    <normaloff>:/logos/Resources/Images/TLlogoWhiteBG.jpg</normaloff>:/logos/Resources/Images/TLlogoWhiteBG.jpg</iconset>
+    <normaloff>:/logos/Resources/Images/connectIcon.jpg</normaloff>:/logos/Resources/Images/connectIcon.jpg</iconset>
   </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
@@ -103,41 +103,38 @@
     <widget class="QWidget" name="widget" native="true">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>20</y>
-       <width>340</width>
-       <height>310</height>
+       <x>9</x>
+       <y>9</y>
+       <width>622</width>
+       <height>324</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <widget class="QToolButton" name="OpenWebSiteButton">
+     <widget class="QToolButton" name="toolButton">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>50</x>
         <y>0</y>
-        <width>341</width>
-        <height>311</height>
+        <width>541</width>
+        <height>321</height>
        </rect>
       </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="toolTip">
-       <string notr="true">Go To Website</string>
-      </property>
-      <property name="toolTipDuration">
-       <number>5</number>
-      </property>
-      <property name="whatsThis">
-       <string/>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/logos/Resources/Images/TLLogoImg.png);</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string>...</string>
+       <string/>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
       </property>
      </widget>
     </widget>
@@ -145,18 +142,18 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>330</y>
-       <width>631</width>
-       <height>111</height>
+       <y>420</y>
+       <width>201</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>Microsoft Uighur</family>
-       <pointsize>20</pointsize>
-       <weight>75</weight>
+       <family>MS Shell Dlg 2</family>
+       <pointsize>14</pointsize>
+       <weight>9</weight>
        <italic>false</italic>
-       <bold>true</bold>
+       <bold>false</bold>
        <underline>false</underline>
        <strikeout>false</strikeout>
        <kerning>true</kerning>
@@ -169,10 +166,10 @@
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">font: 75 14pt &quot;MS Shell Dlg 2&quot;;</string>
      </property>
      <property name="text">
-      <string>MGAConnect is a open-source software produced by TossonLab</string>
+      <string> TossonLab production</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>
@@ -194,6 +191,40 @@
      </property>
      <property name="textInteractionFlags">
       <set>Qt::NoTextInteraction</set>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="OpenWebSiteButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>320</y>
+       <width>100</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string notr="true">Go To Website</string>
+     </property>
+     <property name="toolTipDuration">
+      <number>5</number>
+     </property>
+     <property name="whatsThis">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>...</string>
      </property>
     </widget>
    </widget>

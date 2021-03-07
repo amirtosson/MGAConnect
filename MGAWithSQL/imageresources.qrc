@@ -46,12 +46,15 @@
         <file>Resources/Icons/members.png</file>
     </qresource>
     <qresource prefix="/logos">
-        <file>Resources/Images/amg.jpg</file>
         <file>Resources/Images/icon.jpg</file>
-        <file>Resources/Images/tlLogo.jpg</file>
         <file>Resources/Images/Icon2.jpg</file>
         <file>Resources/Images/TLlogoIcon.png</file>
         <file>Resources/Images/TLlogoWhiteBG.jpg</file>
         <file>Resources/Images/TLLogoImg.png</file>
+        <file>Resources/Images/connectIcon.jpg</file>
+        <file>Resources/Images/logofr1.jpg</file>
+        <file>Resources/Images/logofr2.jpg</file>
+        <file>Resources/Images/logofr3.jpg</file>
+        <file>Resources/Images/logoanimation.gif</file>
     </qresource>
 </RCC>

@@ -51,7 +51,6 @@ private slots:
     void AddNewObjectClicked(EListType eList);
     void AddNewMemberClicked();
     void AddNewExpClicked();
-    void OnChatBotMSGSent(QString botMSG);
 
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
     void on_actionFullScreen_triggered();
