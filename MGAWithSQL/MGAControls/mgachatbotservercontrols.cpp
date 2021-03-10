@@ -3,10 +3,16 @@
 #include <QByteArray>
 
 
-MGAChatBotServerControls::MGAChatBotServerControls(QTcpSocket *socketptr)
-    :socket(socketptr)
+MGAChatBotServerControls::MGAChatBotServerControls()
 {
-
+    try
+    {
+        socket = new QTcpSocket();
+    }
+    catch (...)
+    {
+        return;
+    }
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 
 

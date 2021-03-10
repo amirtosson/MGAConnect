@@ -13,6 +13,8 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QDialog>
+#include <QListWidget>
+
 
 #include <vector>
 
@@ -31,12 +33,11 @@ protected:
     QTextEdit *msgTextEditBox;
     QPushButton *sendButton;
     QWidget *widget;
-    QTextBrowser *msgBrowser;
-    QTextBrowser *msgBrowserMGA;
-    QWidget *gridLayoutWidget;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *horizontalSpacer;
-    QGridLayout *gridLayout;
+    QListWidget *listWidget;
+
+
+
+
 
 };
 

@@ -32,8 +32,7 @@ bool DBMainWindowControls::IntializeChatbot()
 {
     try
     {
-        socket = new QTcpSocket();
-        _chatbotServer = new MGAChatBotServerControls(socket);
+        _chatbotServer = new MGAChatBotServerControls();
     }
     catch (...)
     {

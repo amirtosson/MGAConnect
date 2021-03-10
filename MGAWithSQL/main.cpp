@@ -9,8 +9,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MGAConnectSplashScreen *splash = new MGAConnectSplashScreen(eStartingApp);
-    splash->ShowSplash(3000);
+    //MGAConnectSplashScreen *splash = new MGAConnectSplashScreen(eStartingApp);
+    //splash->ShowSplash(3000);
     qApp->setApplicationName("MGAConnect");
     qApp->setOrganizationName("MGA");
     QSettings::setDefaultFormat(QSettings::IniFormat);
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 
 
-    QTimer::singleShot(1000,&w, SLOT(showNormal()));
-    delete splash;
+    QTimer::singleShot(10,&w, SLOT(showNormal()));
+    //delete splash;
     return a.exec();
 }
