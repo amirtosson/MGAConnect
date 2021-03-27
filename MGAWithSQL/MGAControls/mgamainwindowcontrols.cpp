@@ -1,19 +1,19 @@
-#include "dbmainwindowcontrols.h"
+#include "mgamainwindowcontrols.h"
 #include <QSettings>
 
-void DBMainWindowControls::Clean()
+void MGAMainWindowControls::Clean()
 {
     if(hasDBForm)delete _dbForm;
     if(hasOptionForm)delete _OptionForm;
     if(hasDatabasesListForm)delete _databasesListForm;
 }
 
-void DBMainWindowControls::SetCurrentMainWindowInstanceControls(QMainWindow *mainWindow)
+void MGAMainWindowControls::SetCurrentMainWindowInstanceControls(QMainWindow *mainWindow)
 {
     currentMainWindow = mainWindow;
 }
 
-bool DBMainWindowControls::IntializeChatDialog(QWidget *parent)
+bool MGAMainWindowControls::IntializeChatDialog(QWidget *parent)
 {
     try
     {
@@ -29,7 +29,7 @@ bool DBMainWindowControls::IntializeChatDialog(QWidget *parent)
     return true;
 }
 
-bool DBMainWindowControls::IntializeSetupDialog(QWidget *parent)
+bool MGAMainWindowControls::IntializeSetupDialog(QWidget *parent)
 {
     try
     {
@@ -45,7 +45,7 @@ bool DBMainWindowControls::IntializeSetupDialog(QWidget *parent)
     return true;
 }
 
-bool DBMainWindowControls::IntializeChatbot()
+bool MGAMainWindowControls::IntializeChatbot()
 {
     try
     {
@@ -61,7 +61,7 @@ bool DBMainWindowControls::IntializeChatbot()
     return true;
 }
 
-bool DBMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
+bool MGAMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
 {
     try
     {
@@ -83,7 +83,7 @@ bool DBMainWindowControls::IntializeSidePanel(QWidget *sidePanelWidget)
     return true;
 }
 
-bool DBMainWindowControls::IntializeDBConnectionForm(QWidget *dbConnectionWidget)
+bool MGAMainWindowControls::IntializeDBConnectionForm(QWidget *dbConnectionWidget)
 {
     try
     {
@@ -103,7 +103,7 @@ bool DBMainWindowControls::IntializeDBConnectionForm(QWidget *dbConnectionWidget
 
 }
 
-bool DBMainWindowControls::IntializeMembersListForm(QWidget *membersListWidget)
+bool MGAMainWindowControls::IntializeMembersListForm(QWidget *membersListWidget)
 {
     try
     {
@@ -118,7 +118,7 @@ bool DBMainWindowControls::IntializeMembersListForm(QWidget *membersListWidget)
     return true;
 }
 
-bool DBMainWindowControls::IntializeDatabasesListForm(QWidget *databasesListWidget)
+bool MGAMainWindowControls::IntializeDatabasesListForm(QWidget *databasesListWidget)
 {
     _databasesListForm = new MGAListForm(databasesListWidget, eDatabasesList);
     hasDatabasesListForm = true;
@@ -126,7 +126,7 @@ bool DBMainWindowControls::IntializeDatabasesListForm(QWidget *databasesListWidg
 
 }
 
-bool DBMainWindowControls::IntializeUsersListForm(QWidget *usersListWidget)
+bool MGAMainWindowControls::IntializeUsersListForm(QWidget *usersListWidget)
 {
     try
     {
@@ -141,7 +141,7 @@ bool DBMainWindowControls::IntializeUsersListForm(QWidget *usersListWidget)
     return true;
 }
 
-bool DBMainWindowControls::IntializeExperimentsListForm(QWidget *usersListWidget)
+bool MGAMainWindowControls::IntializeExperimentsListForm(QWidget *usersListWidget)
 {
     try
     {
@@ -156,7 +156,7 @@ bool DBMainWindowControls::IntializeExperimentsListForm(QWidget *usersListWidget
     return true;
 }
 
-bool DBMainWindowControls::IntializeAppointmentsListForm(QWidget *appointsListWidget)
+bool MGAMainWindowControls::IntializeAppointmentsListForm(QWidget *appointsListWidget)
 {
     try
     {
@@ -171,7 +171,7 @@ bool DBMainWindowControls::IntializeAppointmentsListForm(QWidget *appointsListWi
     return true;
 }
 
-bool DBMainWindowControls::IntializeGroupsListForm(QWidget *groupsListWidget)
+bool MGAMainWindowControls::IntializeGroupsListForm(QWidget *groupsListWidget)
 {
     try
     {
@@ -186,7 +186,7 @@ bool DBMainWindowControls::IntializeGroupsListForm(QWidget *groupsListWidget)
     return true;
 }
 
-bool DBMainWindowControls::IntializeOptionsForm(QWidget *optionsWidget)
+bool MGAMainWindowControls::IntializeOptionsForm(QWidget *optionsWidget)
 {
     try
     {
@@ -200,7 +200,7 @@ bool DBMainWindowControls::IntializeOptionsForm(QWidget *optionsWidget)
     return true;
 }
 
-bool DBMainWindowControls::IntializeMGAServer()
+bool MGAMainWindowControls::IntializeMGAServer()
 {
     try
     {
@@ -215,29 +215,29 @@ bool DBMainWindowControls::IntializeMGAServer()
     return true;
 }
 
-bool DBMainWindowControls::AddNewMGAUserToDB()
+bool MGAMainWindowControls::AddNewMGAUserToDB()
 {
     _dbForm->AddNewMGAUsers(_usersListForm->GetTheNewUser());
     return true;
 
 }
 
-bool DBMainWindowControls::AddNewMGAMemberToDB()
+bool MGAMainWindowControls::AddNewMGAMemberToDB()
 {
     return true;
 }
 
-bool DBMainWindowControls::AddNewMGAExpToDB()
+bool MGAMainWindowControls::AddNewMGAExpToDB()
 {
     return true;
 }
 
-bool DBMainWindowControls::AddNewMGAAppointmentToDB()
+bool MGAMainWindowControls::AddNewMGAAppointmentToDB()
 {
     return true;
 }
 
-bool DBMainWindowControls::ShowMembersList()
+bool MGAMainWindowControls::ShowMembersList()
 {
     if(!hasMembersListForm)_dbForm->ShowListInQTalbe(_membersListForm->GetUITable(), EMSGType::eGetMembersList);
     _membersListForm->show();
@@ -246,21 +246,21 @@ bool DBMainWindowControls::ShowMembersList()
 
 }
 
-bool DBMainWindowControls::ShowDatabasesList()
+bool MGAMainWindowControls::ShowDatabasesList()
 {
     _databasesListForm->show();
     return true;
 
 }
 
-bool DBMainWindowControls::ShowGroupsList()
+bool MGAMainWindowControls::ShowGroupsList()
 {
     _groupsListForm->show();
     hasGroupsListForm = true;
     return true;
 }
 
-bool DBMainWindowControls::ShowUsersList()
+bool MGAMainWindowControls::ShowUsersList()
 {
     if(!hasUsersListForm)_dbForm->ShowListInQTalbe(_usersListForm->GetUITable(), EMSGType::eGetUsersList);
     _usersListForm->show();
@@ -269,7 +269,7 @@ bool DBMainWindowControls::ShowUsersList()
 
 }
 
-bool DBMainWindowControls::ShowExperimentsList()
+bool MGAMainWindowControls::ShowExperimentsList()
 {
     if(!hasExpListForm)_dbForm->ShowListInQTalbe(_experimentsListForm->GetUITable(), EMSGType::eGetExpList);
     _experimentsListForm->show();
@@ -277,7 +277,7 @@ bool DBMainWindowControls::ShowExperimentsList()
     return true;
 }
 
-bool DBMainWindowControls::ShowAppointmentsList()
+bool MGAMainWindowControls::ShowAppointmentsList()
 {
     if(!hasAppointListForm)_dbForm->ShowListInQTalbe(_appointmentsListForm->GetUITable(), EMSGType::eGetAppointsList);
     _appointmentsListForm->show();
@@ -285,7 +285,7 @@ bool DBMainWindowControls::ShowAppointmentsList()
     return true;
 }
 
-void DBMainWindowControls::HideAll()
+void MGAMainWindowControls::HideAll()
 {
     if(hasDBForm)_dbForm->hide();
     if(hasOptionForm)_OptionForm->hide();
@@ -297,38 +297,37 @@ void DBMainWindowControls::HideAll()
     if(hasGroupsListForm)_groupsListForm->hide();
 }
 
-void DBMainWindowControls::SetLoginUserRole()
+void MGAMainWindowControls::SetLoginUserRole()
 {
     _sidePanal->SetCurrentRole(_dbForm->GetCurrentUserRole());
 }
 
-void DBMainWindowControls::HideChatWindow()
+void MGAMainWindowControls::HideChatWindow()
 {
     _chatForm->hide();
 }
 
-void DBMainWindowControls::ShowChatWindow()
+void MGAMainWindowControls::ShowChatWindow()
 {
     _chatForm->show();
 }
 
-bool DBMainWindowControls::IntializeSeverConnections()
+bool MGAMainWindowControls::IntializeSeverConnections()
 {
     return _mgaServer->IntializeSeverConnections();
 }
 
-
-void DBMainWindowControls::SaveServerParametersAsSetting()
+void MGAMainWindowControls::SaveServerParametersAsSetting()
 {
     _mgaServer->SaveServerParametersAsSetting(*_setupForm->GetServerSetup());
 }
 
-EUserRole DBMainWindowControls::GetLoginUserRole()
+EUserRole MGAMainWindowControls::GetLoginUserRole()
 {
     return _dbForm->GetCurrentUserRole();
 }
 
-QString DBMainWindowControls::GetLoginUserRoleName()
+QString MGAMainWindowControls::GetLoginUserRoleName()
 {
    return  _dbForm->GetCurrentUserRoleName();
 }

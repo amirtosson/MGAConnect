@@ -18,7 +18,7 @@
 #include <QDesktopServices>
 
 #include "mainwindowresources.h"
-#include "dbmainwindowcontrols.h"
+#include "mgamainwindowcontrols.h"
 #include "mainwindowstyle.h"
 #include "QrCode.hpp"
 #include "MGAObject.h"
@@ -27,7 +27,7 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow, private DBMainWindowControls
+class MainWindow : public QMainWindow, private MGAMainWindowControls
 {
     Q_OBJECT
 

@@ -24,6 +24,7 @@ SOURCES += main.cpp\
     MGACommonGUIViews/mgasidepanelview.cpp \
     MGAControls/mgachatbotservercontrols.cpp \
     MGAControls/mgaconnectsplashscreen.cpp \
+    MGAControls/mgamainwindowcontrols.cpp \
     MGAControls/mgaservercontrols.cpp \
     MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
@@ -38,7 +39,6 @@ SOURCES += main.cpp\
     mgaoptionbuttonextension.cpp \
     mgalistform.cpp \
     MGAObjects/mgadatabase.cpp \
-    MGAControls/dbmainwindowcontrols.cpp \
     mgaemailform.cpp \
     MGAObjects/mgamember.cpp \
     MGAObjects/mgauser.cpp \
@@ -54,6 +54,7 @@ HEADERS  += mainwindow.h\
     MGAControls/MGAResizableWidgetAbstract.h \
     MGAControls/mgachatbotservercontrols.h \
     MGAControls/mgaconnectsplashscreen.h \
+    MGAControls/mgamainwindowcontrols.h \
     MGAControls/mgaservercontrols.h \
     MGAObjects/MGACommonAction.h \
     MGAObjects/MGAObject.h \
@@ -84,7 +85,6 @@ HEADERS  += mainwindow.h\
     mgalistformresources.h \
     mgalistformsetups.h \
     MGAObjects/mgadatabase.h \
-    MGAControls/dbmainwindowcontrols.h \
     mgaemailform.h \
     MGAObjects/mgamember.h \
     MGAObjects/mgauser.h \

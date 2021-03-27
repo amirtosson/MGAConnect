@@ -1,5 +1,5 @@
-#ifndef DBMAINWINDOWCONTROLS_H
-#define DBMAINWINDOWCONTROLS_H
+#ifndef MGAMainWindowControls_H
+#define MGAMainWindowControls_H
 
 #include <QWidget>
 #include <QObject>
@@ -20,7 +20,7 @@
 #include "mgaservercontrols.h"
 
 
-class DBMainWindowControls
+class MGAMainWindowControls
 {
 
 public:
@@ -93,4 +93,4 @@ protected:
     bool HasChatWindow = true;
 };
 
-#endif // DBMAINWINDOWCONTROLS_H
+#endif // MGAMainWindowControls_H
