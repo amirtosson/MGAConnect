@@ -16,19 +16,18 @@
 #include "mgaserverclientmsg.h"
 #include "mgachatform.h"
 #include "mgachatbotservercontrols.h"
+#include "addnewobjectform.h"
+#include "mgaservercontrols.h"
 
 
 class DBMainWindowControls
 {
 
 public:
-
-    explicit DBMainWindowControls(QWidget *parent = 0);
-    ~DBMainWindowControls();
-
-public:
+    void SetCurrentMainWindowInstanceControls(QMainWindow *mainWindow);
     // Components intialization
     bool IntializeChatDialog(QWidget *parent);
+    bool IntializeSetupDialog(QWidget *parent);
     bool IntializeChatbot();
     bool IntializeSidePanel(QWidget *sidePanelWidget);
     bool IntializeDBConnectionForm(QWidget *dbConnectionWidget);
@@ -38,7 +37,12 @@ public:
     bool IntializeExperimentsListForm(QWidget *usersListWidget);
     bool IntializeAppointmentsListForm(QWidget *appointsListWidget);
     bool IntializeGroupsListForm(QWidget *groupsListWidget);
+    bool IntializeOptionsForm(QWidget *optionsWidget);
     bool IntializeDBFOrmConnections();
+    bool IntializeMGAServer();
+    bool IntializeSeverConnections();
+    void SaveServerParametersAsSetting();
+
     bool ShowMembersList();
     bool ShowDatabasesList();
     bool ShowGroupsList();
@@ -49,16 +53,17 @@ public:
     bool AddNewMGAMemberToDB();
     bool AddNewMGAExpToDB();
     bool AddNewMGAAppointmentToDB();
+
     void HideAll();
     void SetLoginUserRole();
     void HideChatWindow();
     void ShowChatWindow();
 
+    void Clean();
 
 public:
     EUserRole GetLoginUserRole();
     QString GetLoginUserRoleName();
-
 
 protected:
     DBConnectForm *_dbForm;
@@ -72,8 +77,9 @@ protected:
     MGAListForm *_groupsListForm;
     MGAChatForm *_chatForm;
     MGAChatBotServerControls *_chatbotServer;
-    QTcpSocket *socket;
-
+    AddNewObjectForm *_setupForm;
+    MGAServerControls *_mgaServer;
+    QMainWindow *currentMainWindow;
 
     bool hasDBForm = false;
     bool hasOptionForm = false;

@@ -3,23 +3,24 @@
 
 
 
-DBConnectForm::DBConnectForm(QWidget *parent) :
+DBConnectForm::DBConnectForm(QWidget *parent, QTcpSocket *mgaSocket) :
     QWidget(parent),
-    dbConnectFormUi(new Ui::DBConnectForm)
+    dbConnectFormUi(new Ui::DBConnectForm),
+    socket(mgaSocket)
 {
     dbConnectFormUi->setupUi(this);
     connect(this, SIGNAL(DatabaseIsconnected()), this, SLOT(OnDataBaseIsconnected()));
     connect(this, SIGNAL(DatabaseIsDisconnected()), this, SLOT(OnDatabaseIsDisconnected()));
     connect(this, SIGNAL(ListIsReady(EMSGType)), this, SLOT(OnListIsReady(const EMSGType)));
 
-    socket = new QTcpSocket();
-    QHostAddress addressIP ;
-    addressIP.setAddress("192.168.178.28");
-    addressIP.toIPv4Address();
-    socket->disconnectFromHost();
+    //socket = new QTcpSocket();
+    //QHostAddress addressIP ;
+    //addressIP.setAddress("192.168.178.28");
+    //addressIP.toIPv4Address();
+    //socket->disconnectFromHost();
     //socket->connectToHost("192.168.178.28", 9999);
-    socket->connectToHost("127.0.0.1", 65432);
-    socket->waitForConnected(5000);
+    //socket->connectToHost("127.0.0.1", 65432);
+    //socket->waitForConnected(5000);
 
     connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));

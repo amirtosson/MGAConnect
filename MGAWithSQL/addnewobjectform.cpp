@@ -1,9 +1,9 @@
 #include "addnewobjectform.h"
 
 AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
-        QDialog(parent)
+        QDialog(parent),
+        eCurrentList(eList)
 {
-        eCurrentList = eList;
         setupUi(this, eCurrentList);
         ResizeComponents(this->width(), this->height());
         switch (eCurrentList) {
@@ -25,6 +25,11 @@ AddNewObjectForm::AddNewObjectForm(QWidget *parent, EListType eList):
         case eAppointmentList:
             {
                 newAppoint = new MGAAppointment();
+            }
+            break;
+        case eSetup:
+            {
+                newSetup = new QStringList();
             }
             break;
         default:
@@ -51,6 +56,9 @@ AddNewObjectForm::~AddNewObjectForm()
     case eAppointmentList:
         delete newAppoint;
         break;
+    case eSetup:
+        delete newSetup;
+        break;
     default:
         break;
     }
@@ -69,6 +77,11 @@ MGAMember* AddNewObjectForm::GetTheNewMember()
 MGAExperiment* AddNewObjectForm::GetTheNewExp()
 {
     return newExp;
+}
+
+QStringList *AddNewObjectForm::GetServerSetup()
+{
+    return newSetup;
 }
 
 void AddNewObjectForm::OnSizeChange(int w, int h)
@@ -102,6 +115,12 @@ void AddNewObjectForm::on_OkButton_clicked()
                 //emit NewUserIsToBeAdded();
                 this->close();
             }
+        }
+        break;
+    case eSetup:
+        {
+            *newSetup = GetLinesFields();
+            emit NewObjectIsToBeAdded();
         }
         break;
     default:

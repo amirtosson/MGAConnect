@@ -15,11 +15,13 @@
 #include <QStyleFactory>
 #include <QPainter>
 #include <QPainterPath>
+#include <QDesktopServices>
 
 #include "mainwindowresources.h"
 #include "dbmainwindowcontrols.h"
 #include "mainwindowstyle.h"
 #include "QrCode.hpp"
+#include "MGAObject.h"
 
 namespace Ui {
 class MainWindow;
@@ -51,6 +53,8 @@ private slots:
     void AddNewObjectClicked(EListType eList);
     void AddNewMemberClicked();
     void AddNewExpClicked();
+    void ServerSetupChanged(bool bSaving = true);
+
 
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
     void on_actionFullScreen_triggered();
@@ -69,12 +73,14 @@ signals:
 
 
 private:
+    QMenu *menuStart;
     Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
     EMGAStyle eCurrentStyle = eDarkStyle;
     QRect defaultGeometry;
     QPainter *p;
-
+    QToolButton *serverDisconnectedButton;
+    QToolButton *label2;
 protected:
     void resizeEvent(QResizeEvent* event);
     void ResetToOriginalSize();

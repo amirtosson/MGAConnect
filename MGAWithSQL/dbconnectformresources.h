@@ -72,6 +72,13 @@
 #define USER_SETTING_DB_NAME_GETTER     "usersetting/dbname"
 #define USER_SETTING_DB_URI_GETTER      "usersetting/dburi"
 
+#define SERVER_SETTING_GROUP            "serversetting"
+#define SERVER_SETTING_IP               "ip"
+#define SERVER_SETTING_PORT             "port"
+
+#define SERVER_SETTING_IP_GETTER        "serversetting/ip"
+#define SERVER_SETTING_PORT_GETTER      "serversetting/port"
+
 
 #define STYLE_FONT_12PIX_BOLD           "text-align:bottom; font-size:12px; font-weight: bold;"
 #define STYLE_FONT_16PIX_BOLD           "text-align:bottom; font-size:16px; font-weight: bold;"

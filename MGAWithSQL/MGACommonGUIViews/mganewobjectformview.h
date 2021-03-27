@@ -37,10 +37,13 @@ class MGANewObjectFormView
 {
 
 public:
+    void setupUi(QDialog *AddNewObjectForm, EListType eList);
+    //intialiyzation functions
     bool IntializeUserGUIComponents(QWidget *widget);
     bool IntializeMemberGUIComponents(QWidget *widget);
     bool IntializeExpGUIComponents(QWidget *widget);
     bool IntializeAppointGUIComponents(QWidget *widget);
+    bool IntializeSetupGUIComponents(QWidget *widget);
 
     void ResizeComponents(int w, int h);
     QStringList GetLinesFields();
@@ -49,7 +52,7 @@ public:
     QString GetUserHost();
     QString GetUserPWD();
     QString GetUserRole();
-    void setupUi(QDialog *AddNewObjectForm, EListType eList);
+
 
 
 

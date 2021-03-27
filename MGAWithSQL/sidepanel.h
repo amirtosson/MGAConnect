@@ -1,13 +1,11 @@
 #ifndef SIDEPANEL_H
 #define SIDEPANEL_H
 
-#include <QWidget>
 #include <QPixmap>
 #include <QIcon>
 
 #include "sidepanelsetups.h"
 #include "mgauserrolesenum.h"
-#include "mgasidepanelview.h"
 #include "mgasidepanelview.h"
 
 

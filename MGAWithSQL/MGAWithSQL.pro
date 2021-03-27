@@ -14,18 +14,21 @@ TEMPLATE = app
 INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
 INCLUDEPATH += MGACommonGUIViews/
+INCLUDEPATH += MGACommonResources/
 
 SOURCES += main.cpp\
     MGACommonGUIViews/mgachatformview.cpp \
     MGACommonGUIViews/mgachatmsgdialogview.cpp \
+    MGACommonGUIViews/mgaflowlayoutview.cpp \
     MGACommonGUIViews/mganewobjectformview.cpp \
     MGACommonGUIViews/mgasidepanelview.cpp \
     MGAControls/mgachatbotservercontrols.cpp \
     MGAControls/mgaconnectsplashscreen.cpp \
+    MGAControls/mgaservercontrols.cpp \
     MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
     QrCode.cpp \
-        mainwindow.cpp \
+    mainwindow.cpp \
     dbconnectform.cpp \
     mgachatform.cpp \
     mgachatmsgdialog.cpp \
@@ -44,15 +47,20 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h\
     MGACommonGUIViews/mgachatformview.h \
     MGACommonGUIViews/mgachatmsgdialogview.h \
+    MGACommonGUIViews/mgaflowlayoutview.h \
     MGACommonGUIViews/mganewobjectformview.h \
     MGACommonGUIViews/mgasidepanelview.h \
+    MGACommonResources/MGACommonActionsRescources.h \
     MGAControls/MGAResizableWidgetAbstract.h \
     MGAControls/mgachatbotservercontrols.h \
     MGAControls/mgaconnectsplashscreen.h \
+    MGAControls/mgaservercontrols.h \
+    MGAObjects/MGACommonAction.h \
     MGAObjects/MGAObject.h \
     MGAObjects/mgaappointment.h \
     MGAObjects/mgaconnectsplashscreendefinations.h \
     MGAObjects/mgaexperiment.h \
+    MGAObjects/mgaserverresources.h \
     QrCode.hpp \
     chatformresources.h \
     dbconnectform.h \

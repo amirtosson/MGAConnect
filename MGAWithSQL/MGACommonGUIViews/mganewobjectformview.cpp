@@ -75,6 +75,11 @@ void MGANewObjectFormView::setupUi(QDialog *AddNewObjectForm, EListType eList)
             IntializeAppointGUIComponents(AddNewObjectForm);
         }
         break;
+    case eSetup:
+        {
+            IntializeSetupGUIComponents(AddNewObjectForm);
+        }
+        break;
     default:
         break;
     }
@@ -202,6 +207,26 @@ bool MGANewObjectFormView::IntializeAppointGUIComponents(QWidget *widget)
     componentsEditLines[1]->setPlaceholderText(TXT_DATE_PH);
     componentsEditLines[2]->setPlaceholderText(TXT_GUESTS_PH);
     componentsEditLines[3]->setPlaceholderText(TXT_DESCRIPTION_PH);
+    return true;
+}
+
+bool MGANewObjectFormView::IntializeSetupGUIComponents(QWidget *widget)
+{
+    try
+    {
+        SetupLabelsAndEditLines(2,2);
+    }
+    catch(...)
+    {
+        //TODO: exception handling
+        return false;
+    }
+
+    componentsLabels[0]->setText(TXT_SERVER_IP_LABEL);
+    componentsLabels[1]->setText(TXT_SERVER_PORT_LABEL);
+
+    componentsEditLines[0]->setPlaceholderText(TXT_IP_PH);
+    componentsEditLines[1]->setPlaceholderText(TXT_PORT_PH);
     return true;
 }
 

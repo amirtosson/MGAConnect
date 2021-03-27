@@ -14,9 +14,8 @@
 #include <QWidget>
 #include <QDialog>
 #include <QListWidget>
+#include <QPlainTextEdit>
 
-
-#include <vector>
 
 class MGAChatMSGDialogView
 {
@@ -34,10 +33,8 @@ protected:
     QPushButton *sendButton;
     QWidget *widget;
     QListWidget *listWidget;
-
-
-
-
+    QTextBrowser *p ;
+     QPlainTextEdit *plainTextEdit;
 
 };
 

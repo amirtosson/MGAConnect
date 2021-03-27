@@ -28,6 +28,7 @@ public:
     MGAUser* GetTheNewUser();
     MGAMember* GetTheNewMember();
     MGAExperiment* GetTheNewExp();
+    QStringList* GetServerSetup();
 
 signals:
     void NewObjectIsToBeAdded();
@@ -44,7 +45,11 @@ private:
     MGAMember *newMember;
     MGAExperiment *newExp;
     MGAAppointment *newAppoint;
+    //TODO: setup object --- for now, as string list
+    QStringList *newSetup;
+
     EListType eCurrentList = eUNKOWN;
+
 
 private:
     bool AcceptNewUser();

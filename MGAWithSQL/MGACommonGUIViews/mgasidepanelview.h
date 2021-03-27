@@ -9,7 +9,6 @@
 #include <QGridLayout>
 #include <QScrollArea>
 #include <QSpacerItem>
-#include <QWidget>
 #include <vector>
 #include "MGAResizableWidgetAbstract.h"
 #include "mgauserrolesenum.h"

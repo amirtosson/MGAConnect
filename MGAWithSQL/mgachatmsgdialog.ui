@@ -54,71 +54,18 @@
    <property name="styleSheet">
     <string notr="true">background-color: rgb(50, 50, 50);</string>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>561</width>
-      <height>148</height>
+      <x>120</x>
+      <y>90</y>
+      <width>104</width>
+      <height>70</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="1">
-      <widget class="QTextBrowser" name="msgBrowserMGA">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(135, 135, 135);
-color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QTextBrowser" name="msgBrowser">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(240, 240, 240);
-color: rgb(9, 9, 9);</string>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhMultiLine</set>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+    <property name="plainText">
+     <string>asdasd</string>
+    </property>
    </widget>
   </widget>
  </widget>

@@ -9,6 +9,7 @@ extern "C" enum EListType
     eAppointmentList,
     eDatabasesList,
     eGroupsList,
+    eSetup,
     eUNKOWN
 };
 

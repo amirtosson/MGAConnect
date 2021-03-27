@@ -18,6 +18,7 @@
 #define ICON_CHAT_URL                           ":/buttonIcons/Resources/Icons/chat.png"
 #define ICON_NO_CHAT_URL                        ":/buttonIcons/Resources/Icons/nochat.png"
 
-
+#define ICON_CONNECTED_URL                      ":/server/Resources/Icons/serverconnected.png"
+#define ICON_DISCONNECTED_URL                   ":/server/Resources/Icons/serverdisconnected.png"
 
 #endif // MAINWINDOWRESOURCES_H

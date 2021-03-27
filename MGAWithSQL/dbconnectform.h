@@ -34,7 +34,7 @@ class DBConnectForm : public QWidget, MGAResizableWidget
     Q_OBJECT
 
 public:
-    explicit DBConnectForm(QWidget *parent = 0);
+    explicit DBConnectForm(QWidget *parent = 0, QTcpSocket *mgaSocket = nullptr);
 
     ~DBConnectForm();
     //DECLAIR_SQL_REQUIRED_MEMBERS
