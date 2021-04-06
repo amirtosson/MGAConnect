@@ -53,6 +53,7 @@ void OptionForm::MouseLeftThirdBtn()
 
 void OptionForm::on_firstButton_clicked()
 {
+    HIDE_ALL
     SET_STYLE_CHANGING_GROUP
 }
 
@@ -78,4 +79,11 @@ void OptionForm::on_changingButtonBox_accepted()
 void OptionForm::on_changingButtonBox_rejected()
 {
     BACK_TO_DEFAULT
+}
+
+void OptionForm::on_secondButton_clicked()
+{
+    HIDE_ALL
+    ui->ServerConfiggroupBox->setHidden(false);
+    ui->changingButtonBox->setHidden(false);
 }

@@ -1,36 +1,33 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+//#include "ui_mainwindow.h"
 
 
 
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+
+MainWindow::MainWindow(QWidget *parent)
 {
-    ui->setupUi(this);
+    setupUi(this);
     USE_STYLE(eCurrentStyle)
 
     SetCurrentMainWindowInstanceControls(this);
-
-    if(!IntializeMGAServer() || !IntializeChatDialog(this) || !IntializeSidePanel(ui->sideToolBoxWidget) || !IntializeChatbot()) return;
-
+    if(!IntializeMGAServer() || !IntializeChatDialog(this) || !IntializeSidePanel(sideToolBoxWidget) || !IntializeChatbot()) return;
     serverDisconnectedButton = new QToolButton();
-    QPixmap pixmap(QPixmap(ICON_DISCONNECTED_URL).scaledToHeight(ui->statusBar->height()));
+    QPixmap pixmap(QPixmap(ICON_DISCONNECTED_URL).scaledToHeight(MGAMainWindowView::statusBar->height()));
     serverDisconnectedButton->setIcon(pixmap);
     serverDisconnectedButton->setIconSize(QSize(30, 30));
 
-    ui->statusBar->addWidget(serverDisconnectedButton);
+    MGAMainWindowView::statusBar->addWidget(serverDisconnectedButton);
     menuStart = _mgaServer->GetDisconnectecdPopubServerMenu(serverDisconnectedButton);
     connect(serverDisconnectedButton,SIGNAL(clicked(bool)),menuStart,SLOT(show()));
 
 
     connect(this, SIGNAL(SizeChanged(int,int)),_sidePanal ,SLOT(OnSizeChange(const int, const int)));
-    connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
-    connect(ui->sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
+    connect(sideToolBoxWidget ,SIGNAL(mouseIsOver()), this, SLOT(ShowSidePanel()));
+    connect(sideToolBoxWidget ,SIGNAL(mouseIsLeft()), this, SLOT(HideSidePanel()));
 
-    ui->sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
-    this->statusBar()->showMessage(TXT_NOT_CONNECTED);
+    sidePanelStatuscheckBox->setText(TXT_SIDEPANEL_STATUS_CHECK_BOX);
+    MGAMainWindowView::statusBar->showMessage(TXT_NOT_CONNECTED);
 
     defaultGeometry = this->geometry();
     UpdateSizes(defaultGeometry.width(),defaultGeometry.height());
@@ -45,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
         if (!IntializeSetupDialog(this)) return;
     }
 
-    menuStart->popup(mapToGlobal(ui->centralWidget->geometry().bottomRight()
+    menuStart->popup(mapToGlobal(MGAMainWindowView::centralWidget->geometry().bottomRight()
                                  - QPoint(menuStart->width(),0)
                                  - QPoint(serverDisconnectedButton->width(),serverDisconnectedButton->height())
                                  ));
@@ -54,20 +51,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    //delete ui;
     Clean();
 
 }
+
 
 void MainWindow::DBConnectionSetUpClicked()
 {
     HideAll();
     if(!hasDBForm)
     {
-        IntializeDBConnectionForm(ui->mainWidget);
+        IntializeDBConnectionForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     _dbForm->show();
 }
 
@@ -76,10 +74,10 @@ void MainWindow::ShowMemberListClicked()
     HideAll();
     if(!hasMembersListForm)
     {
-        IntializeMembersListForm(ui->mainWidget);
+        IntializeMembersListForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     ShowMembersList();
 }
 
@@ -88,9 +86,9 @@ void MainWindow::ShowDatabasesListClicked()
     HideAll();
     if(!hasDatabasesListForm)
     {
-        IntializeDatabasesListForm(ui->mainWidget);
+        IntializeDatabasesListForm(mainWidget);
     }
-    ui->widget->hide();
+     widget->hide();
     ShowDatabasesList();
 }
 
@@ -99,10 +97,10 @@ void MainWindow::ShowUserListClicked()
     HideAll();
     if(!hasUsersListForm)
     {
-        IntializeUsersListForm(ui->mainWidget);
+        IntializeUsersListForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     ShowUsersList();
 }
 
@@ -111,10 +109,10 @@ void MainWindow::ShowExperimentsListClicked()
     HideAll();
     if(!hasExpListForm)
     {
-        IntializeExperimentsListForm(ui->mainWidget);
+        IntializeExperimentsListForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     ShowExperimentsList();
 }
 
@@ -123,10 +121,10 @@ void MainWindow::ShowAppointmentsListClicked()
     HideAll();
     if(!hasAppointListForm)
     {
-        IntializeAppointmentsListForm(ui->mainWidget);
+        IntializeAppointmentsListForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     ShowAppointmentsList();
 }
 
@@ -135,10 +133,10 @@ void MainWindow::ShowGroupsListClicked()
     HideAll();
     if(!hasGroupsListForm)
     {
-        IntializeGroupsListForm(ui->mainWidget);
+        IntializeGroupsListForm(mainWidget);
         emit SizeChanged(this->size().width(),this->size().height());
     }
-    ui->widget->hide();
+    widget->hide();
     ShowGroupsList();
 }
 
@@ -151,7 +149,7 @@ void MainWindow::StyleHasBeenChanged()
 
 void MainWindow::DatabaseHasConnection()
 {
-    this->statusBar()->showMessage(TXT_CONNECTED);
+    MGAMainWindowView::statusBar->showMessage(TXT_CONNECTED);
     SetLoginUserRole();
     //TODO: check
     QMessageBox::information(this, tr(TXT_INFORMATION),QString(TXT_CONNECTED_PRIV).arg( _dbForm->GetCurrentUserRoleName()));
@@ -159,7 +157,7 @@ void MainWindow::DatabaseHasConnection()
 
 void MainWindow::DatabaseNotConnected()
 {
-    this->statusBar()->showMessage(TXT_NOT_CONNECTED);
+    MGAMainWindowView::statusBar->showMessage(TXT_NOT_CONNECTED);
 }
 
 void MainWindow::ShowSidePanel()
@@ -211,22 +209,24 @@ void MainWindow::AddNewExpClicked()
 void MainWindow::ServerSetupChanged(bool bSaving)
 {
     if (bSaving)SaveServerParametersAsSetting();
+
+
     if (IntializeSeverConnections())
     {
         QMessageBox::information(this, TXT_SERVER_MSG_BOX_LABEL, TXT_MSG_BOX_SERVER_IS_CONNECTED,
                                                   QMessageBox::Ok);
-        this->statusBar()->showMessage(TXT_CONNECTED);
+        MGAMainWindowView::statusBar->showMessage(TXT_CONNECTED);
         serverDisconnectedButton->hide();
         label2 = new QToolButton();
-        QPixmap pixmap(QPixmap(ICON_CONNECTED_URL).scaledToHeight(ui->statusBar->height()));
+        QPixmap pixmap(QPixmap(ICON_CONNECTED_URL).scaledToHeight(MGAMainWindowView::statusBar->height()));
         label2->setIcon(pixmap);
         label2->setIconSize(QSize(30, 30));
-        this->statusBar()->addWidget(label2);
+        MGAMainWindowView::statusBar->addWidget(label2);
         label2->show();
         menuStart = _mgaServer->GetConnectecdPopubServerMenu(label2);
 
         connect(label2,SIGNAL(clicked(bool)),menuStart,SLOT(show()));
-        menuStart->popup(mapToGlobal(ui->centralWidget->geometry().bottomRight()
+        menuStart->popup(mapToGlobal(MGAMainWindowView::centralWidget->geometry().bottomRight()
                                      - QPoint(menuStart->width(),0)
                                      - QPoint(label2->width(),label2->height())
                                      ));
@@ -241,17 +241,17 @@ void MainWindow::ServerSetupChanged(bool bSaving)
     if (bSaving)_setupForm->close();
 }
 
+
 void MainWindow::on_actionOptions_triggered()
 {
     HideAll();
     if(!hasOptionForm)
     {
-        hasOptionForm = IntializeOptionsForm(ui->mainWidget);
+        hasOptionForm = IntializeOptionsForm(mainWidget);
     }
-    ui->widget->hide();
+    widget->hide();
     _OptionForm->show();
 }
-
 
 void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
 {
@@ -268,7 +268,6 @@ void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
         break;
     }
 }
-
 
 void MainWindow::on_actionFullScreen_triggered()
 {
@@ -299,7 +298,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     {
         return;
     }
-    ui->actionResetSize->setEnabled(true);
+    actionResetSize->setEnabled(true);
     int height = event->size().height();
     int width = event->size().width();
     UpdateSizes(width,height);
@@ -312,7 +311,7 @@ void MainWindow::ResetToOriginalSize()
     int width = defaultGeometry.width();
     this->resize(defaultGeometry.width(),defaultGeometry.height());
     UpdateSizes(width,height);
-    ui->actionResetSize->setEnabled(false);
+    actionResetSize->setEnabled(false);
 }
 
 void MainWindow::SetToFullScreen()
@@ -329,9 +328,9 @@ void MainWindow::UpdateSizes(int w, int h)
     QString style = this->styleSheet();
     style += QString("QWidget {font: 75 %1pt  TeX Gyre Schola;}").arg(0.01*w);
     this->setStyleSheet(style);
-    ui->mainWidget->setGeometry(0.14*w, 10 , MAIN_WIDGET_WIDTH_RATIO*w , MAIN_WIDGET_HEIGHT_RATIO*h);
-    ui->sideToolBoxWidget->setGeometry(10,10,0.12*w,0.8*h);
-    ui->sidePanelStatuscheckBox->setGeometry(10,0.8*h,250,40);
+    mainWidget->setGeometry(0.14*w, 10 , MAIN_WIDGET_WIDTH_RATIO*w , MAIN_WIDGET_HEIGHT_RATIO*h);
+    sideToolBoxWidget->setGeometry(10,10,0.12*w,0.8*h);
+    sidePanelStatuscheckBox->setGeometry(10,0.8*h,250,40);
     emit SizeChanged(w,h);
 }
 
@@ -376,7 +375,7 @@ void MainWindow::on_actionChat_triggered()
     {
         QIcon icon;
         icon.addFile(QString::fromUtf8(ICON_NO_CHAT_URL), QSize(), QIcon::Normal, QIcon::Off);
-        ui->actionChat->setIcon(icon);
+        actionChat->setIcon(icon);
         HasChatWindow = !HasChatWindow;
         ShowChatWindow();
     }
@@ -384,7 +383,7 @@ void MainWindow::on_actionChat_triggered()
     {
         QIcon icon;
         icon.addFile(QString::fromUtf8(ICON_CHAT_URL), QSize(), QIcon::Normal, QIcon::Off);
-        ui->actionChat->setIcon(icon);
+        actionChat->setIcon(icon);
         HasChatWindow = !HasChatWindow;
         HideChatWindow();
     }

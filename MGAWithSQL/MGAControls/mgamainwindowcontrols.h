@@ -40,7 +40,7 @@ public:
     bool IntializeOptionsForm(QWidget *optionsWidget);
     bool IntializeDBFOrmConnections();
     bool IntializeMGAServer();
-    bool IntializeSeverConnections();
+    //bool IntializeSeverConnections();
     void SaveServerParametersAsSetting();
 
     bool ShowMembersList();
@@ -61,6 +61,8 @@ public:
 
     void Clean();
 
+public slots:
+    bool IntializeSeverConnections();
 public:
     EUserRole GetLoginUserRole();
     QString GetLoginUserRoleName();

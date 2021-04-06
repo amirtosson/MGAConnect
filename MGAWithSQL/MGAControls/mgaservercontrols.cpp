@@ -1,4 +1,6 @@
 #include "mgaservercontrols.h"
+#include <QThread>
+#include <QMessageBox>
 
 
 MGAServerControls::MGAServerControls()
@@ -16,12 +18,13 @@ MGAServerControls::MGAServerControls()
 
 bool MGAServerControls::IntializeSeverConnections()
 {
+
     if (socket != nullptr)socket = new QTcpSocket();
     QSettings settings;
     QString ip = settings.value(SERVER_SETTING_IP_GETTER).toString();
     QString port = settings.value(SERVER_SETTING_PORT_GETTER).toString();
     socket->connectToHost(ip,port.toInt());
-    return socket->waitForConnected(5000);
+    return socket->waitForConnected(500);
 }
 
 bool MGAServerControls::IntializePopupMenuConnected(QWidget *parent)

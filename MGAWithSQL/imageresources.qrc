@@ -36,6 +36,7 @@
         <file>Resources/Icons/icon-chat.png</file>
         <file>Resources/Icons/minimize.png</file>
         <file>Resources/Icons/close.png</file>
+        <file>Resources/Images/config.png</file>
     </qresource>
     <qresource prefix="/user">
         <file>Resources/Icons/users.png</file>

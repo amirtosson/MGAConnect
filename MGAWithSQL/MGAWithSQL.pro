@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = MGAWithSQL
 TEMPLATE = app
 
+
 INCLUDEPATH += MGAObjects/
 INCLUDEPATH += MGAControls/
 INCLUDEPATH += MGACommonGUIViews/
@@ -20,11 +21,11 @@ SOURCES += main.cpp\
     MGACommonGUIViews/mgachatformview.cpp \
     MGACommonGUIViews/mgachatmsgdialogview.cpp \
     MGACommonGUIViews/mgaflowlayoutview.cpp \
+    MGACommonGUIViews/mgamainwindowview.cpp \
     MGACommonGUIViews/mganewobjectformview.cpp \
     MGACommonGUIViews/mgasidepanelview.cpp \
     MGAControls/mgachatbotservercontrols.cpp \
     MGAControls/mgaconnectsplashscreen.cpp \
-    MGAControls/mgamainwindowcontrols.cpp \
     MGAControls/mgaservercontrols.cpp \
     MGAObjects/mgaappointment.cpp \
     MGAObjects/mgaexperiment.cpp \
@@ -39,6 +40,7 @@ SOURCES += main.cpp\
     mgaoptionbuttonextension.cpp \
     mgalistform.cpp \
     MGAObjects/mgadatabase.cpp \
+    MGAControls/mgamainwindowcontrols.cpp \
     mgaemailform.cpp \
     MGAObjects/mgamember.cpp \
     MGAObjects/mgauser.cpp \
@@ -48,13 +50,13 @@ HEADERS  += mainwindow.h\
     MGACommonGUIViews/mgachatformview.h \
     MGACommonGUIViews/mgachatmsgdialogview.h \
     MGACommonGUIViews/mgaflowlayoutview.h \
+    MGACommonGUIViews/mgamainwindowview.h \
     MGACommonGUIViews/mganewobjectformview.h \
     MGACommonGUIViews/mgasidepanelview.h \
     MGACommonResources/MGACommonActionsRescources.h \
     MGAControls/MGAResizableWidgetAbstract.h \
     MGAControls/mgachatbotservercontrols.h \
     MGAControls/mgaconnectsplashscreen.h \
-    MGAControls/mgamainwindowcontrols.h \
     MGAControls/mgaservercontrols.h \
     MGAObjects/MGACommonAction.h \
     MGAObjects/MGAObject.h \
@@ -85,6 +87,7 @@ HEADERS  += mainwindow.h\
     mgalistformresources.h \
     mgalistformsetups.h \
     MGAObjects/mgadatabase.h \
+    MGAControls/mgamainwindowcontrols.h \
     mgaemailform.h \
     MGAObjects/mgamember.h \
     MGAObjects/mgauser.h \

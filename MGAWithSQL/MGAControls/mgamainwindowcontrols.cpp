@@ -1,5 +1,7 @@
 #include "mgamainwindowcontrols.h"
 #include <QSettings>
+#include <QThread>
+#include <QMessageBox>
 
 void MGAMainWindowControls::Clean()
 {
@@ -314,6 +316,11 @@ void MGAMainWindowControls::ShowChatWindow()
 
 bool MGAMainWindowControls::IntializeSeverConnections()
 {
+   // QThread *thread = new QThread;
+    //_mgaServer->moveToThread(thread);
+    //thread->start();
+    //bool bConnected = _mgaServer->IntializeSeverConnections();
+    //_mgaServer->moveToThread(QApplication::instance()->thread());
     return _mgaServer->IntializeSeverConnections();
 }
 

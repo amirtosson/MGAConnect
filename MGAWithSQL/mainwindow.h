@@ -16,25 +16,26 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QDesktopServices>
+#include <QThread>
 
 #include "mainwindowresources.h"
 #include "mgamainwindowcontrols.h"
 #include "mainwindowstyle.h"
 #include "QrCode.hpp"
 #include "MGAObject.h"
+#include "mgamainwindowview.h"
 
-namespace Ui {
-class MainWindow;
-}
+//namespace Ui {
+//class MainWindow;
+//}
 
-class MainWindow : public QMainWindow, private MGAMainWindowControls
+class MainWindow : public MGAMainWindowView, private MGAMainWindowControls
 {
     Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
 private slots:
     void on_actionOptions_triggered();
     void DBConnectionSetUpClicked();
@@ -55,7 +56,6 @@ private slots:
     void AddNewExpClicked();
     void ServerSetupChanged(bool bSaving = true);
 
-
     void on_sidePanelStatuscheckBox_stateChanged(int arg1);
     void on_actionFullScreen_triggered();
     void on_actionExit_triggered();
@@ -74,7 +74,7 @@ signals:
 
 private:
     QMenu *menuStart;
-    Ui::MainWindow *ui;
+    //Ui::MainWindow *ui;
     bool sidePanelIsFixed =false;
     EMGAStyle eCurrentStyle = eDarkStyle;
     QRect defaultGeometry;

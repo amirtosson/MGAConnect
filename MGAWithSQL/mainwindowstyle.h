@@ -10,7 +10,7 @@
             QTextStream stream(&file);\
             QString s = stream.readAll();\
             this->setStyleSheet(s);\
-            ui->mainWidget->setStyleSheet(QString("QWidget { background-color: rgb(50,50, 50); color: white; selection-background-color: transparent;} QPushButton:focus {outline: none;}") );\
+            mainWidget->setStyleSheet(QString("QWidget { background-color: rgb(50,50, 50); color: white; selection-background-color: transparent;} QPushButton:focus {outline: none;}") );\
         }\
         else if (e == eBrightStyle)\
         {\
@@ -19,5 +19,5 @@
             QTextStream stream(&file);\
             QString s = stream.readAll();\
             this->setStyleSheet(s);\
-            ui->mainWidget->setStyleSheet(QString("QWidget { background-color: rgb(153, 153, 150); color: white; selection-background-color: transparent;} QPushButton:focus {outline: none;}") );\
+            mainWidget->setStyleSheet(QString("QWidget { background-color: rgb(153, 153, 150); color: white; selection-background-color: transparent;} QPushButton:focus {outline: none;}") );\
         };

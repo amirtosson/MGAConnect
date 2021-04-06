@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     qApp->setOrganizationName("MGA");
     QSettings::setDefaultFormat(QSettings::IniFormat);
     MainWindow w;
-    //w.showNormal();
+    w.showNormal();
     //QTimer::singleShot(10,&w, SLOT(showNormal()));
     //delete splash;
     return a.exec();

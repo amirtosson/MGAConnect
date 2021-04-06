@@ -146,20 +146,65 @@
          <string notr="true"/>
         </property>
        </widget>
-       <widget class="QDialogButtonBox" name="changingButtonBox">
+      </widget>
+      <widget class="QDialogButtonBox" name="changingButtonBox">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>10</y>
+         <width>61</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 57 italic 9pt &quot;Ubuntu&quot;;</string>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="ServerConfiggroupBox">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>10</y>
+         <width>351</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <widget class="QLabel" name="IPLabel">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>90</y>
-          <width>81</width>
+          <x>10</x>
+          <y>20</y>
+          <width>61</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Server IP</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>10</y>
+          <width>251</width>
           <height>31</height>
          </rect>
         </property>
-        <property name="styleSheet">
-         <string notr="true">font: 57 italic 9pt &quot;Ubuntu&quot;;</string>
-        </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>

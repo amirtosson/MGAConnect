@@ -30,6 +30,8 @@ private slots:
     void on_changingButtonBox_accepted();
     void on_changingButtonBox_rejected();
 
+    void on_secondButton_clicked();
+
 signals:
     void StyleIsChanged();
 

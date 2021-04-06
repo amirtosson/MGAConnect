@@ -7,5 +7,5 @@
 
 //Images URLs
 #define IMG_THEME               "border-image: url(:/buttonIcons/Resources/Images/them.png)"
-
+#define IMG_SERVER_CONFIG       "border-image: url(:/buttonIcons/Resources/Images/config.png)"
 #endif // OPTIONFORMRESOURCES_H

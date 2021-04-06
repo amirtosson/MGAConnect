@@ -9,11 +9,17 @@
 #define SET_OPTION_FORM_STYLE\
         this->setStyleSheet("");\
         this->setStyleSheet(BUTTON_ROUNDED_EDGES);\
-        ui->StylegroupBox->setHidden(true);\
+        HIDE_ALL\
         FIRST_BUTTON_SETUP
 
-#define BACK_TO_DEFAULT\
+#define HIDE_ALL\
         ui->StylegroupBox->setHidden(true);\
+        ui->ServerConfiggroupBox->setHidden(true);\
+        ui->changingButtonBox->setHidden(true);\
+
+
+#define BACK_TO_DEFAULT\
+        HIDE_ALL\
         ui->firstButton->setGeometry(30,100,90,70);\
         ui->secondButton->setGeometry(30,100,90,70);\
         ui->thirdButton->setGeometry(30,100,90,70);\
@@ -22,7 +28,10 @@
         "QPushButton { border-radius:10px;}"
 
 #define FIRST_BUTTON_SETUP\
-        ui->firstButton->setStyleSheet(IMG_THEME);
+        ui->firstButton->setStyleSheet(IMG_THEME);\
+        ui->secondButton->setStyleSheet(IMG_SERVER_CONFIG);\
+
+
 
 
 #define MOUSE_ON_OPTION_BUTTON(V)\
@@ -44,6 +53,7 @@
 
 #define SET_STYLE_CHANGING_GROUP\
         ui->StylegroupBox->setVisible(true);\
+        ui->changingButtonBox->setHidden(false);\
         QStringList styleList;\
         styleList.append(TXT_DARK_STYLE);\
         styleList.append(TXT_BRIGHT_STYLE);\
