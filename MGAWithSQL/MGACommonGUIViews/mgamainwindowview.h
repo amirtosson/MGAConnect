@@ -33,6 +33,7 @@ public:
     QAction *actionResetSize;
     QAction *actionChat;
     QAction *actionserverAction;
+    QAction *actionHomeMenu;
     QWidget *centralWidget;
     QWidget *mainWidget;
     QWidget *widget;

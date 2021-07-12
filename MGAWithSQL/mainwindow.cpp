@@ -253,6 +253,12 @@ void MainWindow::on_actionOptions_triggered()
     _OptionForm->show();
 }
 
+void MainWindow::on_actionHomeMenu_triggered()
+{
+    HideAll();
+    widget->show();
+}
+
 void MainWindow::on_sidePanelStatuscheckBox_stateChanged(int arg1)
 {
     switch (arg1) {
@@ -393,6 +399,6 @@ void MainWindow::on_actionChat_triggered()
 
 void MainWindow::on_OpenWebSiteButton_clicked()
 {
-    QString link = "https://www.tosson.net";
+    QString link = "https://tosson-lab.de/";
     QDesktopServices::openUrl(QUrl(link));
 }

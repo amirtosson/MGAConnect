@@ -31,6 +31,11 @@ void MGAMainWindowView::setupUi(QMainWindow *MainWindow)
     QIcon icon1;
     icon1.addFile(QString::fromUtf8(":/buttonIcons/Resources/Icons/setting.png"), QSize(), QIcon::Normal, QIcon::Off);
     actionOptions->setIcon(icon1);
+    actionHomeMenu = new QAction(MainWindow);
+    actionHomeMenu->setObjectName(QString::fromUtf8("actionHomeMenu"));
+    QIcon icon7;
+    icon7.addFile(QString::fromUtf8(":/buttonIcons/Resources/Icons/home.png"), QSize(), QIcon::Normal, QIcon::Off);
+    actionHomeMenu->setIcon(icon7);
     actionExit = new QAction(MainWindow);
     actionExit->setObjectName(QString::fromUtf8("actionExit"));
     QIcon icon2;
@@ -78,7 +83,7 @@ void MGAMainWindowView::setupUi(QMainWindow *MainWindow)
     OpenWebSiteButton->setToolTip(QString::fromUtf8("Go To Website"));
 #endif // QT_CONFIG(tooltip)
     OpenWebSiteButton->setToolTipDuration(5);
-    OpenWebSiteButton->setStyleSheet(QString::fromUtf8(""));
+    OpenWebSiteButton->setStyleSheet(QString::fromUtf8("border-image: url(:/logos/Resources/Images/TLLogoImg.png);"));
     MGAWelcomeLabel = new QLabel(widget);
     MGAWelcomeLabel->setObjectName(QString::fromUtf8("MGAWelcomeLabel"));
     MGAWelcomeLabel->setGeometry(QRect(290, 260, 201, 41));
@@ -149,6 +154,8 @@ void MGAMainWindowView::setupUi(QMainWindow *MainWindow)
     mainToolBar->addAction(actionExit);
     mainToolBar->addAction(actionChat);
     mainToolBar->addAction(actionResetSize);
+    mainToolBar->addAction(actionHomeMenu);
+
 
     MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MGAConnect", nullptr));
 #if QT_CONFIG(tooltip)

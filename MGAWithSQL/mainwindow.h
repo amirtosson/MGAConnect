@@ -38,6 +38,7 @@ public:
     ~MainWindow();
 private slots:
     void on_actionOptions_triggered();
+    void on_actionHomeMenu_triggered();
     void DBConnectionSetUpClicked();
     void ShowMemberListClicked();
     void ShowDatabasesListClicked();
